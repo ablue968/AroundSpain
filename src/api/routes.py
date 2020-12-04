@@ -7,6 +7,16 @@ from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
+usuarios = [{
+    "id":"1",
+    "name": "Pedro",
+    "lastname": "Gomez"
+},{
+    "id":"2",
+    "name": "Jose",
+    "lastname": "Perez"
+}]
+
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -19,11 +29,16 @@ def handle_hello():
 
 @api.route('/Users', methods=['GET'])
 def handle_list_user():
-    return "list user."
+
+    return jsonify(usuarios), 200
+
+
 
 @api.route('/Users/<int:id>', methods=['GET'])
 def handle_get_user():
     return "Get user {}".format(id)
+
+
 
 @app.route('/Users/<int:id>', methods=['POST'])
 def get_user():
