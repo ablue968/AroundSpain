@@ -27,4 +27,8 @@ def handle_get_user():
 
 @app.route('/Users/<int:id>', methods=['POST'])
 def get_user():
-    return jsonify({'done': True}),200
+    new_user = user.name
+    if not new_user:
+        return "member not found",400
+    else:
+        return jsonify({'done': True}),200
