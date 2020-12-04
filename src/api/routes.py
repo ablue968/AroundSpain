@@ -16,3 +16,11 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/Users', methods=['GET'])
+def handle_list_user():
+    return "list user."
+
+@api.route('/Users/<int:id>', methods=['GET'])
+def handle_get_user():
+    return "Get user {}".format(id)
