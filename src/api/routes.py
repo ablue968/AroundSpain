@@ -18,32 +18,30 @@ usuarios = [{
 }]
 
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
+#@api.route('/users', methods=['GET'])
+#def handle_list_user():
+#
+#    response_body = {
+#        "message": "Hello! I'm a message that came from the backend"
+#    }
+#
+#    return jsonify(response_body), 200
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend"
-    }
-
-    return jsonify(response_body), 200
-
-@api.route('/Users', methods=['GET'])
+@api.route('/users', methods=['GET'])
 def handle_list_user():
 
     return jsonify(usuarios), 200
 
 
 
-@api.route('/Users/<int:id>', methods=['GET'])
+@api.route('/users/<int:id>', methods=['GET'])
 def handle_get_user():
-    return "Get user {}".format(id)
+    return "Get #{}"user.format(id)
 
 
 
-@app.route('/Users/<int:id>', methods=['POST'])
-def get_user():
-    new_user = user.name
-    if not new_user:
-        return "member not found",400
-    else:
-        return jsonify({'done': True}),200
+@api.route('/users/<int:id>', methods=['POST'])
+def handle_create_user():
+    payload = request.get_json()
+    print(payload)
+    return "create user"
