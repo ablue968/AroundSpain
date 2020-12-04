@@ -40,8 +40,8 @@ class posts(db.Model):
     created_at = db.Column(db.DateTime, default=db.DateTime.DateTime.UctNow, nullable=False)
     update_at = db.Column(db.DateTime, default=db.DateTime.DateTime.UctNow, nullable=False)
     delete_at = db.Column(db.DateTime, default=db.DateTime.DateTime.UctNow)
-    user_id = db.Column(db.Integer, FOREIGN_KEY= users.id, nullable=False)
-    city_id = db.Column(db.Integer, FOREIGN_KEY= cities.id, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    city_id = db.Column(db.Integer, db.ForeignKey('cities.id'), nullable=False)
     text = db.Column(db.String, nullable=False)
 
 class likes(db.Model):
@@ -49,19 +49,22 @@ class likes(db.Model):
     created_at = db.Column(db.DateTime, default=db.DateTime.DateTime.UctNow, nullable=False)
     update_at = db.Column(db.DateTime, default=db.DateTime.DateTime.UctNow, nullable=False)
     delete_at = db.Column(db.DateTime, default=db.DateTime.DateTime.UctNow)
-    user_id = db.Column(db.Integer, FOREIGN_KEY= users.id, nullable=False)
-    city_id = db.Column(db.Integer, FOREIGN_KEY= cities.id, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    city_id = db.Column(db.Integer, db.ForeignKey('cities.id'), nullable=False)
        
 class comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, default=db.DateTime.DateTime.UctNow, nullable=False)
     update_at = db.Column(db.DateTime, default=db.DateTime.DateTime.UctNow, nullable=False)
     delete_at = db.Column(db.DateTime, default=db.DateTime.DateTime.UctNow)
-    user_id = db.Column(db.Integer, FOREIGN_KEY= users_id, nullable=False)
-    post_id = db.Column(db.Integer, FOREIGN_KEY= posts_id, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users_id'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts_id'), nullable=False)
     text = db.Column(db.String, nullable=False)
 
  
+
+
+
     def __repr__(self):
         return '<User %r>' % self.username
 
