@@ -24,3 +24,7 @@ def handle_list_user():
 @api.route('/Users/<int:id>', methods=['GET'])
 def handle_get_user():
     return "Get user {}".format(id)
+
+@app.route('/Users/<int:id>', methods=['POST'])
+def get_user():
+    return jsonify({'done': True}),200
