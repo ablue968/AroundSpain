@@ -7,7 +7,7 @@ from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
-usuarios = [{
+users = [{
     "id":"1",
     "name": "Pedro",
     "lastname": "Gomez"
@@ -30,18 +30,29 @@ usuarios = [{
 @api.route('/users', methods=['GET'])
 def handle_list_user():
 
-    return jsonify(usuarios), 200
+    return "list of all users"
 
 
 
 @api.route('/users/<int:id>', methods=['GET'])
 def handle_get_user():
-    return "Get #{}"user.format(id)
+    return "Get #{}".format(id)
 
-
-
-@api.route('/users/<int:id>', methods=['POST'])
+@api.route('/users', methods=['POST'])
 def handle_create_user():
     payload = request.get_json()
     print(payload)
-    return "create user"
+    return "Created user"
+
+@api.route('/users/<int:id>', methods=['PUT'])
+def handle_update_user():
+    payload = request.get_json()
+    print(payload)
+    return "Updated #{} user ".format(id)
+
+@api.route('/users/<int:id>', methods=['DELETE'])
+def handle_delete_user(id):
+    return "Deleted #{} user".format(id)
+
+
+
