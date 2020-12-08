@@ -1,11 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import func
 
 db = SQLAlchemy()
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime, nullable=False)
-    update_at = db.Column(db.DateTime, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=func.now())
+    update_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     delete_at = db.Column(db.DateTime)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50))
@@ -15,11 +16,13 @@ class Users(db.Model):
     language = db.Column(db.String(50), nullable=False)
     avatar = db.Column(db.String(50))
 
+    
+
 
 class Cities(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime, nullable=False)
-    update_at = db.Column(db.DateTime, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=func.now())
+    update_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     delete_at = db.Column(db.DateTime)
     name = db.Column(db.String(50), nullable=False)
     image = db.Column(db.String(150), nullable=False)
@@ -36,8 +39,8 @@ class Cities(db.Model):
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime, nullable=False)
-    update_at = db.Column(db.DateTime, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=func.now())
+    update_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     delete_at = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     city_id = db.Column(db.Integer, db.ForeignKey('cities.id'), nullable=False)
@@ -45,16 +48,16 @@ class Posts(db.Model):
 
 class Likes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime, nullable=False)
-    update_at = db.Column(db.DateTime, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=func.now())
+    update_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     delete_at = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     city_id = db.Column(db.Integer, db.ForeignKey('cities.id'), nullable=False)
        
 class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime, nullable=False)
-    update_at = db.Column(db.DateTime, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=func.now())
+    update_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     delete_at = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users_id'), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey('posts_id'), nullable=False)
