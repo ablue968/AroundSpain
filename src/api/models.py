@@ -8,6 +8,7 @@ class Users(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now())
     update_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     delete_at = db.Column(db.DateTime)
+    user_name = db.Column(db.String(20),nullable=False) # CONSULTAR ALEJANDRO
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50))
     email = db.Column(db.String(120), unique=True)
@@ -16,8 +17,13 @@ class Users(db.Model):
     language = db.Column(db.String(50), nullable=False)
     avatar = db.Column(db.String(50))
 
-    def __repr__(self):
-        return '<Users %r>' % self.email
+
+    posts = db.relationship("Posts")  # AÑADIDO DESPUES
+
+
+    def __str__(self):
+        #return '<Users %r>' % self.email
+        return '{} <{}>'.format(self.first_name,self.email)
 
     def serialize(self):
         return {
@@ -36,7 +42,7 @@ class Cities(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now())
     update_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     delete_at = db.Column(db.DateTime)
-    name = db.Column(db.String(50), nullable=False)
+    city_name = db.Column(db.String(50), nullable=False)
     image = db.Column(db.String(150), nullable=False)
     population = db.Column(db.Integer, nullable=False)
     cost_of_living = db.Column(db.Integer, nullable=False)
@@ -68,6 +74,9 @@ class Cities(db.Model):
             'rental_offer':self.rental_offer
         }
 
+###########################################################################################################################################################
+
+
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, server_default=func.now())
@@ -77,6 +86,23 @@ class Posts(db.Model):
     city_id = db.Column(db.Integer, db.ForeignKey('cities.id'), nullable=False)
     text = db.Column(db.String(150), nullable=False)
 
+    user = db.relationship("Users")
+    city = db.relationship("Cities")
+
+
+    def __repr__(self):
+        return '<Posts %r>' % self.text
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'users':self.first_name,
+            'city':self.name_city,
+            'city_id':self.city_id,
+            'created_at':self.created_at,
+            'text':self.text       
+        }
+
 class Likes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, server_default=func.now())
@@ -84,6 +110,19 @@ class Likes(db.Model):
     delete_at = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     city_id = db.Column(db.Integer, db.ForeignKey('cities.id'), nullable=False)
+
+    #comment = db.relationship("Comments")
+
+    def __repr__(self):
+        return '<likes %r>' % self.user
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'user':self.user_id,
+            'city_id':self.city_id,
+            'text':self.text       
+        }
        
 class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -93,4 +132,17 @@ class Comments(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
     text = db.Column(db.String(150), nullable=False)
- 
+
+     #likes = db.relationship("Likes")
+
+    def __repr__(self):
+        return '<comments %r>' % self.user
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'user':self.user_id,
+            'city_id':self.city_id,
+            'created_at':self.created_at,
+            'text':self.text       
+        }
