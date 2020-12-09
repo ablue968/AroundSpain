@@ -19,6 +19,8 @@ class Users(db.Model):
 
 
     posts = db.relationship("Posts")  # AÑADIDO DESPUES
+    likes = db.relationship("Likes")  # AÑADIDO DESPUES
+    comments = db.relationship("Comments")  # AÑADIDO DESPUES
 
 
     def __str__(self):
@@ -55,6 +57,9 @@ class Cities(db.Model):
     average_temp = db.Column(db.Float, nullable=False)
     rental_offer = db.Column(db.Integer, nullable= False)
 
+    likes = db.relationship("Likes")  # AÑADIDO DESPUES
+    posts = db.relationship("Posts")  # AÑADIDO DESPUES
+
     def __repr__(self):
         return '<Cities %r>' % self.name
 
@@ -88,6 +93,7 @@ class Posts(db.Model):
 
     user = db.relationship("Users")
     city = db.relationship("Cities")
+    comments = db.relationship("Comments") #añadido despues
 
 
     def __repr__(self):
@@ -97,7 +103,7 @@ class Posts(db.Model):
         return {
             'id': self.id,
             'users':self.first_name,
-            'city':self.name_city,
+            'city':self.city_name,
             'city_id':self.city_id,
             'created_at':self.created_at,
             'text':self.text       
@@ -111,7 +117,8 @@ class Likes(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     city_id = db.Column(db.Integer, db.ForeignKey('cities.id'), nullable=False)
 
-    #comment = db.relationship("Comments")
+    user = db.relationship("Users")
+    city = db.relationship("Cities")
 
     def __repr__(self):
         return '<likes %r>' % self.user
@@ -133,7 +140,7 @@ class Comments(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
     text = db.Column(db.String(150), nullable=False)
 
-     #likes = db.relationship("Likes")
+    user = db.relationship("Users")
 
     def __repr__(self):
         return '<comments %r>' % self.user
@@ -141,7 +148,7 @@ class Comments(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'user':self.user_id,
+            'user':self.user.first_name,
             'city_id':self.city_id,
             'created_at':self.created_at,
             'text':self.text       
