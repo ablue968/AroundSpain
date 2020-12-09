@@ -8,7 +8,7 @@ class Users(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now())
     update_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     delete_at = db.Column(db.DateTime)
-    user_name = db.Column(db.String(20),nullable=False) # ESTE ES EL CAMPO NUEVO
+    user_name = db.Column(db.String(20),nullable=False) # CONSULTAR ALEJANDRO
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50))
     email = db.Column(db.String(120), unique=True)
@@ -17,7 +17,8 @@ class Users(db.Model):
     language = db.Column(db.String(50), nullable=False)
     avatar = db.Column(db.String(50))
 
-    posts = db.relationship("Posts")
+
+    posts = db.relationship("Posts")  # AÑADIDO DESPUES
 
 
     def __str__(self):
@@ -41,7 +42,7 @@ class Cities(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now())
     update_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     delete_at = db.Column(db.DateTime)
-    name_city = db.Column(db.String(50), nullable=False)  # ESTE ES EL CAMPO MODIFICADO
+    city_name = db.Column(db.String(50), nullable=False)
     image = db.Column(db.String(150), nullable=False)
     population = db.Column(db.Integer, nullable=False)
     cost_of_living = db.Column(db.Integer, nullable=False)
@@ -122,8 +123,6 @@ class Likes(db.Model):
             'city_id':self.city_id,
             'text':self.text       
         }
-
-
        
 class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
