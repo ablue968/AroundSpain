@@ -17,7 +17,6 @@ class Users(db.Model):
     language = db.Column(db.String(50), nullable=False)
     avatar = db.Column(db.String(50))
 
-
     posts = db.relationship("Posts")  # AÑADIDO DESPUES
     likes = db.relationship("Likes")  # AÑADIDO DESPUES
     comments = db.relationship("Comments")  # AÑADIDO DESPUES
@@ -61,12 +60,12 @@ class Cities(db.Model):
     posts = db.relationship("Posts")  # AÑADIDO DESPUES
 
     def __repr__(self):
-        return '<Cities %r>' % self.name
+        return '<Cities %r>' % self.city_name
 
     def serialize(self):
         return {
             'id': self.id,
-            'name':self.name,
+            'city_name':self.city_name,
             'image':self.image,
             'population':self.population,
             'cost_of_living':self.cost_of_living,
@@ -102,8 +101,8 @@ class Posts(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'users':self.first_name,
-            'city':self.city_name,
+            'users':self.user.first_name,
+            'city':self.city.city_name,
             'city_id':self.city_id,
             'created_at':self.created_at,
             'text':self.text       
@@ -141,6 +140,7 @@ class Comments(db.Model):
     text = db.Column(db.String(150), nullable=False)
 
     user = db.relationship("Users")
+    post = db.relationship("Posts")
 
     def __repr__(self):
         return '<comments %r>' % self.user
