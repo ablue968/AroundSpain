@@ -23,7 +23,6 @@ class Users(db.Model):
 
 
     def __str__(self):
-        #return '<Users %r>' % self.email
         return '{} <{}>'.format(self.first_name,self.email)
 
     def serialize(self):
@@ -59,8 +58,8 @@ class Cities(db.Model):
     likes = db.relationship("Likes")  # AÑADIDO DESPUES
     posts = db.relationship("Posts")  # AÑADIDO DESPUES
 
-    def __repr__(self):
-        return '<Cities %r>' % self.city_name
+    def __str__(self):
+        return '<Cities {}>'.format(self.city_name)
 
     def serialize(self):
         return {
@@ -95,8 +94,8 @@ class Posts(db.Model):
     comments = db.relationship("Comments") #añadido despues
 
 
-    def __repr__(self):
-        return '<Posts %r>' % self.text
+    def __str__(self):
+        return '<Posts {}>'.format(self.text)
 
     def serialize(self):
         return {
@@ -119,8 +118,8 @@ class Likes(db.Model):
     user = db.relationship("Users")
     city = db.relationship("Cities")
 
-    def __repr__(self):
-        return '<likes %r>' % self.user
+    def __str__(self):
+        return '<likes {}>'.format(self.user)
 
     def serialize(self):
         return {
@@ -142,8 +141,8 @@ class Comments(db.Model):
     user = db.relationship("Users")
     post = db.relationship("Posts")
 
-    def __repr__(self):
-        return '<comments %r>' % self.user
+    def __str__(self):
+        return '<comments {}>'.format(self.user)
 
     def serialize(self):
         return {
