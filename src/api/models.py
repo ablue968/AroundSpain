@@ -17,12 +17,12 @@ class Users(db.Model):
     language = db.Column(db.String(50), nullable=False)
     avatar = db.Column(db.String(50))
 
-
     posts = db.relationship("Posts")  # AÑADIDO DESPUES
+    likes = db.relationship("Likes")  # AÑADIDO DESPUES
+    comments = db.relationship("Comments")  # AÑADIDO DESPUES
 
 
     def __str__(self):
-        #return '<Users %r>' % self.email
         return '{} <{}>'.format(self.first_name,self.email)
 
     def serialize(self):
@@ -55,13 +55,16 @@ class Cities(db.Model):
     average_temp = db.Column(db.Float, nullable=False)
     rental_offer = db.Column(db.Integer, nullable= False)
 
-    def __repr__(self):
-        return '<Cities %r>' % self.name
+    likes = db.relationship("Likes")  # AÑADIDO DESPUES
+    posts = db.relationship("Posts")  # AÑADIDO DESPUES
+
+    def __str__(self):
+        return '<Cities {}>'.format(self.city_name)
 
     def serialize(self):
         return {
             'id': self.id,
-            'name':self.name,
+            'city_name':self.city_name,
             'image':self.image,
             'population':self.population,
             'cost_of_living':self.cost_of_living,
@@ -88,16 +91,17 @@ class Posts(db.Model):
 
     user = db.relationship("Users")
     city = db.relationship("Cities")
+    comments = db.relationship("Comments") #añadido despues
 
 
-    def __repr__(self):
-        return '<Posts %r>' % self.text
+    def __str__(self):
+        return '<Posts {}>'.format(self.text)
 
     def serialize(self):
         return {
             'id': self.id,
-            'users':self.first_name,
-            'city':self.name_city,
+            'users':self.user.first_name,
+            'city':self.city.city_name,
             'city_id':self.city_id,
             'created_at':self.created_at,
             'text':self.text       
@@ -111,10 +115,11 @@ class Likes(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     city_id = db.Column(db.Integer, db.ForeignKey('cities.id'), nullable=False)
 
-    #comment = db.relationship("Comments")
+    user = db.relationship("Users")
+    city = db.relationship("Cities")
 
-    def __repr__(self):
-        return '<likes %r>' % self.user
+    def __str__(self):
+        return '<likes {}>'.format(self.user)
 
     def serialize(self):
         return {
@@ -133,15 +138,16 @@ class Comments(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
     text = db.Column(db.String(150), nullable=False)
 
-     #likes = db.relationship("Likes")
+    user = db.relationship("Users")
+    post = db.relationship("Posts")
 
-    def __repr__(self):
-        return '<comments %r>' % self.user
+    def __str__(self):
+        return '<comments {}>'.format(self.user)
 
     def serialize(self):
         return {
             'id': self.id,
-            'user':self.user_id,
+            'user':self.user.first_name,
             'city_id':self.city_id,
             'created_at':self.created_at,
             'text':self.text       
