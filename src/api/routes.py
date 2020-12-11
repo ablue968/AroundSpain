@@ -2,67 +2,104 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Users
+from api.models import db, Users, Cities, Posts, Comments, Likes
 from api.utils import generate_sitemap, APIException
 
 
 api = Blueprint('api', __name__)
 
-#@api.route('/users', methods=['GET'])
-#def handle_list_user():
-#
-#    response_body = {
-#        "message": "Hello! I'm a message that came from the backend"
-#    }
-#
-#    return jsonify(response_body), 200
-
-
-
-
 # ******************************----TABLE USERS------******************************
 @api.route('/users', methods=['GET'])
 def handle_list_user():
-    return "Lista de Usuarios JC"
+    users = []
+    for user in Users.query.all():
+        users.append(user.serialize())
+    return jsonify(users), 200
 
 @api.route('/users/<int:id>', methods=['GET'])
-def handle_get_user():
-    return  "Get #{}".format(id)
+def handle_get_user(id):
+    user = Users.query.get(id)
+
+    if not user:
+        return "User not found", 404
+
+    return  jsonify(user.serialize()), 200
 
 @api.route('/users', methods=['POST'])
 def handle_create_user():
     payload = request.get_json()
-    print(payload)
-    return "Usuario creado JC"
+    user = Users(**payload)
+
+    db.session.add(user)
+    db.session.commit()
+    return jsonify(user.serialize()), 201
 
 @api.route('/users/<int:id>', methods=['PUT'])
 def handle_update_user(id):
+    user = Users.query.get(id)
+
+    if not user:
+        return "User not found", 404
+        
     payload = request.get_json()
-    print(payload)
-    return "Usuario actualizado JC {} user ".format(id)
+
+    if "first_name" in payload:
+        user.first_name = payload["first_name"]
+    elif  "last_name" in payload: 
+         user.last_name = payload["last_name"]
+    elif  "email" in payload:
+         user.email = payload["email"]
+    elif  "country" in payload:
+         user.country = payload["country"]
+    elif  "language" in payload:
+         user.language = payload["language"]
+    elif  "avatar" in payload:
+         user.avatar = payload["avatar"]
+
+    db.session.add(user)
+    db.session.commit()
+
+    return jsonify(user.serialize()), 201
 
 @api.route('/users/<int:id>', methods=['DELETE'])
 def handle_delete_user(id):
-    return "Usuario eliminado JC"          #"Deleted #{} user".format(id)
+    user = Users.query.get(id)
 
+    if not user:
+        return "User not found", 404
+    
+    data = user.serialize()
 
+    db.session.delete(user)
+    db.session.commit()
 
-
+    return jsonify(data), 200
 
 # ******************************----TABLE CITIES------******************************
 @api.route('/cities', methods=['GET'])
 def handle_list_cities():
-    return "Lista de CIUDADES JC"
+    cities = []
+    for city in Cities.query.all():
+        cities.append(city.serialize())
+    return jsonify(cities), 200
 
 @api.route('/cities/<int:id>', methods=['GET'])
 def handle_get_city():
-    return  "Ciudad con ID #{}".format(id)+'************ JC'
+    city = Cities.query.get(id)
+
+    if not city:
+        return "City not found", 404
+
+    return  jsonify(city.serialize()), 200
 
 @api.route('/cities', methods=['POST'])
 def handle_create_city():
     payload = request.get_json()
-    print(payload)
-    return "Ciudad creada JC   **************"
+    city = Cities(**payload)
+
+    db.session.add(city)
+    db.session.commit()
+    return jsonify(city.serialize()), 201
 
 @api.route('/cities/<int:id>', methods=['PUT'])
 def handle_update_city(id):
@@ -72,8 +109,17 @@ def handle_update_city(id):
 
 @api.route('/cities/<int:id>', methods=['DELETE'])
 def handle_delete_city(id):
-    return "Ciudad Elminada JC   ******"          #"Deleted #{} user".format(id)
+    city = Cities.query.get(id)
 
+    if not city:
+        return "City not found", 404
+    
+    data = city.serialize()
+
+    db.session.delete(city)
+    db.session.commit()
+
+    return jsonify(data), 200
 
 
 
