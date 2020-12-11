@@ -103,9 +103,38 @@ def handle_create_city():
 
 @api.route('/cities/<int:id>', methods=['PUT'])
 def handle_update_city(id):
+    city = Cities.query.get(id)
+
+    if not city:
+        return "City not found", 404
+        
     payload = request.get_json()
-    print(payload)
-    return "Ciudad actualizado JC {} CITY ".format(id)
+
+    if "city_name" in payload:
+        city.city_name = payload["city_name"]
+    elif  "image" in payload: 
+         city.image = payload["image"]
+    elif  "population" in payload:
+         city.population = payload["population"]
+    elif  "cost_of_living" in payload:
+         city.cost_of_living = payload["cost_of_living"]
+    elif  "sunny" in payload:
+         city.sunny = payload["sunny"]
+    elif  "windy" in payload:
+         city.windy = payload["windy"]
+    elif  "rainy" in payload:
+         city.rainy = payload["rainy"]
+    elif  "lowest_temp" in payload:
+         city.lowest_temp = payload["lowest_temp"]
+    elif  "average_temp" in payload:
+         city.average_temp = payload["average_temp"]
+    elif  "rental_offer" in payload:
+         city.rental_offer = payload["rental_offer"]    
+    
+    db.session.add(city)
+    db.session.commit()
+
+    return jsonify(city.serialize()), 201
 
 @api.route('/cities/<int:id>', methods=['DELETE'])
 def handle_delete_city(id):
@@ -120,8 +149,6 @@ def handle_delete_city(id):
     db.session.commit()
 
     return jsonify(data), 200
-
-
 
 
 # ******************************----TABLE POSTS------******************************
