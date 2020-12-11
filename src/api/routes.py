@@ -8,6 +8,8 @@ from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
+
+
 # ******************************----TABLE USERS------******************************
 @api.route('/users', methods=['GET'])
 def handle_list_user():
@@ -75,6 +77,9 @@ def handle_delete_user(id):
 
     return jsonify(data), 200
 
+
+
+
 # ******************************----TABLE CITIES------******************************
 @api.route('/cities', methods=['GET'])
 def handle_list_cities():
@@ -124,20 +129,39 @@ def handle_delete_city(id):
 
 
 
+
 # ******************************----TABLE POSTS------******************************
+
+#GET ALL
 @api.route('/posts', methods=['GET'])
 def handle_list_posts():
-    return "*****Lista de POST JC*****"
+    posts = []
+    for post in Posts.query.all():
+        posts.append(post.serialize())
+    return jsonify(posts), 200
 
+
+#GET BY ID
 @api.route('/posts/<int:id>', methods=['GET'])
-def handle_get_post():
-    return  "*****POST con ID #{}".format(id)+'******JC'
+def handle_get_post(id):
+    post = Posts.query.get(id)
 
+    if not post:
+        return "Post not found", 404
+
+    return  jsonify(post.serialize()), 200
+
+    
+# POST de posts
 @api.route('/posts', methods=['POST'])
 def handle_create_posts():
     payload = request.get_json()
-    print(payload)
-    return "***** POST creada JC   **************"
+    post = Posts(**payload)
+
+    db.session.add(post)
+    db.session.commit()
+    return jsonify(user.serialize()), 201
+
 
 @api.route('/posts/<int:id>', methods=['PUT'])
 def handle_update_posts(id):

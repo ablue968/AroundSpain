@@ -3,6 +3,8 @@ from sqlalchemy.sql import func
 
 db = SQLAlchemy()
 
+######### TABLA USERS
+
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, server_default=func.now())
@@ -36,6 +38,9 @@ class Users(db.Model):
             'avatar':self.avatar
         }
 
+
+
+######### TABLA CITIES
 
 class Cities(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -77,8 +82,8 @@ class Cities(db.Model):
             'rental_offer':self.rental_offer
         }
 
-###########################################################################################################################################################
 
+######### TABLA POSTS
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -107,6 +112,8 @@ class Posts(db.Model):
             'text':self.text       
         }
 
+######### TABLA LIKES
+
 class Likes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, server_default=func.now())
@@ -128,7 +135,10 @@ class Likes(db.Model):
             'city_id':self.city_id,
             'text':self.text       
         }
-       
+
+
+######### TABLA COMMENTS
+
 class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, server_default=func.now())
