@@ -154,28 +154,59 @@ def handle_delete_city(id):
 # ******************************----TABLE POSTS------******************************
 @api.route('/posts', methods=['GET'])
 def handle_list_posts():
-    return "*****Lista de POST JC*****"
+    posts = []
+    for post in Posts.query.all():
+        posts.append(post.serialize())
+    return jsonify(posts), 200
 
 @api.route('/posts/<int:id>', methods=['GET'])
 def handle_get_post():
-    return  "*****POST con ID #{}".format(id)+'******JC'
+    post = Posts.query.get(id)
+
+    if not post:
+        return "Post not found", 404
+
+    return  jsonify(post.serialize()), 200
 
 @api.route('/posts', methods=['POST'])
 def handle_create_posts():
     payload = request.get_json()
-    print(payload)
-    return "***** POST creada JC   **************"
+    post = Posts(**payload)
+
+    db.session.add(post)
+    db.session.commit()
+    return jsonify(post.serialize()), 201
 
 @api.route('/posts/<int:id>', methods=['PUT'])
 def handle_update_posts(id):
+    post = Posts.query.get(id)
+
+    if not post:
+        return "Post not found", 404
+        
     payload = request.get_json()
-    print(payload)
-    return "***** POST actualizado JC {} POST ".format(id)
+
+    if "text" in payload:
+        post.text = payload["text"]  
+    
+    db.session.add(post)
+    db.session.commit()
+
+    return jsonify(city.serialize()), 201
 
 @api.route('/posts/<int:id>', methods=['DELETE'])
 def handle_delete_posts(id):
-    return "****** POST Elminada JC   ******"          #"Deleted #{} user".format(id)
+    post = Posts.query.get(id)
 
+    if not post:
+        return "Post not found", 404
+    
+    data = post.serialize()
+
+    db.session.delete(post)
+    db.session.commit()
+
+    return jsonify(data), 200
 
 
 
@@ -183,28 +214,59 @@ def handle_delete_posts(id):
 # ******************************----TABLE LIKES------******************************
 @api.route('/likes', methods=['GET'])
 def handle_list_likes():
-    return "*****Lista de LIKES JC*****"
+    likes = []
+    for like in Likes.query.all():
+        likes.append(like.serialize())
+    return jsonify(likes), 200
 
 @api.route('/likes/<int:id>', methods=['GET'])
 def handle_get_like():
-    return  "*****LIKE con ID #{}".format(id)+'******JC'
+    like = Likes.query.get(id)
+
+    if not like:
+        return "Like not found", 404
+
+    return  jsonify(like.serialize()), 200
 
 @api.route('/likes', methods=['POST'])
 def handle_create_likes():
     payload = request.get_json()
-    print(payload)
-    return "***** LIKE creada JC   **************"
+    like = Likes(**payload)
+
+    db.session.add(like)
+    db.session.commit()
+    return jsonify(like.serialize()), 201
 
 @api.route('/likes/<int:id>', methods=['PUT'])
 def handle_update_likes(id):
+    like = Likes.query.get(id)
+
+    if not like:
+        return "Like not found", 404
+        
     payload = request.get_json()
-    print(payload)
-    return "***** LIKES actualizado JC {} POST ".format(id)
+
+    if "text" in payload:    #tengo duda con este.. debería de ser poner y quitar like.. no hay nada más que modificar
+        like.text = payload["text"]  
+    
+    db.session.add(post)
+    db.session.commit()
+
+    return jsonify(like.serialize()), 201
 
 @api.route('/likes/<int:id>', methods=['DELETE'])
 def handle_delete_likes(id):
-    return "****** LIKES Elminada JC   ******"          #"Deleted #{} user".format(id)
+    like = Likes.query.get(id)
 
+    if not like:
+        return "Post not found", 404
+    
+    data = like.serialize()
+
+    db.session.delete(like)
+    db.session.commit()
+
+    return jsonify(data), 200
 
 
 
@@ -212,24 +274,56 @@ def handle_delete_likes(id):
     # ******************************----TABLE COMMENTS------******************************
 @api.route('/comments', methods=['GET'])
 def handle_list_comments():
-    return "*****Lista de COMENTARIOS JC*****"
+    comments = []
+    for comment in Comments.query.all():
+        comments.append(comment.serialize())
+    return jsonify(comments), 200
 
 @api.route('/comments/<int:id>', methods=['GET'])
 def handle_get_comments():
-    return  "*****LIKE con ID #{}".format(id)+'******JC'
+    comment = Comments.query.get(id)
+
+    if not comment:
+        return "Comment not found", 404
+
+    return  jsonify(comment.serialize()), 200
 
 @api.route('/comments', methods=['POST'])
 def handle_create_comments():
     payload = request.get_json()
-    print(payload)
-    return "***** LIKE creada JC   **************"
+    comment = Comments(**payload)
+
+    db.session.add(comment)
+    db.session.commit()
+    return jsonify(comment.serialize()), 201
 
 @api.route('/comments/<int:id>', methods=['PUT'])
 def handle_update_comments(id):
+    comment = Comments.query.get(id)
+
+    if not comment:
+        return "Comment not found", 404
+        
     payload = request.get_json()
-    print(payload)
-    return "***** LIKES actualizado JC {} POST ".format(id)
+
+    if "text" in payload:    
+        comment.text = payload["text"]  
+    
+    db.session.add(comment)
+    db.session.commit()
+
+    return jsonify(like.serialize()), 201
 
 @api.route('/comments/<int:id>', methods=['DELETE'])
 def handle_delete_comments(id):
-    return "****** LIKES Elminada JC   ******"          #"Deleted #{} user".format(id)
+    comment = Comments.query.get(id)
+
+    if not comments:
+        return "Comment not found", 404
+    
+    data = comment.serialize()
+
+    db.session.delete(comment)
+    db.session.commit()
+
+    return jsonify(data), 200
