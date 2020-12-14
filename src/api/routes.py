@@ -24,6 +24,10 @@ def get_one_or_404(models,id):
     return jsonify(result_by_id.serialize()), 200
 
 
+
+
+
+
 # ******************************----TABLE USERS------******************************
 @api.route('/users', methods=['GET'])
 def handle_list_user():
@@ -89,24 +93,39 @@ def handle_delete_user(id):
 
     return jsonify(data), 200
 
+
+
+
 # ******************************----TABLE CITIES------******************************
 @api.route('/cities', methods=['GET'])
 def handle_list_cities():
     return get_a_list_of(Cities)
+
+
+
 
 @api.route('/cities/<int:id>', methods=['GET'])
 def handle_get_city(id):
     city = Cities.query.get_or_404(id)
     return  jsonify(city.serialize()), 200
 
+
+
+def get_post(Models):
+    payload = request.get_json()
+    model = Models(**payload)
+
+    db.session.add(model)
+    db.session.commit()
+    return jsonify(model.serialize())
+
 @api.route('/cities', methods=['POST'])
 def handle_create_city():
-    payload = request.get_json()
-    city = Cities(**payload)
+    
+    return get_post(Cities), 201
 
-    db.session.add(city)
-    db.session.commit()
-    return jsonify(city.serialize()), 201
+
+
 
 @api.route('/cities/<int:id>', methods=['PUT'])
 def handle_update_city(id):
@@ -183,6 +202,7 @@ def handle_list_posts(id):
 
     return jsonify(posts), 200
 
+#GET BY ID
 @api.route('/posts/<int:id>', methods=['GET'])
 def handle_get_post():
     post = Posts.query.get(id)
@@ -192,6 +212,13 @@ def handle_get_post():
 
     return  jsonify(post.serialize()), 200
 
+    if not post:
+        return "Post not found", 404
+
+    return  jsonify(post.serialize()), 200
+
+    
+# POST de posts
 @api.route('/posts', methods=['POST'])
 def handle_create_posts():
     payload = request.get_json()

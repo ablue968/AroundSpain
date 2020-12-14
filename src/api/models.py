@@ -3,6 +3,9 @@ from sqlalchemy.sql import func
 
 db = SQLAlchemy()
 
+
+######### TABLA USERS
+
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, server_default=func.now())
@@ -28,14 +31,17 @@ class Users(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'first_name':self.first_name,
-            'last_name':self.last_name,
-            'email':self.email,
-            'country':self.country,
-            'language':self.language,
-            'avatar':self.avatar
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email,
+            'country': self.country,
+            'language': self.language,
+            'avatar': self.avatar
         }
 
+
+
+######### TABLA CITIES
 
 class Cities(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -64,21 +70,22 @@ class Cities(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'city_name':self.city_name,
-            'image':self.image,
-            'population':self.population,
-            'cost_of_living':self.cost_of_living,
-            'sunny':self.sunny,
-            'humidity':self.humidity,
-            'windy':self.windy,
-            'rainy':self.rainy,
-            'lowest_temp':self.lowest_temp,
-            'average_temp':self.average_temp,
-            'rental_offer':self.rental_offer
+            'city_name': self.city_name,
+            'image': self.image,
+            'population': self.population,
+            'cost_of_living': self.cost_of_living,
+            'sunny': self.sunny,
+            'humidity': self.humidity,
+            'windy': self.windy,
+            'rainy': self.rainy,
+            'lowest_temp': self.lowest_temp,
+            'highest_temp': self.highest_temp,
+            'average_temp': self.average_temp,
+            'rental_offer': self.rental_offer
         }
 
-###########################################################################################################################################################
 
+######### TABLA POSTS
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -104,13 +111,15 @@ class Posts(db.Model):
 
         return {
             'id': self.id,
-            'users':self.user.first_name,
-            'city':self.city.city_name,
-            'city_id':self.city_id,
-            'created_at':self.created_at,
-            'text':self.text,
+            'users': self.user.first_name,
+            'city': self.city.city_name,
+            'city_id': self.city_id,
+            'created_at': self.created_at,
+            'text': self.text,
             'comments': comments
         }
+
+######### TABLA LIKES
 
 class Likes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -129,11 +138,14 @@ class Likes(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'user':self.user_id,
-            'city_id':self.city_id,
-            'text':self.text       
+            'user': self.user_id,
+            'city_id': self.city_id,
+            'text': self.text       
         }
-       
+
+
+######### TABLA COMMENTS
+
 class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, server_default=func.now())
@@ -152,7 +164,7 @@ class Comments(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'user':self.user.first_name,
-            'created_at':self.created_at,
-            'text':self.text       
+            'user': self.user.first_name,
+            'created_at': self.created_at,
+            'text': self.text       
         }
