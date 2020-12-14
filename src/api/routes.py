@@ -8,6 +8,7 @@ from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
+
 # ******************************----TABLE USERS------******************************
 @api.route('/users', methods=['GET'])
 def handle_list_user():
@@ -15,6 +16,7 @@ def handle_list_user():
     for user in Users.query.all():
         users.append(user.serialize())
     return jsonify(users), 200
+
 
 @api.route('/users/<int:id>', methods=['GET'])
 def handle_get_user(id):
@@ -24,6 +26,7 @@ def handle_get_user(id):
         return "User not found", 404
 
     return  jsonify(user.serialize()), 200
+
 
 @api.route('/users', methods=['POST'])
 def handle_create_user():
@@ -41,25 +44,30 @@ def handle_update_user(id):
     if not user:
         return "User not found", 404
         
-    payload = request.get_json()
+    payload = request.get_json()   #no se actualiza la password por acá
 
     if "first_name" in payload:
         user.first_name = payload["first_name"]
-    elif  "last_name" in payload: 
+    
+    if  "last_name" in payload: 
          user.last_name = payload["last_name"]
-    elif  "email" in payload:
+    
+    if  "email" in payload:
          user.email = payload["email"]
-    elif  "country" in payload:
+    
+    if  "country" in payload:
          user.country = payload["country"]
-    elif  "language" in payload:
+    
+    if  "language" in payload:
          user.language = payload["language"]
-    elif  "avatar" in payload:
+    
+    if  "avatar" in payload:
          user.avatar = payload["avatar"]
 
     db.session.add(user)
     db.session.commit()
 
-    return jsonify(user.serialize()), 201
+    return jsonify(user.serialize()), 200
 
 @api.route('/users/<int:id>', methods=['DELETE'])
 def handle_delete_user(id):
@@ -84,12 +92,8 @@ def handle_list_cities():
     return jsonify(cities), 200
 
 @api.route('/cities/<int:id>', methods=['GET'])
-def handle_get_city():
-    city = Cities.query.get(id)
-
-    if not city:
-        return "City not found", 404
-
+def handle_get_city(id):
+    city = Cities.query.get_or_404(id)
     return  jsonify(city.serialize()), 200
 
 @api.route('/cities', methods=['POST'])
@@ -112,29 +116,29 @@ def handle_update_city(id):
 
     if "city_name" in payload:
         city.city_name = payload["city_name"]
-    elif  "image" in payload: 
+    if  "image" in payload: 
          city.image = payload["image"]
-    elif  "population" in payload:
+    if  "population" in payload:
          city.population = payload["population"]
-    elif  "cost_of_living" in payload:
+    if  "cost_of_living" in payload:
          city.cost_of_living = payload["cost_of_living"]
-    elif  "sunny" in payload:
+    if  "sunny" in payload:
          city.sunny = payload["sunny"]
-    elif  "windy" in payload:
+    if  "windy" in payload:
          city.windy = payload["windy"]
-    elif  "rainy" in payload:
+    if  "rainy" in payload:
          city.rainy = payload["rainy"]
-    elif  "lowest_temp" in payload:
+    if  "lowest_temp" in payload:
          city.lowest_temp = payload["lowest_temp"]
-    elif  "average_temp" in payload:
+    if  "average_temp" in payload:
          city.average_temp = payload["average_temp"]
-    elif  "rental_offer" in payload:
+    if  "rental_offer" in payload:
          city.rental_offer = payload["rental_offer"]    
     
     db.session.add(city)
     db.session.commit()
 
-    return jsonify(city.serialize()), 201
+    return jsonify(city.serialize()), 200
 
 @api.route('/cities/<int:id>', methods=['DELETE'])
 def handle_delete_city(id):
@@ -152,11 +156,28 @@ def handle_delete_city(id):
 
 
 # ******************************----TABLE POSTS------******************************
-@api.route('/posts', methods=['GET'])
-def handle_list_posts():
+@api.route('/cities/<int:id>/posts', methods=['GET']) #listado de comentarios para cada ciudad
+def handle_list_posts(id):
+#     city = Cities.query.get(id)
+
+#     if not city:
+#         return "City not found", 404
+
+#     posts = []
+#     for post in city.posts:
+#         posts.append(post.serialize())
+        
+#     return jsonify(posts), 200
+
     posts = []
-    for post in Posts.query.all():
+
+    cursor = Posts.query.filter_by(city_id=id) # Filtro por city_id
+    cursor = cursor.filter_by(delete_at=None) # Filtro por deleted_at
+    cursor = cursor.order_by(Posts.update_at.desc()) # Ordeno por update_at descendente
+
+    for post in cursor.all():
         posts.append(post.serialize())
+
     return jsonify(posts), 200
 
 @api.route('/posts/<int:id>', methods=['GET'])
