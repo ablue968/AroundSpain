@@ -8,18 +8,18 @@ class Users(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now())
     update_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     delete_at = db.Column(db.DateTime)
-    user_name = db.Column(db.String(20),nullable=False) # CONSULTAR ALEJANDRO
+    user_name = db.Column(db.String(20),nullable=False) 
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50))
-    email = db.Column(db.String(120), unique=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
     country = db.Column(db.String(50), nullable=False)
     language = db.Column(db.String(50), nullable=False)
     avatar = db.Column(db.String(50))
 
-    posts = db.relationship("Posts")  # AÑADIDO DESPUES
-    likes = db.relationship("Likes")  # AÑADIDO DESPUES
-    comments = db.relationship("Comments")  # AÑADIDO DESPUES
+    posts = db.relationship("Posts")  
+    likes = db.relationship("Likes")  
+    comments = db.relationship("Comments")  
 
 
     def __str__(self):
@@ -98,13 +98,18 @@ class Posts(db.Model):
         return '<Posts {}>'.format(self.text)
 
     def serialize(self):
+        comments = []
+        for comment in self.comments:
+            comments.append(comment.serialize())
+
         return {
             'id': self.id,
             'users':self.user.first_name,
             'city':self.city.city_name,
             'city_id':self.city_id,
             'created_at':self.created_at,
-            'text':self.text       
+            'text':self.text,
+            'comments': comments
         }
 
 class Likes(db.Model):
@@ -148,7 +153,6 @@ class Comments(db.Model):
         return {
             'id': self.id,
             'user':self.user.first_name,
-            'city_id':self.city_id,
             'created_at':self.created_at,
             'text':self.text       
         }
