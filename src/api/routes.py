@@ -8,24 +8,30 @@ from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
+def get_a_list_of(models):
+    listed_model = []
+
+    for element in models.query.all():
+        listed_model.append(element.serialize())
+    return jsonify(listed_model)
+
+def get_one_or_404(models,id):
+    result_by_id = models.query.get(id)
+
+    if not result_by_id:
+        return "<models> not found", 404
+
+    return jsonify(result_by_id.serialize()), 200
+
 
 # ******************************----TABLE USERS------******************************
 @api.route('/users', methods=['GET'])
 def handle_list_user():
-    users = []
-    for user in Users.query.all():
-        users.append(user.serialize())
-    return jsonify(users), 200
-
+    return get_a_list_of(Users)
 
 @api.route('/users/<int:id>', methods=['GET'])
 def handle_get_user(id):
-    user = Users.query.get(id)
-
-    if not user:
-        return "User not found", 404
-
-    return  jsonify(user.serialize()), 200
+    return get_one_or_404(Users,id)
 
 
 @api.route('/users', methods=['POST'])
@@ -86,10 +92,7 @@ def handle_delete_user(id):
 # ******************************----TABLE CITIES------******************************
 @api.route('/cities', methods=['GET'])
 def handle_list_cities():
-    cities = []
-    for city in Cities.query.all():
-        cities.append(city.serialize())
-    return jsonify(cities), 200
+    return get_a_list_of(Cities)
 
 @api.route('/cities/<int:id>', methods=['GET'])
 def handle_get_city(id):
