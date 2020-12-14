@@ -59,7 +59,7 @@ def handle_update_user(id):
          user.country = payload["country"]
     
     if  "language" in payload:
-         user.language = payload["language"]
+         user.language = payload["language"] 
     
     if  "avatar" in payload:
          user.avatar = payload["avatar"]
