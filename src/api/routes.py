@@ -9,6 +9,10 @@ from api.utils import generate_sitemap, APIException
 api = Blueprint('api', __name__)
 
 
+
+
+
+
 # ******************************----TABLE USERS------******************************
 @api.route('/users', methods=['GET'])
 def handle_list_user():
@@ -94,19 +98,31 @@ def handle_list_cities():
         cities.append(city.serialize())
     return jsonify(cities), 200
 
+
+
+
 @api.route('/cities/<int:id>', methods=['GET'])
 def handle_get_city(id):
     city = Cities.query.get_or_404(id)
     return  jsonify(city.serialize()), 200
 
+
+
+def get_post(Models):
+    payload = request.get_json()
+    model = Models(**payload)
+
+    db.session.add(model)
+    db.session.commit()
+    return jsonify(model.serialize())
+
 @api.route('/cities', methods=['POST'])
 def handle_create_city():
-    payload = request.get_json()
-    city = Cities(**payload)
+    
+    return get_post(Cities), 201
 
-    db.session.add(city)
-    db.session.commit()
-    return jsonify(city.serialize()), 201
+
+
 
 @api.route('/cities/<int:id>', methods=['PUT'])
 def handle_update_city(id):

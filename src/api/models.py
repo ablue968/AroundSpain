@@ -3,6 +3,7 @@ from sqlalchemy.sql import func
 
 db = SQLAlchemy()
 
+
 ######### TABLA USERS
 
 class Users(db.Model):
@@ -30,12 +31,12 @@ class Users(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'first_name':self.first_name,
-            'last_name':self.last_name,
-            'email':self.email,
-            'country':self.country,
-            'language':self.language,
-            'avatar':self.avatar
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email,
+            'country': self.country,
+            'language': self.language,
+            'avatar': self.avatar
         }
 
 
@@ -69,17 +70,18 @@ class Cities(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'city_name':self.city_name,
-            'image':self.image,
-            'population':self.population,
-            'cost_of_living':self.cost_of_living,
-            'sunny':self.sunny,
-            'humidity':self.humidity,
-            'windy':self.windy,
-            'rainy':self.rainy,
-            'lowest_temp':self.lowest_temp,
-            'average_temp':self.average_temp,
-            'rental_offer':self.rental_offer
+            'city_name': self.city_name,
+            'image': self.image,
+            'population': self.population,
+            'cost_of_living': self.cost_of_living,
+            'sunny': self.sunny,
+            'humidity': self.humidity,
+            'windy': self.windy,
+            'rainy': self.rainy,
+            'lowest_temp': self.lowest_temp,
+            'highest_temp': self.highest_temp,
+            'average_temp': self.average_temp,
+            'rental_offer': self.rental_offer
         }
 
 
@@ -109,11 +111,11 @@ class Posts(db.Model):
 
         return {
             'id': self.id,
-            'users':self.user.first_name,
-            'city':self.city.city_name,
-            'city_id':self.city_id,
-            'created_at':self.created_at,
-            'text':self.text,
+            'users': self.user.first_name,
+            'city': self.city.city_name,
+            'city_id': self.city_id,
+            'created_at': self.created_at,
+            'text': self.text,
             'comments': comments
         }
 
@@ -136,9 +138,9 @@ class Likes(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'user':self.user_id,
-            'city_id':self.city_id,
-            'text':self.text       
+            'user': self.user_id,
+            'city_id': self.city_id,
+            'text': self.text       
         }
 
 
@@ -162,7 +164,7 @@ class Comments(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'user':self.user.first_name,
-            'created_at':self.created_at,
-            'text':self.text       
+            'user': self.user.first_name,
+            'created_at': self.created_at,
+            'text': self.text       
         }
