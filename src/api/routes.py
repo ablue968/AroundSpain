@@ -8,6 +8,7 @@ from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
+## FUNCIONES
 def get_a_list_of(models):
     listed_model = []
 
@@ -23,7 +24,27 @@ def get_one_or_404(models,id):
 
     return jsonify(result_by_id.serialize()), 200
 
+# Este es el post y esta cambiado en todas las tablas
+def method_post(Models):
+    payload = request.get_json()
+    model = Models(**payload)
 
+    db.session.add(model)
+    db.session.commit()
+    return jsonify(model.serialize())
+
+# Este esta hecho pero me queda probarlo, me ha cascado un par de veces y me estoy pegando con el
+def method_delete(Models,id):
+    model = Models.query.get(id)
+    if not model:
+        return "User not found", 404
+
+        data = model.serialize()
+
+        db.session.delete(model)
+        db.session.commit()
+
+    return jsonify(data)
 
 
 
@@ -40,12 +61,8 @@ def handle_get_user(id):
 
 @api.route('/users', methods=['POST'])
 def handle_create_user():
-    payload = request.get_json()
-    user = Users(**payload)
 
-    db.session.add(user)
-    db.session.commit()
-    return jsonify(user.serialize()), 201
+    return method_post(Users), 201
 
 @api.route('/users/<int:id>', methods=['PUT'])
 def handle_update_user(id):
@@ -111,18 +128,12 @@ def handle_get_city(id):
 
 
 
-def get_post(Models):
-    payload = request.get_json()
-    model = Models(**payload)
 
-    db.session.add(model)
-    db.session.commit()
-    return jsonify(model.serialize())
 
 @api.route('/cities', methods=['POST'])
 def handle_create_city():
     
-    return get_post(Cities), 201
+    return method_post(Cities), 201
 
 
 
@@ -164,17 +175,7 @@ def handle_update_city(id):
 
 @api.route('/cities/<int:id>', methods=['DELETE'])
 def handle_delete_city(id):
-    city = Cities.query.get(id)
-
-    if not city:
-        return "City not found", 404
-    
-    data = city.serialize()
-
-    db.session.delete(city)
-    db.session.commit()
-
-    return jsonify(data), 200
+    return method_delete(cities,id), 200
 
 
 # ******************************----TABLE POSTS------******************************
@@ -221,12 +222,10 @@ def handle_get_post():
 # POST de posts
 @api.route('/posts', methods=['POST'])
 def handle_create_posts():
-    payload = request.get_json()
-    post = Posts(**payload)
 
-    db.session.add(post)
-    db.session.commit()
-    return jsonify(post.serialize()), 201
+    return method_post(Posts), 201
+
+
 
 @api.route('/posts/<int:id>', methods=['PUT'])
 def handle_update_posts(id):
@@ -281,12 +280,8 @@ def handle_get_like():
 
 @api.route('/likes', methods=['POST'])
 def handle_create_likes():
-    payload = request.get_json()
-    like = Likes(**payload)
 
-    db.session.add(like)
-    db.session.commit()
-    return jsonify(like.serialize()), 201
+    return method_post(Likes), 201
 
 @api.route('/likes/<int:id>', methods=['PUT'])
 def handle_update_likes(id):
@@ -341,12 +336,9 @@ def handle_get_comments():
 
 @api.route('/comments', methods=['POST'])
 def handle_create_comments():
-    payload = request.get_json()
-    comment = Comments(**payload)
 
-    db.session.add(comment)
-    db.session.commit()
-    return jsonify(comment.serialize()), 201
+    return method_post(Comments), 201
+
 
 @api.route('/comments/<int:id>', methods=['PUT'])
 def handle_update_comments(id):
