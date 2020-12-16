@@ -1,6 +1,8 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+import datetime
+
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Users, Cities, Posts, Comments, Likes
 from api.utils import generate_sitemap, APIException
@@ -33,20 +35,23 @@ def do_a_post(models):
     db.session.commit()
     return jsonify(post.serialize()), 201
 
+
 # Este esta hecho pero me queda probarlo, me ha cascado un par de veces y me estoy pegando con el
-def method_delete(Models,id):
+def delete_element(Models,id):
     model = Models.query.get(id)
+
     if not model:
         return "User not found", 404
 
-        data = model.serialize()
+    model.deleted_at = datetime.datetime.utcnow()
 
-        db.session.delete(model)
-        db.session.commit()
+    db.session.add(model)
+    db.session.commit()
 
-    return jsonify(data)
+    return jsonify(model.serialize())
+    
 
-#PUT ****falta tocar jaja
+###########  -------------   PUT ****falta tocar jaja
 def validation_and_payload(): 
     model = models.query.get(id)
 
@@ -103,17 +108,9 @@ def handle_update_user(id):
 
 @api.route('/users/<int:id>', methods=['DELETE'])
 def handle_delete_user(id):
-    user = Users.query.get(id)
+    return delete_element(Users,id),20
 
-    if not user:
-        return "User not found", 404
-    
-    data = user.serialize()
 
-    db.session.delete(user)
-    db.session.commit()
-
-    return jsonify(data), 200
 
 
 
