@@ -25,13 +25,13 @@ def get_one_or_404(models,id):
     return jsonify(result_by_id.serialize()), 200
 
 # Este es el post y esta cambiado en todas las tablas
-def method_post(Models):
+def do_a_post(models):
     payload = request.get_json()
-    model = Models(**payload)
+    post = models(**payload)
 
-    db.session.add(model)
+    db.session.add(post)
     db.session.commit()
-    return jsonify(model.serialize())
+    return jsonify(post.serialize()), 201
 
 # Este esta hecho pero me queda probarlo, me ha cascado un par de veces y me estoy pegando con el
 def method_delete(Models,id):
@@ -46,6 +46,15 @@ def method_delete(Models,id):
 
     return jsonify(data)
 
+#PUT ****falta tocar jaja
+validation_+_payload = ()=> {
+        model = models.query.get(id)
+
+    if not user:
+        return "<models> not found", 404
+        
+    payload = request.get_json()
+}
 
 
 
@@ -62,32 +71,22 @@ def handle_get_user(id):
 @api.route('/users', methods=['POST'])
 def handle_create_user():
 
-    return method_post(Users), 201
+    return do_a_post(Users)
 
 @api.route('/users/<int:id>', methods=['PUT'])
 def handle_update_user(id):
-    user = Users.query.get(id)
-
-    if not user:
-        return "User not found", 404
-        
-    payload = request.get_json()   #no se actualiza la password por acá
-
+    validation_+_payload
+          
     if "first_name" in payload:
         user.first_name = payload["first_name"]
-    
     if  "last_name" in payload: 
          user.last_name = payload["last_name"]
-    
     if  "email" in payload:
          user.email = payload["email"]
-    
     if  "country" in payload:
          user.country = payload["country"]
-    
     if  "language" in payload:
          user.language = payload["language"] 
-    
     if  "avatar" in payload:
          user.avatar = payload["avatar"]
 
@@ -133,7 +132,7 @@ def handle_get_city(id):
 @api.route('/cities', methods=['POST'])
 def handle_create_city():
     
-    return method_post(Cities), 201
+    return do_a_post(Cities), 201
 
 
 
@@ -223,7 +222,7 @@ def handle_get_post():
 @api.route('/posts', methods=['POST'])
 def handle_create_posts():
 
-    return method_post(Posts), 201
+    return do_a_post(Posts), 201
 
 
 
@@ -281,7 +280,7 @@ def handle_get_like():
 @api.route('/likes', methods=['POST'])
 def handle_create_likes():
 
-    return method_post(Likes), 201
+    return do_a_post(Likes), 201
 
 @api.route('/likes/<int:id>', methods=['PUT'])
 def handle_update_likes(id):
@@ -337,7 +336,7 @@ def handle_get_comments():
 @api.route('/comments', methods=['POST'])
 def handle_create_comments():
 
-    return method_post(Comments), 201
+    return do_a_post(Comments), 201
 
 
 @api.route('/comments/<int:id>', methods=['PUT'])
