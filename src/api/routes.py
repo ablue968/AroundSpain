@@ -47,14 +47,14 @@ def method_delete(Models,id):
     return jsonify(data)
 
 #PUT ****falta tocar jaja
-validation_+_payload = ()=> {
-        model = models.query.get(id)
+def validation_and_payload(): 
+    model = models.query.get(id)
 
     if not user:
         return "<models> not found", 404
         
     payload = request.get_json()
-}
+
 
 
 
@@ -75,7 +75,13 @@ def handle_create_user():
 
 @api.route('/users/<int:id>', methods=['PUT'])
 def handle_update_user(id):
-    validation_+_payload
+    user = Users.query.get(id)
+
+    if not user:
+        return "User not found", 404
+        
+    payload = request.get_json()
+
           
     if "first_name" in payload:
         user.first_name = payload["first_name"]
@@ -180,31 +186,31 @@ def handle_delete_city(id):
 # ******************************----TABLE POSTS------******************************
 @api.route('/cities/<int:id>/posts', methods=['GET']) #listado de comentarios para cada ciudad
 def handle_list_posts(id):
-#     city = Cities.query.get(id)
+    city = Cities.query.get(id)
 
-#     if not city:
-#         return "City not found", 404
-
-#     posts = []
-#     for post in city.posts:
-#         posts.append(post.serialize())
-        
-#     return jsonify(posts), 200
+    if not city:
+        return "City not found", 404
 
     posts = []
-
-    cursor = Posts.query.filter_by(city_id=id) # Filtro por city_id
-    cursor = cursor.filter_by(delete_at=None) # Filtro por deleted_at
-    cursor = cursor.order_by(Posts.update_at.desc()) # Ordeno por update_at descendente
-
-    for post in cursor.all():
+    for post in city.posts:
         posts.append(post.serialize())
+        
+    return jsonify(posts), 200
+
+    # posts = []
+
+    # cursor = Posts.query.filter_by(city_id=id) # Filtro por city_id
+    # cursor = cursor.filter_by(delete_at=None) # Filtro por deleted_at
+    # cursor = cursor.order_by(Posts.update_at.desc()) # Ordeno por update_at descendente
+
+    # for post in cursor.all():
+    #     posts.append(post.serialize())
 
     return jsonify(posts), 200
 
 #GET BY ID
 @api.route('/posts/<int:id>', methods=['GET'])
-def handle_get_post():
+def handle_get_post(id):
     post = Posts.query.get(id)
 
     if not post:
@@ -269,7 +275,7 @@ def handle_list_likes():
     return jsonify(likes), 200
 
 @api.route('/likes/<int:id>', methods=['GET'])
-def handle_get_like():
+def handle_get_like(id):
     like = Likes.query.get(id)
 
     if not like:
@@ -325,7 +331,7 @@ def handle_list_comments():
     return jsonify(comments), 200
 
 @api.route('/comments/<int:id>', methods=['GET'])
-def handle_get_comments():
+def handle_get_comments(id):
     comment = Comments.query.get(id)
 
     if not comment:
