@@ -2,7 +2,8 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 
-from flask import Flask, request, jsonify, url_for, Blueprint, abort, datetime
+from flask import Flask, request, jsonify, url_for, Blueprint, abort
+from datetime import datetime
 
 from api.models import db, Users, Cities, Posts, Comments, Likes
 from api.utils import generate_sitemap, APIException
@@ -21,7 +22,7 @@ def get_a_list_of(models):
 def get_one_or_404(models,id):
     result_by_id = models.query.get(id)
 
-    if result_by_id and models.delete_at:
+    if result_by_id and models.deleted_at:
         abort(410, "{} has been deleted".format(result_by_id))
 
     if not result_by_id:
