@@ -1,9 +1,9 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-import datetime
 
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, abort, datetime
+
 from api.models import db, Users, Cities, Posts, Comments, Likes
 from api.utils import generate_sitemap, APIException
 
@@ -21,10 +21,13 @@ def get_a_list_of(models):
 def get_one_or_404(models,id):
     result_by_id = models.query.get(id)
 
-    if not result_by_id:
-        return "<models> not found", 404
+    if result_by_id and models.delete_at:
+        abort(410, "{} has been deleted".format(result_by_id))
 
-    return jsonify(result_by_id.serialize()), 200
+    if not result_by_id:
+        abort(404)
+
+    return jsonify(result_by_id.serialize()), 200 
 
 # Este es el post y esta cambiado en todas las tablas
 def do_a_post(models):
@@ -41,7 +44,7 @@ def delete_element(Models,id):
     model = Models.query.get(id)
 
     if not model:
-        return "User not found", 404
+        abort(404)
 
     model.deleted_at = datetime.datetime.utcnow()
 

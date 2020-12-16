@@ -26,7 +26,7 @@ class Users(db.Model):
 
 
     def __str__(self):
-        return '{} <{}>'.format(self.first_name,self.email)
+        return '{}'.format(self.first_name)
 
     def serialize(self):
         return {
