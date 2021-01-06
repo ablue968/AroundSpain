@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 5937cf948574
+Revision ID: 6e9b446eefd6
 Revises: 
-Create Date: 2020-12-09 18:15:55.334368
+Create Date: 2021-01-05 20:26:17.217170
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5937cf948574'
+revision = '6e9b446eefd6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,8 +21,8 @@ def upgrade():
     op.create_table('cities',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
-    sa.Column('update_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
-    sa.Column('delete_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
+    sa.Column('deleted_at', sa.DateTime(), nullable=True),
     sa.Column('city_name', sa.String(length=50), nullable=False),
     sa.Column('image', sa.String(length=150), nullable=False),
     sa.Column('population', sa.Integer(), nullable=False),
@@ -40,15 +40,15 @@ def upgrade():
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
-    sa.Column('update_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
-    sa.Column('delete_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
+    sa.Column('deleted_at', sa.DateTime(), nullable=True),
     sa.Column('user_name', sa.String(length=20), nullable=False),
-    sa.Column('first_name', sa.String(length=50), nullable=False),
-    sa.Column('last_name', sa.String(length=50), nullable=True),
-    sa.Column('email', sa.String(length=120), nullable=True),
-    sa.Column('password', sa.String(length=80), nullable=False),
-    sa.Column('country', sa.String(length=50), nullable=False),
-    sa.Column('language', sa.String(length=50), nullable=False),
+    sa.Column('first_name', sa.String(length=15), nullable=False),
+    sa.Column('last_name', sa.String(length=15), nullable=True),
+    sa.Column('email', sa.String(length=50), nullable=False),
+    sa.Column('password', sa.String(length=30), nullable=False),
+    sa.Column('country', sa.String(length=40), nullable=False),
+    sa.Column('languages', sa.String(length=50), nullable=False),
     sa.Column('avatar', sa.String(length=50), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
@@ -56,8 +56,8 @@ def upgrade():
     op.create_table('likes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
-    sa.Column('update_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
-    sa.Column('delete_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
+    sa.Column('deleted_at', sa.DateTime(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('city_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['city_id'], ['cities.id'], ),
@@ -67,8 +67,8 @@ def upgrade():
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
-    sa.Column('update_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
-    sa.Column('delete_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
+    sa.Column('deleted_at', sa.DateTime(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('city_id', sa.Integer(), nullable=False),
     sa.Column('text', sa.String(length=150), nullable=False),
@@ -79,8 +79,8 @@ def upgrade():
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
-    sa.Column('update_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
-    sa.Column('delete_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
+    sa.Column('deleted_at', sa.DateTime(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('post_id', sa.Integer(), nullable=False),
     sa.Column('text', sa.String(length=150), nullable=False),

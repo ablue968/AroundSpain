@@ -12,21 +12,24 @@ class Users(db.Model):
     updated_at = db.Column(db.DateTime,server_default=func.now(),onupdate=func.now())
     deleted_at = db.Column(db.DateTime)
     user_name = db.Column(db.String(20),nullable=False) 
-    first_name = db.Column(db.String(50), nullable=False)
-    last_name = db.Column(db.String(50))
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), nullable=False)
-    country = db.Column(db.String(50), nullable=False)
-    language = db.Column(db.String(50), nullable=False)
+    first_name = db.Column(db.String(15), nullable=False)
+    last_name = db.Column(db.String(15))
+    email = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(30), nullable=False)
+    country = db.Column(db.String(40), nullable=False)
+    languages = db.Column(db.String(50), nullable=False)
     avatar = db.Column(db.String(50))
+    active = db.Column(db.Boolean(), nullable=False)
 
     posts = db.relationship("Posts")  
     likes = db.relationship("Likes")  
     comments = db.relationship("Comments")  
 
+#acá agregue una "s" a languages... una tontería, pero por si el tipo sabe más de un idioma ps xD
+#he agregado la opción de active, por si nos interesa relacionarlo con algún envío de información ( solo enviar promoción if active== true and deleted_at==null)
 
     def __str__(self):
-        return '{}'.format(self.first_name)
+        return f"{self.user_name}"
 
     def serialize(self):
         return {
@@ -36,9 +39,22 @@ class Users(db.Model):
             'last_name': self.last_name,
             'email': self.email,
             'country': self.country,
-            'language': self.language,
-            'avatar': self.avatar
+            'languages': self.languages,
+            'avatar': self.avatar,
+            'active':self.avatar
         }
+    
+    def notebook(self):
+        return{
+            'user_name': self.user_name,
+            'first_name': self.first_name,
+            'email': self.email,
+            'country': self.country,
+            'languages': self.languages,
+            'password': self.password,
+            'active':self.avatar
+        }
+        
 
 
 
@@ -62,15 +78,31 @@ class Cities(db.Model):
     average_temp = db.Column(db.Float, nullable=False)
     rental_offer = db.Column(db.Integer, nullable= False)
 
-    likes = db.relationship("Likes")  # AÑADIDO DESPUES
-    posts = db.relationship("Posts")  # AÑADIDO DESPUES
+    likes = db.relationship("Likes")  
+    posts = db.relationship("Posts")  
 
     def __str__(self):
-        return '<Cities {}>'.format(self.city_name)
+        return f"<Cities {self.city_name}>"
 
     def serialize(self):
         return {
             'id': self.id,
+            'city_name': self.city_name,
+            'image': self.image,
+            'population': self.population,
+            'cost_of_living': self.cost_of_living,
+            'sunny': self.sunny,
+            'humidity': self.humidity,
+            'windy': self.windy,
+            'rainy': self.rainy,
+            'lowest_temp': self.lowest_temp,
+            'highest_temp': self.highest_temp,
+            'average_temp': self.average_temp,
+            'rental_offer': self.rental_offer
+        }
+
+    def notebook(self):
+        return{
             'city_name': self.city_name,
             'image': self.image,
             'population': self.population,
@@ -99,11 +131,12 @@ class Posts(db.Model):
 
     user = db.relationship("Users")
     city = db.relationship("Cities")
-    comments = db.relationship("Comments") #añadido despues
+    comments = db.relationship("Comments")
 
 
     def __str__(self):
-        return '<Posts {}>'.format(self.text)
+        return f"<{self.user.user_name} posted: {self.text}>"
+    #acá cambié la forma que teníamos antes del return a una con "f string".. o la cosa de la f esa xD
 
     def serialize(self):
         comments = []
@@ -112,13 +145,22 @@ class Posts(db.Model):
 
         return {
             'id': self.id,
-            'users': self.user.first_name,
-            'city': self.city.city_name,
-            'city_id': self.city_id,
+            'user_first_name': self.user.first_name, #
+            'city_id': self.city_id, #
+            'city': self.city.city_name,#
             'created_at': self.created_at,
             'text': self.text,
             'comments': comments
         }
+
+    def notebook(self):
+        return{
+            'city_id': self.city_id,
+            'user_id': self.user_id,
+            'text': self.text,
+        }
+##hice unos cambios acá en cuanto al return están marcados
+
 
 ######### TABLA LIKES
 
@@ -134,15 +176,22 @@ class Likes(db.Model):
     city = db.relationship("Cities")
 
     def __str__(self):
-        return '<likes {}>'.format(self.user)
+        return f"< {self.user} likes>"
 
     def serialize(self):
         return {
             'id': self.id,
             'user': self.user_id,
+            'users': self.user.user_name,
             'city_id': self.city_id,
             'text': self.text       
         }
+
+    def notebook(self):
+        return{
+            'city_id': self.city_id,
+            'user_id': self.user_id,
+        }        
 
 
 ######### TABLA COMMENTS
@@ -160,12 +209,19 @@ class Comments(db.Model):
     post = db.relationship("Posts")
 
     def __str__(self):
-        return '<comments {}>'.format(self.user)
+        return f"<comments from {self.user}>"
 
     def serialize(self):
         return {
             'id': self.id,
-            'user': self.user.first_name,
+            'users': self.user.user_name,
             'created_at': self.created_at,
             'text': self.text       
         }
+
+    def notebook(self):
+        return{
+            'post_id': self.post_id,
+            'user_id': self.user_id,
+            'text': self.text
+        } 

@@ -12,28 +12,41 @@ from api.utils import generate_sitemap, APIException
 api = Blueprint('api', __name__)
 
 ## FUNCIONES
+
+##GET ALL 
+
 def get_a_list_of(models):
     listed_model = []
 
-    for element in models.query.all():
-        listed_model.append(element.serialize())
+    for model in models.query.filter_by(deleted_at=None).all():
+        listed_model.append(model.serialize())
     return jsonify(listed_model)
+
+##GET BY ID
 
 def get_one_or_404(models,id):
     result_by_id = models.query.get(id)
 
-    if result_by_id and models.deleted_at:
-        abort(410, "{} has been deleted".format(result_by_id))
-
     if not result_by_id:
         abort(404)
 
+    if  result_by_id.deleted_at:
+        abort(410, f"{result_by_id} has been deleted")
+     
     return jsonify(result_by_id.serialize()), 200 
 
-# Este es el post y esta cambiado en todas las tablas
+## POST
+
 def do_a_post(models):
     payload = request.get_json()
     post = models(**payload)
+
+    required = models.notebook(models).keys()
+
+    for field in required:
+        if field not in payload or payload[field] is None:
+            abort(422,"nope")
+    
 
     db.session.add(post)
     db.session.commit()
@@ -124,25 +137,14 @@ def handle_delete_user(id):
 def handle_list_cities():
     return get_a_list_of(Cities)
 
-
-
-
 @api.route('/cities/<int:id>', methods=['GET'])
 def handle_get_city(id):
     city = Cities.query.get_or_404(id)
     return  jsonify(city.serialize()), 200
 
-
-
-
-
 @api.route('/cities', methods=['POST'])
 def handle_create_city():
-    
     return do_a_post(Cities), 201
-
-
-
 
 @api.route('/cities/<int:id>', methods=['PUT'])
 def handle_update_city(id):
