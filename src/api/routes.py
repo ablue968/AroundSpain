@@ -20,7 +20,7 @@ def get_a_list_of(models):
 
     for model in models.query.filter_by(deleted_at=None).all():
         listed_model.append(model.serialize())
-    return jsonify(listed_model)
+    return jsonify(listed_model), 200
 
 ##GET BY ID
 
@@ -52,33 +52,40 @@ def do_a_post(models):
     db.session.commit()
     return jsonify(post.serialize()), 201
 
+## DELETE BY ID
 
-# Este esta hecho pero me queda probarlo, me ha cascado un par de veces y me estoy pegando con el
 def delete_element(Models,id):
-    model = Models.query.get(id)
+    model = Models.query.filter_by(id=id, deleted_at=None).first()
 
     if not model:
-        abort(404)
+        return "Not found", 404
+    
+    model.deleted_at = datetime.utcnow()
+    data = model.serialize()
+    db.session.delete(model)
+    db.session.commit()
 
-    model.deleted_at = datetime.datetime.utcnow()
+    return jsonify(f"This {model} has been eliminated successfully", data), 200
+    
+## PUT  
+def validation_and_payload(Models): 
+    model = Models.query.get(id)
+
+    if not user:
+        return f"{model} not found", 404
+        
+    payload = request.get_json()
+
+    required = models.notebook(models).keys()
+
+    for field in required:
+        if field in payload :
+            model.field = payload[field]
 
     db.session.add(model)
     db.session.commit()
 
-    return jsonify(model.serialize())
-    
-
-###########  -------------   PUT ****falta tocar jaja
-def validation_and_payload(): 
-    model = models.query.get(id)
-
-    if not user:
-        return "<models> not found", 404
-        
-    payload = request.get_json()
-
-
-
+    return jsonify(model.serialize()), 201
 
 # ******************************----TABLE USERS------******************************
 @api.route('/users', methods=['GET'])
@@ -92,98 +99,39 @@ def handle_get_user(id):
 
 @api.route('/users', methods=['POST'])
 def handle_create_user():
-
     return do_a_post(Users)
 
 @api.route('/users/<int:id>', methods=['PUT'])
 def handle_update_user(id):
-    user = Users.query.get(id)
-
-    if not user:
-        return "User not found", 404
-        
-    payload = request.get_json()
-
-          
-    if "first_name" in payload:
-        user.first_name = payload["first_name"]
-    if  "last_name" in payload: 
-         user.last_name = payload["last_name"]
-    if  "email" in payload:
-         user.email = payload["email"]
-    if  "country" in payload:
-         user.country = payload["country"]
-    if  "language" in payload:
-         user.language = payload["language"] 
-    if  "avatar" in payload:
-         user.avatar = payload["avatar"]
-
-    db.session.add(user)
-    db.session.commit()
-
-    return jsonify(user.serialize()), 200
+    return validation_and_payload(Users)
 
 @api.route('/users/<int:id>', methods=['DELETE'])
 def handle_delete_user(id):
-    return delete_element(Users,id),20
-
-
-
-
+    return delete_element(Users,id)
 
 
 # ******************************----TABLE CITIES------******************************
+
+
 @api.route('/cities', methods=['GET'])
 def handle_list_cities():
     return get_a_list_of(Cities)
 
 @api.route('/cities/<int:id>', methods=['GET'])
 def handle_get_city(id):
-    city = Cities.query.get_or_404(id)
-    return  jsonify(city.serialize()), 200
+    return  get_one_or_404(Cities,id)
 
 @api.route('/cities', methods=['POST'])
 def handle_create_city():
-    return do_a_post(Cities), 201
+    return do_a_post(Cities)
 
 @api.route('/cities/<int:id>', methods=['PUT'])
 def handle_update_city(id):
-    city = Cities.query.get(id)
-
-    if not city:
-        return "City not found", 404
-        
-    payload = request.get_json()
-
-    if "city_name" in payload:
-        city.city_name = payload["city_name"]
-    if  "image" in payload: 
-         city.image = payload["image"]
-    if  "population" in payload:
-         city.population = payload["population"]
-    if  "cost_of_living" in payload:
-         city.cost_of_living = payload["cost_of_living"]
-    if  "sunny" in payload:
-         city.sunny = payload["sunny"]
-    if  "windy" in payload:
-         city.windy = payload["windy"]
-    if  "rainy" in payload:
-         city.rainy = payload["rainy"]
-    if  "lowest_temp" in payload:
-         city.lowest_temp = payload["lowest_temp"]
-    if  "average_temp" in payload:
-         city.average_temp = payload["average_temp"]
-    if  "rental_offer" in payload:
-         city.rental_offer = payload["rental_offer"]    
-    
-    db.session.add(city)
-    db.session.commit()
-
-    return jsonify(city.serialize()), 200
+    return validation_and_payload(Cities)
 
 @api.route('/cities/<int:id>', methods=['DELETE'])
 def handle_delete_city(id):
-    return method_delete(cities,id), 200
+    return delete_element(Cities,id)
 
 
 # ******************************----TABLE POSTS------******************************
