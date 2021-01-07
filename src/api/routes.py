@@ -41,12 +41,16 @@ def do_a_post(models):
     payload = request.get_json()
     post = models(**payload)
 
-    required = models.notebook(models).keys()
-
+    required = models.serialize_required(models).keys()
+    testing = models.serialize_all_types(models)
+    
     for field in required:
         if field not in payload or payload[field] is None:
-            abort(422,"nope")
+            abort(422,f"Error: missing {field}")    
     
+    for key, value in testing.items():
+        if payload[key] is not None and not isinstance(payload[key],value):
+            abort(422,f"Error in {key}'s data type")
 
     db.session.add(post)
     db.session.commit()
@@ -99,6 +103,7 @@ def handle_get_user(id):
 
 @api.route('/users', methods=['POST'])
 def handle_create_user():
+    
     return do_a_post(Users)
 
 @api.route('/users/<int:id>', methods=['PUT'])
