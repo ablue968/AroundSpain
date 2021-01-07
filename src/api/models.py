@@ -41,19 +41,33 @@ class Users(db.Model):
             'country': self.country,
             'languages': self.languages,
             'avatar': self.avatar,
-            'active':self.avatar
+            'active':self.active
         }
     
-    def notebook(self):
+    def serialize_required(self):
         return{
-            'user_name': self.user_name,
-            'first_name': self.first_name,
-            'email': self.email,
-            'country': self.country,
-            'languages': self.languages,
-            'password': self.password,
-            'active':self.avatar
+            'user_name': str,
+            'first_name': str,
+            'email': str,
+            'country': str,
+            'languages': str,
+            'password': str,
+            'active': bool
         }
+
+    def serialize_all_types(self):
+        return{
+            'user_name': str,
+            'first_name': str,
+            'last_name': str,
+            'email': str,
+            'country': str,
+            'languages': str,
+            'avatar': str,
+            'active':bool,
+            'password': str,
+        }
+            
         
 
 
@@ -101,20 +115,36 @@ class Cities(db.Model):
             'rental_offer': self.rental_offer
         }
 
-    def notebook(self):
+    def serialize_required(self):
         return{
-            'city_name': self.city_name,
-            'image': self.image,
-            'population': self.population,
-            'cost_of_living': self.cost_of_living,
-            'sunny': self.sunny,
-            'humidity': self.humidity,
-            'windy': self.windy,
-            'rainy': self.rainy,
-            'lowest_temp': self.lowest_temp,
-            'highest_temp': self.highest_temp,
-            'average_temp': self.average_temp,
-            'rental_offer': self.rental_offer
+            'city_name': str,
+            'image': str,
+            'population': int,
+            'cost_of_living': int,
+            'sunny': int,
+            'humidity': int,
+            'windy': int,
+            'rainy': int,
+            'lowest_temp': float,
+            'highest_temp': float,
+            'average_temp': float,
+            'rental_offer': int
+        }
+
+        def serialize_all_types(self):
+            return {
+                'city_name': str,
+                'image': str,
+                'population': int,
+                'cost_of_living': int,
+                'sunny': int,
+                'humidity': int,
+                'windy': int,
+                'rainy': int,
+                'lowest_temp': float,
+                'highest_temp': float,
+                'average_temp': float,
+                'rental_offer': int
         }
 
 
@@ -136,7 +166,6 @@ class Posts(db.Model):
 
     def __str__(self):
         return f"<{self.user.user_name} posted: {self.text}>"
-    #acá cambié la forma que teníamos antes del return a una con "f string".. o la cosa de la f esa xD
 
     def serialize(self):
         comments = []
@@ -145,22 +174,22 @@ class Posts(db.Model):
 
         return {
             'id': self.id,
-            'user_first_name': self.user.first_name, #
-            'city_id': self.city_id, #
-            'city': self.city.city_name,#
+            'user_first_name': self.user.first_name, 
+            'city_id': self.city_id, 
+            'city': self.city.city_name,
             'created_at': self.created_at,
             'text': self.text,
             'comments': comments
         }
 
-    def notebook(self):
+    def serialize_required(self):
         return{
             'city_id': self.city_id,
             'user_id': self.user_id,
             'text': self.text,
         }
-##hice unos cambios acá en cuanto al return están marcados
 
+####preguntar como proceder con estas, tengo dudas con el serialize_required y serialize_all_types 
 
 ######### TABLA LIKES
 
@@ -187,12 +216,13 @@ class Likes(db.Model):
             'text': self.text       
         }
 
-    def notebook(self):
+    def serialize_required(self):
         return{
             'city_id': self.city_id,
             'user_id': self.user_id,
         }        
 
+####preguntar como proceder con estas, tengo dudas con el serialize_required y serialize_all_types 
 
 ######### TABLA COMMENTS
 
@@ -219,9 +249,11 @@ class Comments(db.Model):
             'text': self.text       
         }
 
-    def notebook(self):
+    def serialize_required(self):
         return{
             'post_id': self.post_id,
             'user_id': self.user_id,
             'text': self.text
         } 
+
+####preguntar como proceder con estas, tengo dudas con el serialize_required y serialize_all_types 
