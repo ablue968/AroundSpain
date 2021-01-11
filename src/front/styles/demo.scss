@@ -1,5 +1,4 @@
 .autocomplete-multivalue {
-    margin: 1rem;
     display: flex;
     flex-wrap: wrap;
     display: block;
@@ -11,4 +10,10 @@
     border-radius: 0.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+.list-inline{
+    margin-left: 0px;
+}
+ul{
+    background-color: gray;
 }

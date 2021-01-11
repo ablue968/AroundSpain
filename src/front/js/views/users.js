@@ -10,8 +10,21 @@ export const Users = () => {
 	const params = useParams();
 	const { store, actions } = useContext(Context);
 
+	const handlerEnterKey = event => {
+		if (event.key == "Enter" && task != "") {
+			setTodo([...todo, task]);
+			setTask("");
+		}
+	};
+
+	const cancelElementHandler = element => {
+		let newList = todo.filter(oneToDo => oneToDo != element);
+		setTodo(newList);
+	};
+
 	return (
 		<div className="container">
+			{/*esto no tiene mucho uso por ahora */}
 			<h1>{params.id ? "Good to see you again!" : "Hello adventurer! Join us!"}</h1>
 			<br />
 			<form>
@@ -85,7 +98,7 @@ export const Users = () => {
 				<div className="input-group mb-3 autocomplete-multivalue">
 					<ul className="d-flex list-inline ">
 						<li>
-							hello {/*<-----xq aparece esto?? */}
+							hello
 							<button type="button" className="btn btn-outline-dark btn-sm">
 								x
 							</button>
@@ -101,11 +114,27 @@ export const Users = () => {
 						type="text"
 						name="languages"
 						className="form-control"
+						value={task}
+						onChange={() => setTask(event.target.value)}
+						onKeyPress={() => handlerEnterKey(event)}
 						maxLength="15"
 						placeholder="Which should I add?"
 						aria-label="languages"
 						aria-describedby="basic-addon1"
 					/>
+					{todo.map((element, index) => {
+						return (
+							<div key={index} className="d-flex justify-content-between">
+								{element}
+								<button
+									className="btn btn-outline-danger btn-sm"
+									type="button"
+									onClick={() => cancelElementHandler(element)}>
+									x
+								</button>
+							</div>
+						);
+					})}
 				</div>
 				{/*---------------------------------------Publicity ----------------------------------------------------*/}
 				<div className="form-group form-check">
