@@ -10,19 +10,23 @@ export const Register = () => {
 	const params = useParams();
 	const { store, actions } = useContext(Context);
 
-	const [task, setTask] = useState("");
-	const [todo, setTodo] = useState([]);
+	const [username, setUsername] = useState("");
+	const [firstname, setFirstname] = useState("");
+	const [lastname, setLastname] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [country, setCountry] = useState("");
 
-	const handlerEnterKey = event => {
-		if (event.key == "Enter" && task != "") {
-			setTodo([...todo, task]);
-			setTask("");
-		}
-	};
-
-	const cancelElementHandler = element => {
-		let newList = todo.filter(oneToDo => oneToDo != element);
-		setTodo(newList);
+	const onSubmit = () => {
+		const data = {
+			username: username,
+			firstname: firstname,
+			lastname: lastname,
+			email: email,
+			password: password,
+			country: country
+		};
+		console.log(data);
 	};
 
 	return (
@@ -38,8 +42,8 @@ export const Register = () => {
 						className="form-control"
 						name="username"
 						placeholder="Username"
-						aria-label="Username"
-						aria-describedby="basic-addon1"
+						value={username}
+						onChange={event => setUsername(event.target.value)}
 					/>
 				</div>
 				{/*----------------------------------------First Name -------------------------------------------*/}
@@ -49,8 +53,8 @@ export const Register = () => {
 						className="form-control"
 						name="firstName"
 						placeholder="First name"
-						aria-label="First name"
-						aria-describedby="basic-addon1"
+						value={firstname}
+						onChange={event => setFirstname(event.target.value)}
 					/>
 				</div>
 				{/*------------------------------------------Last Name -----------------------------------------*/}
@@ -60,8 +64,8 @@ export const Register = () => {
 						className="form-control"
 						name="lastName"
 						placeholder="Last name"
-						aria-label="Last name"
-						aria-describedby="basic-addon1"
+						value={lastname}
+						onChange={event => setLastname(event.target.value)}
 					/>
 				</div>
 				{/*--------------------------------------------Email --------------------------------------------*/}
@@ -72,7 +76,8 @@ export const Register = () => {
 						className="form-control"
 						id="exampleInputEmail1"
 						placeholder="email@example.com"
-						aria-describedby="emailHelp"
+						value={email}
+						onChange={event => setEmail(event.target.value)}
 					/>
 					<small id="emailHelp" className="form-text text-muted">
 						We&prime;ll never share your email with anyone else.
@@ -81,18 +86,23 @@ export const Register = () => {
 				{/*-------------------------------------Password ---------------------------------------------------*/}
 				<div className="input-group mb-3">
 					<input
-						type="text"
+						type="password"
 						name="Password"
 						className="form-control"
 						placeholder="Password"
-						aria-label="Password"
-						aria-describedby="basic-addon1"
+						value={password}
+						onChange={event => setPassword(event.target.value)}
 					/>
 				</div>
 				{/*---------------------------------------Country ----------------------------------------------------*/}
 				<div className="input-group mb-3">
-					<select className="custom-select" id="inputGroupSelect01" name="countries">
-						<option selected>Do you visit us from where? Adventurer</option>
+					<select
+						className="custom-select"
+						id="inputGroupSelect01"
+						name="countries"
+						value={country}
+						onChange={event => setCountry(event.target.value)}>
+						<option value="DEFAULT">Do you visit us from where? Adventurer</option>
 						<All_countries />
 					</select>
 				</div>
@@ -103,13 +113,13 @@ export const Register = () => {
 						<li>
 							hello
 							<button type="button" className="btn btn-outline-dark btn-sm">
-								x
+								go
 							</button>
 						</li>
 						<li>
 							you
 							<button type="button" className="btn btn-outline-dark btn-sm">
-								x
+								go
 							</button>
 						</li>
 					</ul>
@@ -117,27 +127,9 @@ export const Register = () => {
 						type="text"
 						name="languages"
 						className="form-control"
-						value={task}
-						onChange={() => setTask(event.target.value)}
-						onKeyPress={() => handlerEnterKey(event)}
 						maxLength="15"
 						placeholder="Which should I add?"
-						aria-label="languages"
-						aria-describedby="basic-addon1"
 					/>
-					{todo.map((element, index) => {
-						return (
-							<div key={index} className="d-flex justify-content-between">
-								{element}
-								<button
-									className="btn btn-outline-danger btn-sm"
-									type="button"
-									onClick={() => cancelElementHandler(element)}>
-									x
-								</button>
-							</div>
-						);
-					})}
 				</div>
 				{/*---------------------------------------Publicity ----------------------------------------------------*/}
 				<div className="form-group form-check">
@@ -153,7 +145,7 @@ export const Register = () => {
 					<Link to="/">
 						<button className="btn btn-primary">Back home</button>
 					</Link>
-					<button type="submit" className="btn btn-primary ml-5">
+					<button type="button" className="btn btn-primary ml-5" onClick={() => onSubmit()}>
 						Submit
 					</button>
 				</div>
