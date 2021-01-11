@@ -6,9 +6,12 @@ import { Context } from "../store/appContext";
 import "../../styles/demo.scss";
 import { All_countries } from "../resources/all_countries";
 
-export const Users = () => {
+export const Register = () => {
 	const params = useParams();
 	const { store, actions } = useContext(Context);
+
+	const [task, setTask] = useState("");
+	const [todo, setTodo] = useState([]);
 
 	const handlerEnterKey = event => {
 		if (event.key == "Enter" && task != "") {
