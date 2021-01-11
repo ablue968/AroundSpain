@@ -4,6 +4,7 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 
 export const Home = () => {
+	// buscar en cuaderno para usar el "conditional template for cards" habría que abrir en components un map de estas cards
 	const { store, actions } = useContext(Context);
 
 	return (
