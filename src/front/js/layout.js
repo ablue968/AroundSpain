@@ -23,13 +23,16 @@ const Layout = () => {
 					<Navbar />
 					<MyCarousel />
 					<Switch>
+						<Route exact path="/:id">
+							<Register />
+						</Route>
 						<Route exact path="/">
 							<Register />
 						</Route>
 						<Route exact path="/demo">
 							<Demo />
 						</Route>
-						<Route exact path="/single/:theid" />
+						<Route />
 						<Route>
 							<h1>Not found!</h1>
 						</Route>

@@ -11,22 +11,25 @@ export const Register = () => {
 	const { store, actions } = useContext(Context);
 
 	const [username, setUsername] = useState("");
-	const [firstname, setFirstname] = useState("");
-	const [lastname, setLastname] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [country, setCountry] = useState("");
+	const [languages, setLanguages] = useState("");
 
 	const onSubmit = () => {
 		const data = {
 			username: username,
-			firstname: firstname,
-			lastname: lastname,
+			firstName: firstName,
+			lastName: lastName,
 			email: email,
-			password: password,
-			country: country
+			country: country,
+			languages: languages,
+			password: password
 		};
-		console.log(data);
+		//console.log(data);
+		actions.newUser(data);
 	};
 
 	return (
@@ -53,8 +56,8 @@ export const Register = () => {
 						className="form-control"
 						name="firstName"
 						placeholder="First name"
-						value={firstname}
-						onChange={event => setFirstname(event.target.value)}
+						value={firstName}
+						onChange={event => setFirstName(event.target.value)}
 					/>
 				</div>
 				{/*------------------------------------------Last Name -----------------------------------------*/}
@@ -64,8 +67,8 @@ export const Register = () => {
 						className="form-control"
 						name="lastName"
 						placeholder="Last name"
-						value={lastname}
-						onChange={event => setLastname(event.target.value)}
+						value={lastName}
+						onChange={event => setLastName(event.target.value)}
 					/>
 				</div>
 				{/*--------------------------------------------Email --------------------------------------------*/}
@@ -111,7 +114,15 @@ export const Register = () => {
 				<div className="input-group mb-3 autocomplete-multivalue">
 					<ul className="d-flex list-inline ">
 						<li>
-							hello
+							<select
+								className="custom-select"
+								id="languages"
+								name="languages"
+								value={languages}
+								onChange={event => setLanguages(event.target.value)}>
+								<option value="DEFAULT">Languages</option>
+								<All_countries />
+							</select>
 							<button type="button" className="btn btn-outline-dark btn-sm">
 								go
 							</button>
