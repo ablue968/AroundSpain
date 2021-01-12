@@ -49,7 +49,8 @@ def do_a_post(models):
             abort(422,f"Error: missing {field}")    
     
     for key, value in testing.items():
-        if payload[key] is not None and not isinstance(payload[key],value):
+        print(payload[key],key)
+        if payload[key] in payload and payload[key] is not None and not isinstance(payload[key],value): #CORREGUIR ESTO
             abort(422,f"Error in {key}'s data type")
 
     db.session.add(post)

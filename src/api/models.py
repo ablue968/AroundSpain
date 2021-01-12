@@ -18,7 +18,7 @@ class Users(db.Model):
     password = db.Column(db.String(30), nullable=False)
     country = db.Column(db.String(40), nullable=False)
     languages = db.Column(db.String(50), nullable=False)
-    avatar = db.Column(db.String(50))
+    avatar = db.Column(db.String(50), nullable=True)
     active = db.Column(db.Boolean(), nullable=False)
 
     posts = db.relationship("Posts")  

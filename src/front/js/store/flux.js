@@ -4,24 +4,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {},
 		actions: {
 			newUser(data) {
+				console.log(data);
 				const endpoint = `${baseUrl}/users`;
 				const config = {
 					method: "POST",
 					body: JSON.stringify({
 						user_name: data.user_name,
-						first_name: data.first_name,
+						first_name: data.firstName,
+						last_name: data.lastName,
 						email: data.email,
 						country: data.country,
 						languages: data.languages,
 						password: data.password,
-						active: data.active
+						active: true,
+						avatar: null
 					}),
 					headers: {
 						"Content-Type": "aplication/json",
 						"Access-Control-Allow-Origin": "*"
 					}
 				};
-				//falta el fetch
+
+				///////////////////////// FETCH
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => console.log(data));
 			}
 		}
 	};
