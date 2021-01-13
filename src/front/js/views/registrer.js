@@ -10,13 +10,21 @@ export const Register = () => {
 	const params = useParams();
 	const { store, actions } = useContext(Context);
 
-	const [username, setUsername] = useState("");
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [country, setCountry] = useState("");
-	const [languages, setLanguages] = useState("");
+	// const [username, setUsername] = useState("");
+	// const [firstName, setFirstName] = useState("");
+	// const [lastName, setLastName] = useState("");
+	// const [email, setEmail] = useState("");
+	// const [password, setPassword] = useState("");
+	// const [country, setCountry] = useState("");
+	// const [languages, setLanguages] = useState("");
+
+	const [username, setUsername] = useState("unocongafas");
+	const [firstName, setFirstName] = useState("Alejandro");
+	const [lastName, setLastName] = useState("Castaño González");
+	const [email, setEmail] = useState("unocongafas@gmail.com");
+	const [password, setPassword] = useState("12345678");
+	const [country, setCountry] = useState("Spain");
+	const [languages, setLanguages] = useState("Spain");
 
 	const onSubmit = () => {
 		const data = {
@@ -28,7 +36,7 @@ export const Register = () => {
 			languages: languages,
 			password: password
 		};
-		//console.log(data);
+		// console.log(data);
 		actions.newUser(data);
 	};
 

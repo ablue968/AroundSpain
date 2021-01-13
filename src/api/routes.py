@@ -1,6 +1,8 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+import hashlib
+import hmac
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
 from datetime import datetime
@@ -10,6 +12,9 @@ from api.utils import generate_sitemap, APIException
 
 
 api = Blueprint('api', __name__)
+
+
+MAC = 'exaEpDM4cfeMKeeA248MwRp8RZ5hue9u'
 
 ## FUNCIONES
 
@@ -37,9 +42,8 @@ def get_one_or_404(models,id):
 
 ## POST
 
-def do_a_post(models):
-    payload = request.get_json()
-    post = models(**payload)
+def do_a_post(models, payload=None):
+    payload = payload or request.get_json()
 
     required = models.serialize_required(models).keys()
     testing = models.serialize_all_types(models)
@@ -52,7 +56,8 @@ def do_a_post(models):
         print(payload[key],key)
         if payload[key] in payload and payload[key] is not None and not isinstance(payload[key],value): #CORREGUIR ESTO
             abort(422,f"Error in {key}'s data type")
-
+    
+    post = models(**payload)
     db.session.add(post)
     db.session.commit()
     return jsonify(post.serialize()), 201
@@ -92,6 +97,31 @@ def validation_and_payload(Models):
 
     return jsonify(model.serialize()), 201
 
+
+@api.route('/login', methods=['POST'])
+def login():
+    payload = request.get_json()
+
+    email = payload['email']
+    password = payload['password']
+
+    user = Users.query.filter_by(email=email, deleted_at=None).first()
+
+    if not user:
+        return "Forbiden", 403
+
+    key = MAC.encode('utf-8')
+    msg = password
+    algo = hashlib.sha512
+
+    hashed_password = hmac.new(key, msg, algo).hexdigest()
+    
+    if hashed_password != user.password:
+        return "Forbiden", 403
+
+    return jsonify(user.serialize()), 200
+
+
 # ******************************----TABLE USERS------******************************
 @api.route('/users', methods=['GET'])
 def handle_list_user():
@@ -104,8 +134,16 @@ def handle_get_user(id):
 
 @api.route('/users', methods=['POST'])
 def handle_create_user():
-    
-    return do_a_post(Users)
+    payload = request.get_json()
+
+    key = MAC.encode('utf-8')
+    msg = payload['password'].encode('utf-8')
+    algo = hashlib.sha512
+
+    payload['password'] = hmac.new(key, msg, algo).hexdigest()
+
+    return do_a_post(Users, payload)
+
 
 @api.route('/users/<int:id>', methods=['PUT'])
 def handle_update_user(id):

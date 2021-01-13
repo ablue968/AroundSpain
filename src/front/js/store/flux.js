@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const config = {
 					method: "POST",
 					body: JSON.stringify({
-						user_name: data.user_name,
+						user_name: data.username,
 						first_name: data.firstName,
 						last_name: data.lastName,
 						email: data.email,
@@ -20,8 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						avatar: null
 					}),
 					headers: {
-						"Content-Type": "aplication/json",
-						"Access-Control-Allow-Origin": "*"
+						"Content-Type": "application/json"
 					}
 				};
 				///////////////////////// FETCH
