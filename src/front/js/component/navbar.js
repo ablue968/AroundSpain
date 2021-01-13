@@ -5,9 +5,11 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark">
 			<div className="container-fluid row">
-				<a className="navbar-brand col-2" href="#">
-					¿ÑOMADA?
-				</a>
+				<Link to="/">
+					<a className="navbar-brand col-2" href="#">
+						¿ÑOMADA?
+					</a>
+				</Link>
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0" />
 					<form className="d-flex col-8">
@@ -18,14 +20,18 @@ export const Navbar = () => {
 					</form>
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0 col-2">
 						<li className="nav-item">
-							<a className="nav-link" href="#">
-								ABOUT US
-							</a>
+							<Link to="/about">
+								<a className="nav-link" href="#">
+									ABOUT US
+								</a>
+							</Link>
 						</li>
 						<li className="nav-item">
-							<a className="nav-link" href="#" aria-disabled="true">
-								LOGIN
-							</a>
+							<Link to="/login">
+								<a className="nav-link" href="#" aria-disabled="true">
+									LOGIN
+								</a>
+							</Link>
 						</li>
 					</ul>
 				</div>

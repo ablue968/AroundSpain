@@ -24,7 +24,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Access-Control-Allow-Origin": "*"
 					}
 				};
-
 				///////////////////////// FETCH
 				fetch(endpoint, config)
 					.then(response => response.json())
