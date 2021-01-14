@@ -24,7 +24,7 @@ export const Register = () => {
 	const [email, setEmail] = useState("unocongafas@gmail.com");
 	const [password, setPassword] = useState("12345678");
 	const [country, setCountry] = useState("Spain");
-	const [languages, setLanguages] = useState("Spain");
+	const [languages, setLanguages] = useState("");
 
 	const onSubmit = () => {
 		const data = {

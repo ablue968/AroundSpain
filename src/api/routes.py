@@ -3,6 +3,8 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import hashlib
 import hmac
+import jwt
+
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
 from datetime import datetime
@@ -13,8 +15,8 @@ from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
-
 MAC = 'exaEpDM4cfeMKeeA248MwRp8RZ5hue9u'
+JWT_SECRET = 'D8Z4TZMZ+smzRAYX^RgYDfcN@8U=+U6c'
 
 ## FUNCIONES
 
@@ -111,7 +113,7 @@ def login():
         return "Forbiden", 403
 
     key = MAC.encode('utf-8')
-    msg = password
+    msg = password.encode('utf-8')
     algo = hashlib.sha512
 
     hashed_password = hmac.new(key, msg, algo).hexdigest()
@@ -119,7 +121,15 @@ def login():
     if hashed_password != user.password:
         return "Forbiden", 403
 
-    return jsonify(user.serialize()), 200
+    # El correo electronico y la contraseña coinciden, conviene que no sean muy pesadas. (no utilizar mucha información)
+    payload = {"some": user.email}
+    secret = JWT_SECRET.encode('utf-8')
+    algo = "HS256"
+
+    token =  jwt.encode(payload, secret, algorithm=algo)
+    #toke = jwt.encoded_jwt = jwt.encode({"some": "payload"}, "secret", algorithm="HS256")
+
+    return jsonify({'token': token}), 200
 
 
 # ******************************----TABLE USERS------******************************

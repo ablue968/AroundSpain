@@ -1,10 +1,10 @@
-const baseUrl = "https://3001-db50ee9a-4622-43a4-a94c-fe473bbebbf2.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-d3f276b0-2b6e-4741-a0ef-819bc021e31a.ws-eu03.gitpod.io/api";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {},
 		actions: {
 			newUser(data) {
-				console.log(data);
 				const endpoint = `${baseUrl}/users`;
 				const config = {
 					method: "POST",
@@ -18,6 +18,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 						password: data.password,
 						active: true,
 						avatar: null
+					}),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				};
+				///////////////////////// FETCH
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => console.log(data));
+			},
+
+			login(data) {
+				const endpoint = `${baseUrl}/login`;
+				const config = {
+					method: "POST",
+					body: JSON.stringify({
+						email: data.email,
+						password: data.password
 					}),
 					headers: {
 						"Content-Type": "application/json"
