@@ -7,7 +7,7 @@ export const Navbar = () => {
 		<nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark d-flex justify-content-around">
 			<div className="container-fluid row">
 				<Link to="/">
-					<h4>¿ÑOMADA?</h4>
+					<h4>ChachitoSpain</h4>
 				</Link>
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<form className="d-flex col-8 ml-4">

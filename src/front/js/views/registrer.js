@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 
 import "../../styles/demo.scss";
 import { All_countries } from "../resources/all_countries";
+import { All_Languages } from "../resources/all_languages";
 
 export const Register = () => {
 	const params = useParams();
@@ -23,7 +24,7 @@ export const Register = () => {
 	const [lastName, setLastName] = useState("Castaño González");
 	const [email, setEmail] = useState("unocongafas@gmail.com");
 	const [password, setPassword] = useState("12345678");
-	const [country, setCountry] = useState("Spain");
+	const [country, setCountry] = useState("");
 	const [languages, setLanguages] = useState("");
 
 	const onSubmit = () => {
@@ -118,45 +119,25 @@ export const Register = () => {
 					</select>
 				</div>
 				{/*------------------------------------------languages------------------------------------------------- */}
-				<label htmlFor="languages">Languages</label>
-				<div className="input-group mb-3 autocomplete-multivalue">
-					<ul className="d-flex list-inline ">
-						<li>
-							<select
-								className="custom-select"
-								id="languages"
-								name="languages"
-								value={languages}
-								onChange={event => setLanguages(event.target.value)}>
-								<option value="DEFAULT">Languages</option>
-								<All_countries />
-							</select>
-							<button type="button" className="btn btn-outline-dark btn-sm">
-								go
-							</button>
-						</li>
-						<li>
-							you
-							<button type="button" className="btn btn-outline-dark btn-sm">
-								go
-							</button>
-						</li>
-					</ul>
-					<input
-						type="text"
+				<div className="input-group mb-3">
+					<select
+						data-placeholder="Choose a Language..."
+						className="custom-select"
+						id="languages"
 						name="languages"
-						className="form-control"
-						maxLength="15"
-						placeholder="Which should I add?"
-					/>
+						value={languages}
+						onChange={event => setLanguages(event.target.value)}>
+						<option value="DEFAULT">What language do you speak?</option>
+						<All_Languages />
+					</select>
 				</div>
 				{/*---------------------------------------Publicity ----------------------------------------------------*/}
-				<div className="form-group form-check">
+				{/*<div className="form-group form-check">
 					<input type="checkbox" className="form-check-input" id="exampleCheck1" />
 					<label className="form-check-label" htmlFor="exampleCheck1">
 						Send me info please!!
 					</label>
-				</div>
+                </div>*/}
 
 				{/*preguntar acá la opción del avatar---> https://getbootstrap.com/docs/4.4/components/forms/#form-controls // https://getbootstrap.com/docs/4.4/components/input-group/#custom-file-input*/}
 

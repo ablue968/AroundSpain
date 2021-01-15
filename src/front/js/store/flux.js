@@ -2,7 +2,10 @@ const baseUrl = "https://3001-d3f276b0-2b6e-4741-a0ef-819bc021e31a.ws-eu03.gitpo
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		store: {},
+		store: {
+			// DUDA CON EL TOKE EN EL STORE
+			token: null
+		},
 		actions: {
 			newUser(data) {
 				const endpoint = `${baseUrl}/users`;
@@ -30,6 +33,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			login(data) {
+				const actions = getActions();
+				console.log(data);
 				const endpoint = `${baseUrl}/login`;
 				const config = {
 					method: "POST",
@@ -41,7 +46,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				};
-				///////////////////////// FETCH
+
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						setStore({ token: data.token });
+						actions.test();
+					});
+			},
+
+			test() {
+				const store = getStore();
+				console.log({ TOKEN_TEST: store.token });
+				const endpoint = `${baseUrl}/test`;
+				const config = {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${store.token}`
+					}
+				};
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => console.log(data));
