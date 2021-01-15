@@ -110,7 +110,7 @@ def authorization_user():
     algo = "HS256"
 
     payload = jwt.decode(token, secret, algorithms=[algo])
-    user = Users.query.filter_by(email=payload['sub'], deleted_at=None).first() # Recoge la información de la base de datos del usuario, estoy más perdido que una gamba en un banco de atunes.
+    user = Users.query.filter_by(email=payload['sub'], deleted_at=None).first() # Recoge la información de la base de datos del usuario, .first muestra el primero que coincida y no busca mas
 
     return user
 
@@ -258,7 +258,8 @@ def handle_get_post(id):
 @api.route('/posts', methods=['POST'])
 def handle_create_posts():
     user = authorization_user()
-    return do_a_post(Posts), 201
+    payload = request.get_json()
+    return do_a_post(Posts,payload), 201
 
 
 

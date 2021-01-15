@@ -1,9 +1,8 @@
-const baseUrl = "https://3001-d3f276b0-2b6e-4741-a0ef-819bc021e31a.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-ec11b293-8fe5-4d8f-a1a6-73c81007f0a9.ws-eu03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			// DUDA CON EL TOKE EN EL STORE
 			token: null
 		},
 		actions: {
@@ -34,7 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			login(data) {
 				const actions = getActions();
-				console.log(data);
+				console.log(data, "Desde flux en login");
 				const endpoint = `${baseUrl}/login`;
 				const config = {
 					method: "POST",
