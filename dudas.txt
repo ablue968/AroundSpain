@@ -1,0 +1,3 @@
+minituo 31 del video, una vez hecho login lleva la cabecera de Authorization, flux linea 66
+
+linea 110 en router, que hace el .first

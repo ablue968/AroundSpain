@@ -3,6 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import hashlib
 import hmac
+import jwt
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
 from datetime import datetime
@@ -13,8 +14,8 @@ from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
-
 MAC = 'exaEpDM4cfeMKeeA248MwRp8RZ5hue9u'
+JWT_SECRET = 'D8Z4TZMZ+smzRAYX^RgYDfcN@8U=+U6c'
 
 ## FUNCIONES
 
@@ -98,6 +99,29 @@ def validation_and_payload(Models):
     return jsonify(model.serialize()), 201
 
 
+def authorization_user():
+    authorization = request.headers['Authorization']
+    
+    if not authorization:
+        abort(403)
+
+    token = authorization[7:]
+    secret = JWT_SECRET.encode('utf-8')
+    algo = "HS256"
+
+    payload = jwt.decode(token, secret, algorithms=[algo])
+    user = Users.query.filter_by(email=payload['sub'], deleted_at=None).first() # Recoge la información de la base de datos del usuario, .first muestra el primero que coincida y no busca mas
+
+    return user
+
+## AQUI ESTA EL TEST
+@api.route('/test', methods=['GET'])
+def test():
+    user = authorization_user()
+    return jsonify(user.serialize()),200
+
+
+##AQUI ESTA EL LOGIN
 @api.route('/login', methods=['POST'])
 def login():
     payload = request.get_json()
@@ -111,7 +135,7 @@ def login():
         return "Forbiden", 403
 
     key = MAC.encode('utf-8')
-    msg = password
+    msg = password.encode('utf-8')
     algo = hashlib.sha512
 
     hashed_password = hmac.new(key, msg, algo).hexdigest()
@@ -119,7 +143,17 @@ def login():
     if hashed_password != user.password:
         return "Forbiden", 403
 
-    return jsonify(user.serialize()), 200
+# El correo electronico y la contraseña coinciden, conviene que no sean muy pesadas. (no utilizar mucha información)
+    payload = {"sub": user.email}
+    secret = JWT_SECRET.encode('utf-8')
+    algo = "HS256"
+
+    token =  jwt.encode(payload, secret, algorithm=algo)
+    #toke = jwt.encoded_jwt = jwt.encode({"some": "payload"}, "secret", algorithm="HS256")
+
+    return jsonify({'token': token}), 200
+
+
 
 
 # ******************************----TABLE USERS------******************************
@@ -154,9 +188,8 @@ def handle_delete_user(id):
     return delete_element(Users,id)
 
 
+
 # ******************************----TABLE CITIES------******************************
-
-
 @api.route('/cities', methods=['GET'])
 def handle_list_cities():
     return get_a_list_of(Cities)
@@ -176,6 +209,8 @@ def handle_update_city(id):
 @api.route('/cities/<int:id>', methods=['DELETE'])
 def handle_delete_city(id):
     return delete_element(Cities,id)
+
+
 
 
 # ******************************----TABLE POSTS------******************************
@@ -222,8 +257,9 @@ def handle_get_post(id):
 # POST de posts
 @api.route('/posts', methods=['POST'])
 def handle_create_posts():
-
-    return do_a_post(Posts), 201
+    user = authorization_user()
+    payload = request.get_json()
+    return do_a_post(Posts,payload), 201
 
 
 
@@ -317,7 +353,7 @@ def handle_delete_likes(id):
 
 
 
-    # ******************************----TABLE COMMENTS------******************************
+# ******************************----TABLE COMMENTS------******************************
 @api.route('/comments', methods=['GET'])
 def handle_list_comments():
     comments = []

@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+import { Context } from "../store/appContext";
+
 import { Link } from "react-router-dom";
 
 export const Login = () => {
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
+	const { store, actions } = useContext(Context);
+	const [email, setEmail] = useState("unocongafas@gmail.com");
+	const [password, setPassword] = useState("12345678");
 
 	const onSubmit = () => {
 		{
 			/*buscar para que muestre error al tener menos de 5 caracteres, quizás con catch error? en la api?*/
 		}
-		if (username != "") {
+		if (email != "") {
 			const data = {
-				username: username,
+				email: email,
 				password: password
 			};
 			console.log(data);
+			actions.login(data);
 		}
 	};
 
@@ -23,8 +28,8 @@ export const Login = () => {
 			<div className="col-2">
 				<h1 className="d-flex justify-content-center mb-3">Login</h1>
 				<div className="text-center">
-					<h2>Username</h2>
-					<input value={username} type="text" onChange={() => setUsername(event.target.value)} />
+					<h2>Email</h2>
+					<input value={email} type="text" onChange={() => setUsername(event.target.value)} />
 				</div>
 				<div className="text-center">
 					<h2>Password</h2>
