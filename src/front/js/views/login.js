@@ -29,7 +29,7 @@ export const Login = () => {
 				<h1 className="d-flex justify-content-center mb-3">Login</h1>
 				<div className="text-center">
 					<h2>Email</h2>
-					<input value={email} type="text" onChange={() => setUsername(event.target.value)} />
+					<input value={email} type="text" onChange={() => setEmail(event.target.value)} />
 				</div>
 				<div className="text-center">
 					<h2>Password</h2>

@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: null
 		},
 		actions: {
-			newUser(data) {
+			newUser(data, callback) {
 				const endpoint = `${baseUrl}/users`;
 				const config = {
 					method: "POST",
@@ -28,7 +28,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				///////////////////////// FETCH
 				fetch(endpoint, config)
 					.then(response => response.json())
-					.then(data => console.log(data));
+					.then(data => {
+						console.log(data);
+						callback();
+					});
 			},
 
 			login(data) {

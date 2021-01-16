@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
@@ -27,6 +27,8 @@ export const Register = () => {
 	const [country, setCountry] = useState("");
 	const [languages, setLanguages] = useState("");
 
+	let history = useHistory();
+
 	const onSubmit = () => {
 		const data = {
 			username: username,
@@ -37,8 +39,11 @@ export const Register = () => {
 			languages: languages,
 			password: password
 		};
-		// console.log(data);
-		actions.newUser(data);
+
+		actions.newUser(data, () => {
+			history.push("/");
+			//console.log("Estoy dentro de newUser");
+		});
 	};
 
 	return (
