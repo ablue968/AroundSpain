@@ -9,7 +9,7 @@ export const Navbar = () => {
 				<Link to="/">
 					<h4>AroundSpain</h4>
 				</Link>
-				<div className="collapse navbar-collapse" id="navbarSupportedContent">
+				<div className="collapse navbar-collapse">
 					<form className="d-flex col-8 ml-4">
 						<input className="form-control" type="search" placeholder="Ciudad" aria-label="Search" />
 						<button className="btn btn-outline-danger" type="submit">
