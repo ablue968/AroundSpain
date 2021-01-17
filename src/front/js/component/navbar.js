@@ -13,7 +13,7 @@ export const Navbar = () => {
 					<form className="d-flex col-8 ml-4">
 						<input className="form-control" type="search" placeholder="Ciudad" aria-label="Search" />
 						<button className="btn btn-outline-danger" type="submit">
-							Search
+							BUSCAR
 						</button>
 					</form>
 				</div>
