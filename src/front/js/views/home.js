@@ -1,6 +1,9 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
+
+import "../../styles/demo.scss";
+
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import SplitButton from "react-bootstrap/SplitButton";
@@ -8,27 +11,36 @@ import SplitButton from "react-bootstrap/SplitButton";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
-	// useEffect(()=>{
-	//     actions.getPlanets();
-	// },[]) que pasa si yo pongo [store]?
+	const history = useHistory();
+
+	const [like, setLike] = useState("far fa-heart text-danger");
 
 	const info = () => {
-		return console.log("hola");
+		console.log("hello");
 	};
-
+	{
+		/*esto es para el botón de like, por si no lo termino.. */
+	}
+	const handleClick = () => {
+		if (like === "far fa-heart text-danger") setLike("fas fa-heart text-danger");
+		else setLike("far fa-heart text-danger");
+	};
+	const handleCityPage = () => {
+		history.push("/city");
+	};
 	return (
 		<>
 			{/*<Dropdown>      ESTE ES UN BUTON
-				<Dropdown.Toggle variant="warning" id="dropdown-basic">
-					<i className="fas fa-filter" />
-				</Dropdown.Toggle>
-				<Dropdown.Menu>
-					<Dropdown.Item eventKey="1">Action</Dropdown.Item>
-					<Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-					<Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-					<Dropdown.Divider />
-					<Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-				</Dropdown.Menu>
+                <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                    <i className="fas fa-filter" />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                    <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                    <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+                    <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+                </Dropdown.Menu>
             </Dropdown>*/}
 
 			{
@@ -56,9 +68,10 @@ export const Home = () => {
 			</div>
 
 			<div className="container-fluid d-flex justify-content-center row mb-3">
-				<h2 className="col-12 text-center">Los más buscados</h2>
+				<h2 className="col-12 text-center magic">Los más buscados</h2>
 				<Link
 					to="/city"
+					name="este es el nombre de una ciudad"
 					onMouseOver={info}
 					className="card col-2"
 					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
@@ -66,11 +79,14 @@ export const Home = () => {
 				</Link>
 
 				<div
+					onMouseOver={info}
+					onClick={() => actions.addFav("nombre de ciudad 2")}
 					className="card col-2"
 					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
 					<img src="https://picsum.photos/id/277/200/200" className="card-img-top" alt="..." />
 				</div>
 				<div
+					onClick={() => actions.addFav("nombre de ciudad 3")}
 					className="card col-2"
 					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
 					<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
