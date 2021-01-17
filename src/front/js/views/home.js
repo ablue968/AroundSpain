@@ -1,5 +1,9 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import SplitButton from "react-bootstrap/SplitButton";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -8,15 +12,58 @@ export const Home = () => {
 	//     actions.getPlanets();
 	// },[]) que pasa si yo pongo [store]?
 
+	const info = () => {
+		return console.log("hola");
+	};
+
 	return (
 		<>
+			{/*<Dropdown>      ESTE ES UN BUTON
+				<Dropdown.Toggle variant="warning" id="dropdown-basic">
+					<i className="fas fa-filter" />
+				</Dropdown.Toggle>
+				<Dropdown.Menu>
+					<Dropdown.Item eventKey="1">Action</Dropdown.Item>
+					<Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+					<Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+					<Dropdown.Divider />
+					<Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+				</Dropdown.Menu>
+            </Dropdown>*/}
+
+			{
+				//ESTE ES OTRO BOTON
+			}
+			<div>
+				{["Warning"].map(variant => (
+					<SplitButton
+						key={variant}
+						id={`dropdown-split-variants-"Warning"`}
+						variant={variant.toLowerCase()}
+						title="Filter">
+						<Dropdown.Item eventKey="1">Más habitantes</Dropdown.Item>
+						<Dropdown.Item eventKey="2">Menos habitantes</Dropdown.Item>
+						<Dropdown.Item eventKey="3">Con playa</Dropdown.Item>
+						<Dropdown.Item eventKey="4">Con Montaña</Dropdown.Item>
+						<Dropdown.Item eventKey="5">Más frio</Dropdown.Item>
+						<Dropdown.Item eventKey="6">Más caluroso</Dropdown.Item>
+						<Dropdown.Item eventKey="7" active>
+							{" "}
+							Esto es un itme activado{" "}
+						</Dropdown.Item>
+					</SplitButton>
+				))}
+			</div>
+
 			<div className="container-fluid d-flex justify-content-center row mb-3">
 				<h2 className="col-12 text-center">Los más buscados</h2>
-				<div
+				<Link
+					to="/city"
+					onMouseOver={info}
 					className="card col-2"
 					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
 					<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
-				</div>
+				</Link>
 
 				<div
 					className="card col-2"

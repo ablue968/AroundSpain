@@ -1,4 +1,7 @@
 const baseUrl = "https://3001-ec11b293-8fe5-4d8f-a1a6-73c81007f0a9.ws-eu03.gitpod.io/api";
+const cityPopulationURL = null; //LA API DEL INE ES UN CAOS
+const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo relacionado con tiempo, es más facil que la del ine
+//
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -57,6 +60,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
+			//HE CREADO EL FETCH DE API, para cuando consigamos ver como carajo funciona el ine
+			population() {
+				const store = getStore();
+				const endpoint = `${cityPopulationURL}`;
+				const config = {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
+					}
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => console.log("DATOS DE POBLACION", data));
+			},
+
+			// Creo que test se puede borrar
 			test() {
 				const store = getStore();
 				console.log({ TOKEN_TEST: store.token });

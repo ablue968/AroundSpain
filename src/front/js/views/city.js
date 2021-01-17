@@ -27,28 +27,28 @@ export const CityPage = () => {
 
 			<div className="row">
 				<div className="col-2 text-center ">
-					<h5>Caracteristica 1</h5>
+					<h5>Población</h5>
 					<p>
 						city.Caracteristica
 						{params.id}
 					</p>
 				</div>
 				<div className="col-2 text-center ">
-					<h5>Caracteristica 2</h5>
+					<h5>Temperatura más alta</h5>
 					<p>
 						city.Caracteristica
 						{params.id}
 					</p>
 				</div>
 				<div className="col-2 text-center">
-					<h5>Caracteristica 3</h5>
+					<h5>Temperatura más baja</h5>
 					<p>
 						city.Caracteristica
 						{params.id}
 					</p>
 				</div>
 				<div className="col-2 text-center ">
-					<h5>Caracteristica 4</h5>
+					<h5>Temperatura media</h5>
 					<p>
 						city.Caracteristica
 						{params.id}
