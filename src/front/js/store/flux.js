@@ -79,15 +79,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(store.favorites);
 			},
 
-			// deleteList(item) {
-			//  //eliminar de la lista
-			//  const store = getStore();
-			//  let newList = store.favorites.filter((element, index) => {
-			//      return element != item;
-			//  });
-			//  setStore({ favorites: newList });
-			//  console.log(store.favorites);
-			// },
+			deleteList(item) {
+				//eliminar de la lista
+				const store = getStore();
+				let newList = store.favorites.filter(element => {
+					return element != item;
+				});
+				setStore({ favorites: newList });
+				console.log(store.favorites);
+			},
 
 			//HE CREADO EL FETCH DE API, para cuando consigamos ver como carajo funciona el ine
 			population() {

@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 
+import { Context } from "../store/appContext";
+
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+
 	return (
 		<nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark d-flex justify-content-around">
 			<div className="container-fluid row">
@@ -23,11 +27,21 @@ export const Navbar = () => {
 						{/* <i className="far fa-heart" /> */}
 					</Dropdown.Toggle>
 					<Dropdown.Menu>
-						<Dropdown.Item eventKey="1">Action</Dropdown.Item>
-						<Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-						<Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-						<Dropdown.Divider />
-						<Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+						{store.favorites.map((value, index) => {
+							return (
+								<Dropdown.Item key={index} className="dropdown-item" href="#">
+									{value}
+									<button
+										onClick={() => actions.deleteList(value)}
+										type="button"
+										className="close"
+										aria-label="Close">
+										x
+									</button>
+									<Dropdown.Divider />
+								</Dropdown.Item>
+							);
+						})}
 					</Dropdown.Menu>
 				</Dropdown>
 				<Link to="/about">
@@ -44,3 +58,22 @@ export const Navbar = () => {
 		</nav>
 	);
 };
+
+{
+	/*{store.favorites.map((value, index) => {
+                            return (
+                                <Dropdown.Item  key={index} class="dropdown-item" href="#">
+                                    {value}
+                                    <button onClick={() => actions.deleteList(value)} type="button" className="close" aria-label="Close">
+                                        x
+                                    </button>
+                                    <Dropdown.Divider />
+                                </Dropdown.Item> */
+}
+{
+	/* <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+						<Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+						<Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+						<Dropdown.Divider />
+						<Dropdown.Item eventKey="4">Separated link</Dropdown.Item> */
+}
