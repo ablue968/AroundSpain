@@ -6,7 +6,8 @@ const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo re
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: null
+			token: null,
+			favorites: []
 		},
 		actions: {
 			newUser(data, callback) {
@@ -60,6 +61,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 						callback();
 						console.log(data, "usuario logeado y redirigido al home");
 					});
+			},
+			// acá está para añadir y quitar de fav
+			addFav(item) {
+				//añadir a la lista
+				const store = getStore();
+				if (store.favorites.includes(item) == true) {
+					let newList = store.favorites.filter((element, index) => {
+						return element != item;
+					});
+					setStore({ favorites: newList });
+				} else {
+					const newList = [...store.favorites];
+					newList.push(item);
+					setStore({ favorites: newList });
+				}
+				console.log(store.favorites);
+			},
+
+			deleteList(item) {
+				//eliminar de la lista
+				const store = getStore();
+				let newList = store.favorites.filter(element => {
+					return element != item;
+				});
+				setStore({ favorites: newList });
+				console.log(store.favorites);
 			},
 
 			//HE CREADO EL FETCH DE API, para cuando consigamos ver como carajo funciona el ine
