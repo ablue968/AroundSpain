@@ -33,12 +33,11 @@ export const Navbar = () => {
 									{value}
 									<button
 										onClick={() => actions.deleteList(value)}
-										type="button"
+										type="btn"
 										className="close"
 										aria-label="Close">
 										x
 									</button>
-									<Dropdown.Divider />
 								</Dropdown.Item>
 							);
 						})}

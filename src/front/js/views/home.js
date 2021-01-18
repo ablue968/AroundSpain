@@ -18,16 +18,21 @@ export const Home = () => {
 	const info = () => {
 		console.log("hello");
 	};
-	{
-		/*esto es para el botón de like, por si no lo termino.. */
-	}
-	const handleClick = () => {
-		if (like === "far fa-heart text-danger") setLike("fas fa-heart text-danger");
-		else setLike("far fa-heart text-danger");
+
+	const handleClick = event => {
+		if (like == "far fa-heart text-danger") {
+			setLike("fas fa-heart text-danger");
+			actions.addFav(event.target.title);
+		} else {
+			setLike("far fa-heart text-danger");
+			actions.deleteList(event.target.title);
+		}
 	};
+
 	const handleCityPage = () => {
 		history.push("/city");
 	};
+
 	return (
 		<>
 			{/*<Dropdown>      ESTE ES UN BUTON
@@ -71,22 +76,31 @@ export const Home = () => {
 				<h2 className="col-12 text-center magic">Los más buscados</h2>
 				<Link
 					to="/city"
-					name="este es el nombre de una ciudad"
 					onMouseOver={info}
 					className="card col-2"
 					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
 					<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
+					<button id="likeButton" onClick={() => handleClick(event)}>
+						<i className={like} title="ciudad 1" />
+					</button>
 				</Link>
 
 				<div
 					onMouseOver={info}
-					onClick={() => actions.addFav("nombre de ciudad 2")}
 					className="card col-2"
 					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
 					<img src="https://picsum.photos/id/277/200/200" className="card-img-top" alt="..." />
+					<button
+						className="card-img-overlay bottom-left"
+						label="ciudad 2"
+						id="likeButton"
+						onClick={() => handleClick(event)}>
+						<i className={like} title="ciudad 2" />
+					</button>
 				</div>
 				<div
-					onClick={() => actions.addFav("nombre de ciudad 3")}
+					title="ciudad 3"
+					onClick={() => handleClick(event)}
 					className="card col-2"
 					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
 					<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />

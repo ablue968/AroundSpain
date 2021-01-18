@@ -26,9 +26,9 @@ export const CityPage = () => {
 				<div className="row align-items-center">
 					<div className="col-2 text-center">
 						<img src="https://picsum.photos/900/500" />
-						<div id="likeButton" onClick={handleClick}>
+						<button id="likeButton" onClick={handleClick}>
 							<i className={like} />
-						</div>
+						</button>
 					</div>
 				</div>
 			</div>
