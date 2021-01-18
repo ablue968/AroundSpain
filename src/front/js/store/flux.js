@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-ec11b293-8fe5-4d8f-a1a6-73c81007f0a9.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-a5f21c8a-030e-4c63-9e36-15e21ec3cc73.ws-eu03.gitpod.io/api";
 const cityPopulationURL = null; //LA API DEL INE ES UN CAOS
 const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo relacionado con tiempo, es más facil que la del ine
 //
@@ -6,7 +6,8 @@ const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo re
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: null
+			token: null,
+			favorites: []
 		},
 		actions: {
 			newUser(data, callback) {
@@ -32,14 +33,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						console.log(data);
+						console.log(data, "usuario creado");
 						callback();
 					});
 			},
 
-			login(data) {
+			login(data, callback) {
 				const actions = getActions();
-				console.log(data, "Desde flux en login");
+				console.log(data, "inicio del flux, data que recibe");
 				const endpoint = `${baseUrl}/login`;
 				const config = {
 					method: "POST",
@@ -57,7 +58,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						setStore({ token: data.token });
 						actions.test();
+						callback();
+						console.log(data, "usuario logeado y redirigido al home");
 					});
+			},
+			// acá está para añadir y quitar de fav
+			addFav(item) {
+				//añadir a la lista
+				const store = getStore();
+				if (store.favorites.includes(item) == true) {
+					let newList = store.favorites.filter((element, index) => {
+						return element != item;
+					});
+					setStore({ favorites: newList });
+				} else {
+					const newList = [...store.favorites];
+					newList.push(item);
+					setStore({ favorites: newList });
+				}
+				console.log(store.favorites);
+			},
+
+			deleteList(item) {
+				//eliminar de la lista
+				const store = getStore();
+				let newList = store.favorites.filter(element => {
+					return element != item;
+				});
+				setStore({ favorites: newList });
+				console.log(store.favorites);
 			},
 
 			//HE CREADO EL FETCH DE API, para cuando consigamos ver como carajo funciona el ine
@@ -78,7 +107,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Creo que test se puede borrar
 			test() {
 				const store = getStore();
-				console.log({ TOKEN_TEST: store.token });
+				console.log({ TOKEN_TEST: store.token }, "token que recibe para el login");
 				const endpoint = `${baseUrl}/test`;
 				const config = {
 					method: "GET",
@@ -89,7 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				fetch(endpoint, config)
 					.then(response => response.json())
-					.then(data => console.log(data));
+					.then(data => console.log(data, "este es el test"));
 			}
 		}
 	};
