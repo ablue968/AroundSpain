@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
+import logo from "../../img/Logo.png";
 
 import { Context } from "../store/appContext";
 
