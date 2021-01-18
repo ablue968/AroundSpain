@@ -74,42 +74,41 @@ export const Home = () => {
 
 			<div className="container-fluid d-flex justify-content-center row mb-3">
 				<h2 className="col-12 text-center magic">Los más buscados</h2>
-				<Link
-					to="/city"
-					onMouseOver={info}
-					className="card col-2"
-					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
-					<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
-					<button id="likeButton" onClick={() => handleClick(event)}>
-						<i className={like} title="ciudad 1" />
-					</button>
-				</Link>
 
-				<div
-					onMouseOver={info}
-					className="card col-2"
-					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
-					<img src="https://picsum.photos/id/277/200/200" className="card-img-top" alt="..." />
-					<button
-						className="card-img-overlay bottom-left"
-						label="ciudad 2"
-						id="likeButton"
-						onClick={() => handleClick(event)}>
+				<div className="card d-flex flex-column topCityCard">
+					<Link to="/city" onMouseOver={info}>
+						<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
+					</Link>
+					<button id="likeButton" onClick={() => handleClick(event)}>
 						<i className={like} title="ciudad 2" />
 					</button>
 				</div>
-				<div
-					title="ciudad 3"
-					onClick={() => handleClick(event)}
-					className="card col-2"
-					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
-					<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
+
+				<div className="card d-flex flex-column topCityCard">
+					<Link to="/city" onMouseOver={info}>
+						<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
+					</Link>
+					<button id="likeButton" onClick={() => handleClick(event)}>
+						<i className={like} title="ciudad 3" />
+					</button>
 				</div>
 
-				<div
-					className="card col-2"
-					style={{ width: "18rem", marginLeft: "2rem", marginTop: "2rem", padding: "0px" }}>
-					<img src="https://picsum.photos/id/277/200/200" className="card-img-top" alt="..." />
+				<div className="card d-flex flex-column topCityCard">
+					<Link to="/city" onMouseOver={info}>
+						<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
+					</Link>
+					<button id="likeButton" onClick={() => handleClick(event)}>
+						<i className={like} title="ciudad 4" />
+					</button>
+				</div>
+
+				<div className="card d-flex flex-column topCityCard">
+					<Link to="/city" onMouseOver={info}>
+						<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
+					</Link>
+					<button id="likeButton" onClick={() => handleClick(event)}>
+						<i className={like} title="ciudad 1" />
+					</button>
 				</div>
 			</div>
 			<h2 className="text-center">Elige el próximo destino</h2>
