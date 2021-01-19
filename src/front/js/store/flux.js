@@ -104,6 +104,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => console.log("DATOS DE POBLACION", data));
 			},
 
+			postCity(id) {
+				const endpoint = `${baseUrl}/cities/${id}/posts`;
+				const config = {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
+					}
+				};
+				///////////////////////// FETCH
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						console.log(data, "Post de la ciudad");
+					});
+			},
+
 			// Creo que test se puede borrar
 			test() {
 				const store = getStore();

@@ -71,7 +71,7 @@ export default All_Cities = () => [
         population_density: "682,84 hab./km²"
     },
     {
-        id: 7,
+        id: 8,
         image:  "https://media.istockphoto.com/photos/malaga-spain-cityscape-view-of-malaga-plaza-de-toros-de-ronda-in-picture-id1017217230?k=6&m=1017217230&s=612x612&w=0&h=-IaQoKhiQja9EJDySyH113tU63z92Ir2knSbIfyUfgA=",
         city_Name: "Málaga",
         population: "578 460 hab",
