@@ -25,7 +25,7 @@ export const Home = () => {
 			actions.addFav(event.target.title);
 		} else {
 			setLike("far fa-heart text-danger");
-			actions.deleteList(event.target.title);
+			actions.deleteFav(event.target.title);
 		}
 	};
 

@@ -32,7 +32,7 @@ export const Navbar = () => {
 								<Dropdown.Item key={index} className="dropdown-item" href="#">
 									{value}
 									<button
-										onClick={() => actions.deleteList(value)}
+										onClick={() => actions.deleteFav(value)}
 										type="btn"
 										className="close"
 										aria-label="Close">
@@ -63,7 +63,7 @@ export const Navbar = () => {
                             return (
                                 <Dropdown.Item  key={index} class="dropdown-item" href="#">
                                     {value}
-                                    <button onClick={() => actions.deleteList(value)} type="button" className="close" aria-label="Close">
+                                    <button onClick={() => actions.deleteFav(value)} type="button" className="close" aria-label="Close">
                                         x
                                     </button>
                                     <Dropdown.Divider />

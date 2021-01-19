@@ -2,7 +2,7 @@ const baseUrl = "https://3001-a75cf7e5-eeb7-4581-9f5c-20e372c83629.ws-eu03.gitpo
 const cityPopulationURL = null; //LA API DEL INE ES UN CAOS
 const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo relacionado con tiempo, es más facil que la del ine
 //
-
+const token = localStorage.getItem("token");
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -62,7 +62,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(data, "usuario logeado y redirigido al home");
 					});
 			},
-			// acá está para añadir y quitar de fav
+
+			logOut() {
+				localStorage.removeItem("token");
+				setStore({ token: null });
+			},
+
 			addFav(item) {
 				//añadir a la lista
 				const store = getStore();
@@ -79,7 +84,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(store.favorites);
 			},
 
-			deleteList(item) {
+			deleteFav(item) {
 				//eliminar de la lista
 				const store = getStore();
 				let newList = store.favorites.filter(element => {
