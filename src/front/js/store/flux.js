@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-a75cf7e5-eeb7-4581-9f5c-20e372c83629.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-c8ae4f6f-3ea8-4d8e-b228-3b0c990ce626.ws-eu03.gitpod.io/api";
 const cityPopulationURL = null; //LA API DEL INE ES UN CAOS
 const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo relacionado con tiempo, es más facil que la del ine
 //
@@ -7,7 +7,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: null,
-			favorites: []
+			favorites: [],
+			posts: []
 		},
 		actions: {
 			newUser(data, callback) {
@@ -81,7 +82,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					newList.push(item);
 					setStore({ favorites: newList });
 				}
-				console.log(store.favorites);
+				//console.log(store.favorites);
 			},
 
 			deleteFav(item) {
@@ -91,7 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return element != item;
 				});
 				setStore({ favorites: newList });
-				console.log(store.favorites);
+				//console.log(store.favorites);
 			},
 
 			//HE CREADO EL FETCH DE API, para cuando consigamos ver como carajo funciona el ine
@@ -121,7 +122,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						console.log(data, "Post de la ciudad");
+						setStore({ posts: data });
 					});
 			},
 
