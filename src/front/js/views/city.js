@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Post } from "../component/post.js";
 
@@ -6,12 +6,21 @@ import { Context } from "../store/appContext";
 
 import "../../styles/home.scss";
 import "../../styles/city.scss";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 export const CityPage = () => {
 	const { store, actions } = useContext(Context);
 
 	const params = useParams();
 	const [like, setLike] = useState("far fa-heart text-danger");
+
+	useEffect(() => {
+		actions.postCity(params.id);
+	}, []);
+
+	const postsList = store.posts.map((element, index) => {
+		return <Post post={element} key={index} />;
+	});
 
 	const handleClick = () => {
 		if (like === "far fa-heart text-danger") {
@@ -79,7 +88,7 @@ export const CityPage = () => {
 						</p>
 					</div>
 				</div>
-				<Post />
+				<div className="d-flex flex-column-reverse col-12">{postsList}</div>
 			</div>
 		</div>
 	);
