@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import logo from "../../img/Logo.png";
@@ -7,6 +7,18 @@ import { Context } from "../store/appContext";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
+
+	//const [userState, setUserState] = useState("LOGIN");
+	//
+	// ok... no furula esto bien..
+	// const handlerUserState = () => {
+	// 	if (store.token == null) {
+	// 		console.log("aún no hay toquen, paso 1");
+	// 		setUserState("LOGOUT");
+	// 	} else {
+	// 		console.log("ya hay toquen , hago click y fuera token");
+	// 	}
+	// };
 
 	return (
 		<nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark d-flex justify-content-around">
@@ -51,6 +63,7 @@ export const Navbar = () => {
 				<Link to="/login">
 					<button type="btn" className="btn btn-success ml-2">
 						LOGIN
+						{/*onClick={handlerUserState} (en el button) {userState} (entre las etiquetas)*/}
 					</button>
 				</Link>
 			</div>
