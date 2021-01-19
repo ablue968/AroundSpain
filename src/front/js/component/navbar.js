@@ -25,7 +25,6 @@ export const Navbar = () => {
 				<Dropdown>
 					<Dropdown.Toggle variant="danger" id="dropdown-basic">
 						<i className="fas fa-heart" />
-						{/* <i className="far fa-heart" /> */}
 					</Dropdown.Toggle>
 					<Dropdown.Menu>
 						{store.favorites.map((value, index) => {
