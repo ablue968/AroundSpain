@@ -18,15 +18,14 @@ class Users(db.Model):
     password = db.Column(db.String(128), nullable=False)
     country = db.Column(db.String(40), nullable=False)
     languages = db.Column(db.String(50), nullable=False)
-    avatar = db.Column(db.String(50), nullable=True)
-    active = db.Column(db.Boolean(), nullable=False)
+
 
     posts = db.relationship("Posts")  
     likes = db.relationship("Likes")  
     comments = db.relationship("Comments")  
 
-#acá agregue una "s" a languages... una tontería, pero por si el tipo sabe más de un idioma ps xD
-#he agregado la opción de active, por si nos interesa relacionarlo con algún envío de información ( solo enviar promoción if active== true and deleted_at==null)
+    # avatar = db.Column(db.String(50), nullable=True)
+    # active = db.Column(db.Boolean(), nullable=False)
 
     def __str__(self):
         return f"{self.user_name}"
@@ -39,9 +38,7 @@ class Users(db.Model):
             'last_name': self.last_name,
             'email': self.email,
             'country': self.country,
-            'languages': self.languages,
-            'avatar': self.avatar,
-            'active':self.active
+            'languages': self.languages
         }
     
     def serialize_required(self):
@@ -50,9 +47,7 @@ class Users(db.Model):
             'first_name': str,
             'email': str,
             'country': str,
-            'languages': str,
-            'password': str,
-            'active': bool
+            'languages': str
         }
 
     def serialize_all_types(self):
@@ -63,8 +58,6 @@ class Users(db.Model):
             'email': str,
             'country': str,
             'languages': str,
-            'avatar': str,
-            'active':bool,
             'password': str,
         }
             
@@ -81,16 +74,11 @@ class Cities(db.Model):
     deleted_at = db.Column(db.DateTime)
     city_name = db.Column(db.String(50), nullable=False)
     image = db.Column(db.String(150), nullable=False)
-    population = db.Column(db.Integer, nullable=False)
-    cost_of_living = db.Column(db.Integer, nullable=False)
-    sunny = db.Column(db.Integer, nullable=False)
-    humidity = db.Column(db.Integer, nullable=False)
-    windy = db.Column(db.Integer, nullable=False)
-    rainy = db.Column(db.Integer, nullable=False)
-    lowest_temp = db.Column(db.Float, nullable=False)
-    highest_temp =db.Column(db.Float, nullable=False)
-    average_temp = db.Column(db.Float, nullable=False)
-    rental_offer = db.Column(db.Integer, nullable= False)
+    population = db.Column(db.String(150), nullable=False)
+    cost_of_living = db.Column(db.String(150), nullable=False)
+    average_highest_temp = db.Column(db.String(150), nullable=False)
+    average_lowest_temp = db.Column(db.String(150), nullable=False)
+    population_density = db.Column(db.String(150), nullable=False)
 
     likes = db.relationship("Likes")  
     posts = db.relationship("Posts")  
@@ -105,46 +93,31 @@ class Cities(db.Model):
             'image': self.image,
             'population': self.population,
             'cost_of_living': self.cost_of_living,
-            'sunny': self.sunny,
-            'humidity': self.humidity,
-            'windy': self.windy,
-            'rainy': self.rainy,
-            'lowest_temp': self.lowest_temp,
-            'highest_temp': self.highest_temp,
-            'average_temp': self.average_temp,
-            'rental_offer': self.rental_offer
+            'average_highest_temp': self.average_highest_temp,
+            'average_lowest_temp': self.average_lowest_temp,
+            'population_density': self.population_density
         }
 
     def serialize_required(self):
         return{
             'city_name': str,
             'image': str,
-            'population': int,
-            'cost_of_living': int,
-            'sunny': int,
-            'humidity': int,
-            'windy': int,
-            'rainy': int,
-            'lowest_temp': float,
-            'highest_temp': float,
-            'average_temp': float,
-            'rental_offer': int
+            'population': str,
+            'cost_of_living': str,
+            'average_highest_temp': str,
+            'average_lowest_temp': str,
+            'population_density': str
         }
 
         def serialize_all_types(self):
             return {
                 'city_name': str,
                 'image': str,
-                'population': int,
-                'cost_of_living': int,
-                'sunny': int,
-                'humidity': int,
-                'windy': int,
-                'rainy': int,
-                'lowest_temp': float,
-                'highest_temp': float,
-                'average_temp': float,
-                'rental_offer': int
+                'population': str,
+                'cost_of_living': str,
+                'average_highest_temp': str,
+                'average_lowest_temp': str,
+                'population_density': str
         }
 
 
@@ -174,7 +147,7 @@ class Posts(db.Model):
 
         return {
             'id': self.id,
-            'user_first_name': self.user.first_name, 
+            'user_name': self.user.user_name, 
             'city_id': self.city_id, 
             'city': self.city.city_name,
             'created_at': self.created_at,
@@ -188,8 +161,6 @@ class Posts(db.Model):
             'user_id': self.user_id,
             'text': self.text,
         }
-
-####preguntar como proceder con estas, tengo dudas con el serialize_required y serialize_all_types 
 
 ######### TABLA LIKES
 
@@ -221,8 +192,6 @@ class Likes(db.Model):
             'city_id': self.city_id,
             'user_id': self.user_id,
         }        
-
-####preguntar como proceder con estas, tengo dudas con el serialize_required y serialize_all_types 
 
 ######### TABLA COMMENTS
 
