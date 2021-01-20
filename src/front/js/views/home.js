@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
@@ -8,31 +8,27 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import SplitButton from "react-bootstrap/SplitButton";
 
+import { Card } from "../component/card";
+
 export const Home = () => {
 	const { store, actions } = useContext(Context);
-
 	const history = useHistory();
 
-	const [like, setLike] = useState("far fa-heart text-danger");
+	useEffect(() => {
+		actions.getAllCities();
+	}, []);
 
 	const info = () => {
-		console.log("hello");
-	};
-
-	const handleClick = event => {
-		if (like == "far fa-heart text-danger") {
-			setLike("fas fa-heart text-danger");
-			actions.addFav(event.target.title);
-		} else {
-			setLike("far fa-heart text-danger");
-			actions.deleteFav(event.target.title);
-		}
+		console.log("Soy el onMouseOver");
 	};
 
 	const handleCityPage = () => {
 		history.push("/city");
 	};
 
+	const allCities = store.cities.map((city, index) => {
+		console.log("city", city, index);
+	});
 	return (
 		<>
 			{/*<Dropdown>      ESTE ES UN BUTON
@@ -75,33 +71,10 @@ export const Home = () => {
 			<div className="container-fluid d-flex justify-content-center row mb-3">
 				<h2 className="col-12 text-center magic">Los más buscados</h2>
 
-				<div className="card d-flex flex-column topCityCard">
-					<Link to="/city" onMouseOver={info}>
-						<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
-					</Link>
-					<button id="likeButton" onClick={() => handleClick(event)}>
-						<i className={like} title="ciudad 2" />
-					</button>
-				</div>
+				{allCities}
 
-				<div className="card d-flex flex-column topCityCard">
-					<Link to="/city" onMouseOver={info}>
-						<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
-					</Link>
-					<button id="likeButton" onClick={() => handleClick(event)}>
-						<i className={like} title="ciudad 3" />
-					</button>
-				</div>
-
-				<div className="card d-flex flex-column topCityCard">
-					<Link to="/city" onMouseOver={info}>
-						<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
-					</Link>
-					<button id="likeButton" onClick={() => handleClick(event)}>
-						<i className={like} title="ciudad 4" />
-					</button>
-				</div>
-
+				{/*
+			
 				<div className="card d-flex flex-column topCityCard">
 					<Link to="/city" onMouseOver={info}>
 						<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
@@ -109,7 +82,7 @@ export const Home = () => {
 					<button id="likeButton" onClick={() => handleClick(event)}>
 						<i className={like} title="ciudad 1" />
 					</button>
-				</div>
+				</div>*/}
 			</div>
 			<h2 className="text-center">Elige el próximo destino</h2>
 			<div className="container row">
