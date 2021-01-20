@@ -1,20 +1,27 @@
-import React from "react";
-import Card from "react-bootstrap/Card";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 
-export const Cards = () =>
-	["Light"].map((variant, idx) => (
-		<Card
-			bg={variant.toLowerCase()}
-			key={idx}
-			text={variant.toLowerCase() === "light" ? "dark" : "white"}
-			style={{ width: "18rem" }}
-			className="mb-2">
-			<Card.Header>Header</Card.Header>
-			<Card.Body>
-				<Card.Title>{variant} Card Title </Card.Title>
-				<Card.Text>
-					Some quick example text to build on the card title and make up the bulk of the cards content.
-				</Card.Text>
-			</Card.Body>
-		</Card>
-	));
+export const Card = getcities => {
+	const [like, setLike] = useState("far fa-heart text-danger");
+
+	const handleClick = event => {
+		if (like == "far fa-heart text-danger") {
+			setLike("fas fa-heart text-danger");
+			actions.addFav(event.target.title);
+		} else {
+			setLike("far fa-heart text-danger");
+			actions.deleteFav(event.target.title);
+		}
+	};
+	return (
+		<div className="card d-flex flex-column topCityCard" key={id}>
+			<Link to="/city" onMouseOver={info}>
+				<p>{city_Name}</p>
+				<img src={image} className="card-img-top" alt={city_Name} />
+			</Link>
+			<button id="likeButton" onClick={() => handleClick(event)}>
+				<i className={like} title={city_Name} />
+			</button>
+		</div>
+	);
+};
