@@ -22,10 +22,6 @@ export const Home = () => {
 		console.log("Soy el onMouseOver");
 	};
 
-	const handleCityPage = () => {
-		history.push("/city");
-	};
-
 	const allCities = store.cities.map((city, index) => {
 		return <Card key={index} city={city} />;
 	});
