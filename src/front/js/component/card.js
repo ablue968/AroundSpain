@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Context } from "../store/appContext";
 
 export const Card = props => {
+	const { store, actions } = useContext(Context);
 	const { city } = props;
 	const [like, setLike] = useState("far fa-heart text-danger");
 	const handleClick = event => {

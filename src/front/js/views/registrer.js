@@ -3,11 +3,10 @@ import { Link, useParams, useHistory } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
-import "../../styles/demo.scss";
 import { All_countries } from "../resources/all_countries";
 import { All_Languages } from "../resources/all_languages";
 
-import "../../styles/home.scss";
+import "../../styles/register.scss";
 
 export const Register = () => {
 	const params = useParams();
