@@ -35,7 +35,7 @@ const Layout = () => {
 							<MyCarousel />
 							<Home />
 						</Route>
-						<Route exact path="/city/:id">
+						<Route exact path="/city/:city_name">
 							<CityPage />
 						</Route>
 						<Route exact path="/about">

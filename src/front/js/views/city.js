@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Post } from "../component/post.js";
 
 import { Context } from "../store/appContext";
@@ -31,6 +31,7 @@ export const CityPage = () => {
 			actions.addFav("nombre de ciudad");
 		}
 	};
+
 	return (
 		<div className="container p-0">
 			<h1 className="text-light">
