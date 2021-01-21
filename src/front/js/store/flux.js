@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-a614934d-9f77-4695-bda3-645e55d4d6c8.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-c69b3bcb-28ef-4afe-be9f-2350b9b6ac84.ws-eu03.gitpod.io/api";
 
 const cityPopulationURL = null; //LA API DEL INE ES UN CAOS
 const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo relacionado con tiempo, es más facil que la del ine
@@ -94,6 +94,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return element != item;
 				});
 				setStore({ favorites: newList });
+				//console.log(store.favorites);
+			},
+
+			deleteAllFav() {
+				//eliminar de la lista
+				setStore({ favorites: [] });
 				//console.log(store.favorites);
 			},
 

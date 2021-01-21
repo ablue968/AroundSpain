@@ -41,7 +41,10 @@ export const Navbar = () => {
 					<Dropdown.Menu>
 						{store.favorites.map((value, index) => {
 							return (
-								<Dropdown.Item key={index} className="dropdown-item" href="#">
+								<Dropdown.Item
+									key={index}
+									className="dropdown-item d-flex justify-content-between"
+									href="#">
 									{value}
 									<button
 										onClick={() => actions.deleteFav(value)}
@@ -53,6 +56,11 @@ export const Navbar = () => {
 								</Dropdown.Item>
 							);
 						})}
+						<Dropdown.Item className="d-flex justify-content-center p-0">
+							<button type="button" className="btn btn-info" onClick={() => actions.deleteAllFav()}>
+								Clear all
+							</button>
+						</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 				<Link to="/about">
@@ -70,22 +78,3 @@ export const Navbar = () => {
 		</nav>
 	);
 };
-
-{
-	/*{store.favorites.map((value, index) => {
-                            return (
-                                <Dropdown.Item  key={index} class="dropdown-item" href="#">
-                                    {value}
-                                    <button onClick={() => actions.deleteFav(value)} type="button" className="close" aria-label="Close">
-                                        x
-                                    </button>
-                                    <Dropdown.Divider />
-                                </Dropdown.Item> */
-}
-{
-	/* <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-						<Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-						<Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-						<Dropdown.Divider />
-						<Dropdown.Item eventKey="4">Separated link</Dropdown.Item> */
-}
