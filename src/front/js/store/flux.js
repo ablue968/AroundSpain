@@ -59,7 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => {
 						setStore({ token: data.token });
-						actions.test();
+						localStorage.setItem("token", data.token);
 						callback();
 						console.log(data, "usuario logeado y redirigido al home");
 					});
