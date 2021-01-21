@@ -15,20 +15,15 @@
     border-width: thin;
 
 }
-#registerBackground{
-    background-color: #343a40;
-    width: 50rem;
-    border-color: #007bff;
-    border-style: solid;
-    border-radius: 0.5rem;
-    border-width: thin;
-
-}
 
 ///////////////////////////home//////////
 .topCityCard{
-   width: 18rem; 
+   width: 18rem;
    margin-left: 2rem;
    margin-top: 2rem;
    padding: 0px;
+}
+
+.card-img-top{
+    height: 15rem;
 }

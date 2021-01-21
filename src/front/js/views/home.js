@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-import "../../styles/demo.scss";
+import "../../styles/home.scss";
 
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -31,22 +31,6 @@ export const Home = () => {
 	});
 	return (
 		<>
-			{/*<Dropdown>      ESTE ES UN BUTON
-                <Dropdown.Toggle variant="warning" id="dropdown-basic">
-                    <i className="fas fa-filter" />
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                    <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                    <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>*/}
-
-			{
-				//ESTE ES OTRO BOTON
-			}
 			<div>
 				{["Warning"].map(variant => (
 					<SplitButton
@@ -89,26 +73,3 @@ export const Home = () => {
 		</>
 	);
 };
-
-{
-	/* <div className="peopleDiv row flex-row flex-nowrap">
-                {store.planets.map((planet, index) =>
-                    {const {name , climate, population} = planet;
-                    return(
-                        <div key={index} className="card col-3">
-                        <img src="http://via.placeholder.com/400x200" className="card-img-top" alt="..."></img>
-                        <div className="card-body">
-                            <p>Name :{name}</p>
-                            <p>Climate :{climate}</p>
-                            <p>Population: {population}</p>
-                            <div className="d-flex justify-content-between">
-                                <button className="btn btn-outline-primary">Learn more!</button>
-                                <button className="btn btn-outline-warning">♡</button>
-                            </div>
-                        </div>
-                    </div>
-                    )}
-                )}
-
-            </div> */
-}
