@@ -21,24 +21,15 @@ export const Card = props => {
 		}
 	};
 
-	const handleCityPage = id => {
-		console.log(city);
-		history.push(`/city/${city.city_name}`);
-	};
 	return (
 		<div className="card d-flex flex-column topCityCard">
 			<Link //No esta funcionando
-				to={store.cities.id}
+				to={`/city/${city.city_name}`}
 				onMouseOver={() => {
 					console.log("info funciton");
 				}}>
 				<p>{city.city_name}</p>
-				<img
-					src={city.image}
-					className="card-img-top"
-					alt={city.city_name}
-					onClick={() => handleCityPage(city.city_name)}
-				/>
+				<img src={city.image} className="card-img-top" alt={city.city_name} />
 			</Link>
 			<button id="likeButton" onClick={() => handleClick(event)}>
 				<i className={like} title={city.city_name} />
