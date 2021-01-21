@@ -4,6 +4,7 @@ const cityPopulationURL = null; //LA API DEL INE ES UN CAOS
 const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo relacionado con tiempo, es más facil que la del ine
 //
 const token = localStorage.getItem("token");
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -24,9 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						email: data.email,
 						country: data.country,
 						languages: data.languages,
-						password: data.password,
-						active: true,
-						avatar: null
+						password: data.password
 					}),
 					headers: {
 						"Content-Type": "application/json"
@@ -74,17 +73,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addFav(item) {
 				//añadir a la lista
 				const store = getStore();
-				if (store.favorites.includes(item) == true) {
-					let newList = store.favorites.filter((element, index) => {
-						return element != item;
-					});
-					setStore({ favorites: newList });
-				} else {
-					const newList = [...store.favorites];
+				if (store.token) {
+					let newList = store.favorites;
+
 					newList.push(item);
+					newList = [...new Set(newList)];
 					setStore({ favorites: newList });
 				}
-				//console.log(store.favorites);
+				//debo crear action que sea para llevar al login
+			},
+
+			cityDetail(cityName) {
+				//añadir a la lista
+				const store = getStore();
+
+				let detail = store.cities.filter(city => {
+					return city.city_name === cityName;
+				})[0];
+
+				return detail;
 			},
 
 			deleteFav(item) {

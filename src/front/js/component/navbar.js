@@ -8,17 +8,16 @@ import { Context } from "../store/appContext";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
-	//const [userState, setUserState] = useState("LOGIN");
-	//
-	// ok... no furula esto bien..
-	// const handlerUserState = () => {
-	// 	if (store.token == null) {
-	// 		console.log("aún no hay toquen, paso 1");
-	// 		setUserState("LOGOUT");
-	// 	} else {
-	// 		console.log("ya hay toquen , hago click y fuera token");
-	// 	}
-	// };
+	const [userState, setUserState] = useState("LOGIN");
+
+	const handlerUserState = () => {
+		if (store.token != null) {
+			setUserState("LOGOUT");
+		} else {
+			setUserState("LOGIN");
+			console.log("ya hay toquen , hago click y fuera token");
+		}
+	};
 
 	return (
 		<nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark d-flex justify-content-around">
@@ -69,9 +68,8 @@ export const Navbar = () => {
 					</button>
 				</Link>
 				<Link to="/login">
-					<button type="btn" className="btn btn-success ml-2">
-						LOGIN
-						{/*onClick={handlerUserState} (en el button) {userState} (entre las etiquetas)*/}
+					<button type="btn" className="btn btn-success ml-2" onClick={handlerUserState}>
+						{userState}
 					</button>
 				</Link>
 			</div>

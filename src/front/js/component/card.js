@@ -5,8 +5,11 @@ import { Context } from "../store/appContext";
 
 export const Card = props => {
 	const { store, actions } = useContext(Context);
+
 	const history = useHistory();
+
 	const { city } = props;
+
 	const [like, setLike] = useState("far fa-heart text-danger");
 	const handleClick = event => {
 		if (like == "far fa-heart text-danger") {
@@ -19,6 +22,7 @@ export const Card = props => {
 	};
 
 	const handleCityPage = id => {
+		console.log(city);
 		history.push(`/city/${city.city_name}`);
 	};
 	return (
