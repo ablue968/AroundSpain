@@ -22,6 +22,9 @@ export const CityPage = () => {
 		return <Post post={element} key={index} />;
 	});
 
+	const cityInfo = store.cities[params.appContext];
+	console.log("informacion de cityInfo", cityInfo);
+
 	const handleClick = () => {
 		if (like === "far fa-heart text-danger") {
 			setLike("fas fa-heart text-danger");
@@ -34,10 +37,7 @@ export const CityPage = () => {
 
 	return (
 		<div className="container p-0">
-			<h1 className="text-light">
-				{params.id}
-				.cityName
-			</h1>
+			<h1 className="text-light" />
 			<div className="row">
 				<div className="col-8 text-center mb-3 p-0">
 					<img className="img-thumbnail" src="https://picsum.photos/1200/800" />
