@@ -13,17 +13,18 @@ export const CityPage = () => {
 
 	const params = useParams();
 	const [like, setLike] = useState("far fa-heart text-danger");
+	const [detail, setDetail] = useState({});
 
 	useEffect(() => {
-		actions.postCity(params.id);
+		setDetail(actions.cityDetail(params.city_name));
+		// actions.postCity(params.id);
 	}, []);
 
 	const postsList = store.posts.map((element, index) => {
 		return <Post post={element} key={index} />;
 	});
 
-	const cityInfo = store.cities[params.appContext];
-	console.log("informacion de cityInfo", cityInfo);
+	// const cityInfo = store.cities[params.appContext];
 
 	const handleClick = () => {
 		if (like === "far fa-heart text-danger") {
@@ -37,7 +38,7 @@ export const CityPage = () => {
 
 	return (
 		<div className="container p-0">
-			<h1 className="text-light" />
+			<h1 className="text-light">{detail.city_name}</h1>
 			<div className="row">
 				<div className="col-8 text-center mb-3 p-0">
 					<img className="img-thumbnail" src="https://picsum.photos/1200/800" />
@@ -48,10 +49,7 @@ export const CityPage = () => {
 				<div className="col-3">
 					<div className="text-light">
 						<h5>Población</h5>
-						<p>
-							city.Caracteristica
-							{params.id}
-						</p>
+						<p>{detail.population}</p>
 					</div>
 					<div className="text-light">
 						<h5>Temperatura más alta</h5>
