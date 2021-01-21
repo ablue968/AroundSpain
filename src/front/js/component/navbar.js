@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState, useEffect, useRef } from "react";
+
+import { Link, useHistory } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import logo from "../../img/Logo.png";
 
@@ -10,6 +11,13 @@ export const Navbar = () => {
 
 	const [userState, setUserState] = useState("LOGIN");
 
+	const [dropped, setDropped] = useState(false);
+	const [search, setSearch] = useState("");
+	const [results, setResults] = useState([]);
+	const history = useHistory();
+	const searchRef = useRef();
+	const dropRef = useRef();
+
 	const handlerUserState = () => {
 		if (store.token != null) {
 			setUserState("LOGOUT");
@@ -19,6 +27,34 @@ export const Navbar = () => {
 		}
 	};
 
+	function searchCities(search) {
+		console.log("Soy el search", store.cities);
+		const filteredCities = store.cities.filter(city => {
+			console.log("Soy city", city);
+			return city.city_name.toLowerCase().includes(search.toLowerCase());
+		});
+		console.log("Soy Filtered", filteredCities);
+		setSearch(search);
+		setResults(filteredCities);
+	}
+
+	const searchResult = results.map((city, index) => {
+		//devuelvo diferentes li segun los city que haya
+		return (
+			<li
+				className="my-1"
+				key={index}
+				//cuando le de click borro mi busqueda y con history.push busco segun el globaId
+				onClick={() => {
+					setSearch("");
+					history.push(`/city/${city.city_name}`);
+				}}>
+				{/*Muestrolos nombre buscados */}
+				{city.city_name}
+			</li>
+		);
+	});
+
 	return (
 		<nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark d-flex justify-content-around">
 			<div className="container-fluid row">
@@ -27,10 +63,32 @@ export const Navbar = () => {
 				</Link>
 				<div className="collapse navbar-collapse">
 					<form className="d-flex col-8 ml-4">
-						<input className="form-control" type="search" placeholder="Ciudad" aria-label="Search" />
+						{/*<input className="form-control" type="search" placeholder="Ciudad" aria-label="Search" />
 						<button className="btn btn-outline-danger" type="submit">
 							BUSCAR
-						</button>
+						</button>*/}
+						{/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  */}{" "}
+						<div ref={searchRef} className="col-6 mx-auto d-none d-md-flex">
+							<input
+								className="form-control"
+								type="text"
+								placeholder="search..."
+								value={search}
+								onChange={e => searchCities(e.target.value)}
+								// onBlur={e => setSearch("")}
+							/>
+							{/*Si mi longitud es menor que dos no voy a entrar a esto, en el momento que sea mayor que dos entro.*/}
+							{search.length > 2 && (
+								<div className={"search-options"}>
+									<ul>
+										{/*Recorro de mi store los searcResultos y le pregunto si hay algo y si si entro dentro y si no , no muestro ningun resultado */}
+
+										{searchResult}
+									</ul>
+								</div>
+							)}
+						</div>
+						<div className="auto" id="auto" />
 					</form>
 				</div>
 				<Dropdown>
