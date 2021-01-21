@@ -23,8 +23,8 @@ export const Card = props => {
 	};
 	return (
 		<div className="card d-flex flex-column topCityCard">
-			<Link
-				to={store.cities.population}
+			<Link //No esta funcionando
+				to={store.cities.id}
 				onMouseOver={() => {
 					console.log("info funciton");
 				}}>
