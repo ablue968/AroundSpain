@@ -41,50 +41,31 @@ export const CityPage = () => {
 			<h1 className="text-light">{detail.city_name}</h1>
 			<div className="row">
 				<div className="col-8 text-center mb-3 p-0">
-					<img className="img-thumbnail" src="https://picsum.photos/1200/800" />
+					<img className="img-thumbnail" src={detail.image} />
 					<button id="likeButton" className="card-img-overlay likeButtonCity ml-2" onClick={handleClick}>
 						<i className={like} />
 					</button>
 				</div>
 				<div className="col-3">
 					<div className="text-light">
-						<h5>Población</h5>
+						<h5>Population</h5>
 						<p>{detail.population}</p>
 					</div>
 					<div className="text-light">
-						<h5>Temperatura más alta</h5>
-						<p>
-							city.Caracteristica
-							{params.id}
-						</p>
+						<h5>highest temperature</h5>
+						<p>{detail.average_highest_temp}</p>
 					</div>
 					<div className="text-light">
-						<h5>Temperatura más baja</h5>
-						<p>
-							city.Caracteristica
-							{params.id}
-						</p>
+						<h5>Lowest temperature</h5>
+						<p>{detail.average_lowest_temp}</p>
 					</div>
 					<div className="text-light">
-						<h5>Temperatura media</h5>
-						<p>
-							city.Caracteristica
-							{params.id}
-						</p>
+						<h5>Population density</h5>
+						<p>{detail.population_density}</p>
 					</div>
 					<div className="text-light">
-						<h5>Caracteristica 5</h5>
-						<p>
-							city.Caracteristica
-							{params.id}
-						</p>
-					</div>
-					<div className="text-light">
-						<h5>Caracteristica 6</h5>
-						<p>
-							city.Caracteristica
-							{params.id}
-						</p>
+						<h5>Cost of living</h5>
+						<p>{detail.cost_of_living}</p>
 					</div>
 				</div>
 				<div className="d-flex flex-column-reverse col-12">{postsList}</div>
