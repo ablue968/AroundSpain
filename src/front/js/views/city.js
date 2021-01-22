@@ -6,6 +6,7 @@ import { Context } from "../store/appContext";
 
 import "../../styles/home.scss";
 import "../../styles/city.scss";
+import "../../styles/all.scss";
 
 import { propTypes } from "react-bootstrap/esm/Image";
 
@@ -50,33 +51,35 @@ export const CityPage = () => {
 
 	return (
 		<div className="container p-0">
-			<h1 className="text-light">{detail.city_name}</h1>
+			<h1 className="text-light text-center col-8" id="lobster">
+				{detail.city_name}
+			</h1>
 			<div className="row">
 				<div className="col-8 text-center mb-3 p-0">
 					<img className="img-thumbnail" src={detail.image} />
-					<button id="likeButton" className="card-img-overlay likeButtonCity ml-2" onClick={handleClick}>
+					{/* <button id="likeButton" className="card-img-overlay likeButtonCity ml-2" onClick={handleClick}>
 						<i className={like} />
-					</button>
+					</button> */}
 				</div>
 				<div className="col-3">
 					<div className="text-light">
-						<h5>Population</h5>
+						<h5 id="lobster">Population</h5>
 						<p>{detail.population}</p>
 					</div>
 					<div className="text-light">
-						<h5>highest temperature</h5>
+						<h5 id="lobster">highest temperature</h5>
 						<p>{detail.average_highest_temp}</p>
 					</div>
 					<div className="text-light">
-						<h5>Lowest temperature</h5>
+						<h5 id="lobster">Lowest temperature</h5>
 						<p>{detail.average_lowest_temp}</p>
 					</div>
 					<div className="text-light">
-						<h5>Population density</h5>
+						<h5 id="lobster">Population density</h5>
 						<p>{detail.population_density}</p>
 					</div>
 					<div className="text-light">
-						<h5>Cost of living</h5>
+						<h5 id="lobster">Cost of living</h5>
 						<p>{detail.cost_of_living}</p>
 					</div>
 				</div>
