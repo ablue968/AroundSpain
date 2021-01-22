@@ -62,9 +62,11 @@ export const Navbar = () => {
 				<Link to="/">
 					<img src={logo} />
 				</Link>
+
 				<form className="d-flex ml-4">
 					{/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  */}{" "}
 					<div ref={searchRef} className="d-none d-md-flex mx-auto">
+
 						<input
 							className="form-control"
 							type="text"
