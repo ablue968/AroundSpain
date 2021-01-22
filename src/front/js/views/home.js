@@ -33,8 +33,8 @@ export const Home = () => {
 	return (
 		<>
 			<div className="container-fluid d-flex justify-content-center row mb-3">
-				<h2 className="col-12 text-center  text-light" id="lobster">
-					The VIP&apos;S
+				<h2 className="col-12 text-center text-light" id="lobster">
+					The Most Visited!!
 				</h2>
 				{allCities}
 			</div>

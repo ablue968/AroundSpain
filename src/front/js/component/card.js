@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
+import "../../styles/all.scss";
+
 export const Card = props => {
 	const { store, actions } = useContext(Context);
 
@@ -29,7 +31,9 @@ export const Card = props => {
 				<img src={city.image} className="card-img-top" alt={city.city_name} />
 			</Link>
 			<div className="card-img-overlay d-flex flex-column  pt-2">
-				<p className="text-right">{city.city_name}</p>
+				<p className="text-right" id="lobster">
+					{city.city_name}
+				</p>
 			</div>
 			<div className="card-img-overlay d-flex flex-column  pt-2">
 				<button id="likeButton" onClick={() => handleClick(event)}>

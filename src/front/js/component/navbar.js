@@ -18,20 +18,9 @@ export const Navbar = () => {
 	const history = useHistory();
 	const searchRef = useRef();
 
-	// const handlerUserState = () => {
-	// 	if (store.token != null) {
-	// 		setUserState("LOGOUT");
-	// 	}
-	// 	if (userState == "LOGOUT") {
-	// 		setUserState("LOGIN");
-	// 		actions.logOut();
-	// 	}
-	// };
-
 	function searchCities(search) {
 		console.log("Soy el search", store.cities);
 		const filteredCities = store.cities.filter(city => {
-			console.log("Soy city", city);
 			return city.city_name.toLowerCase().includes(search.toLowerCase());
 		});
 		console.log("Soy Filtered", filteredCities);
@@ -121,8 +110,7 @@ export const Navbar = () => {
 				</Link>
 				<Link to="/login">
 					<button type="btn" className="btn btn-success ml-2">
-						{/* onClick={handlerUserState} en etiqueta, {userState} */}
-						LOGIN
+						{store.token ? "LOGOUT" : "LOGIN"}
 					</button>
 				</Link>
 			</div>

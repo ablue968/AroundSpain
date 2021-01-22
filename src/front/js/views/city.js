@@ -89,22 +89,27 @@ export const CityPage = () => {
 						<p>{detail.cost_of_living}</p>
 					</div>
 				</div>
-				<div className="d-flex flex-column-reverse col-12">
-					<form>
-						<div className="form-group">
-							<textarea
-								className="form-control"
-								id="exampleFormControlTextarea1"
-								rows="3"
-								onChange={event => setPostText(event.target.value)}
-							/>
-						</div>
-						<button type="button" className="btn btn-success" onClick={() => onSubmit()}>
-							Submit
-						</button>
-					</form>
-					{postsList}
-					<div className="paraElTituloEnPost">Posts</div>
+				<div className="container d-flex row">
+					<div className="d-flex flex-column-reverse col-12 mb-4">
+						<form>
+							<div className="form-group">
+								<textarea
+									className="form-control"
+									id="exampleFormControlTextarea1"
+									rows="3"
+									onChange={event => setPostText(event.target.value)}
+								/>
+							</div>
+							<button type="button" className="btn btn-success" onClick={() => onSubmit()}>
+								Submit
+							</button>
+						</form>
+						{postsList}
+						<div className="paraElTituloEnPost">Posts</div>
+					</div>
+					<div className="d-flex row" id="lobster">
+						<h1>prueba</h1>
+					</div>
 				</div>
 			</div>
 		</div>
