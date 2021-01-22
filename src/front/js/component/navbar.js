@@ -6,24 +6,25 @@ import logo from "../../img/logo3.png";
 
 import { Context } from "../store/appContext";
 
+import "../../styles/navbar.scss";
+
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
 	const [userState, setUserState] = useState("LOGIN");
 
-	const [dropped, setDropped] = useState(false);
 	const [search, setSearch] = useState("");
 	const [results, setResults] = useState([]);
 	const history = useHistory();
 	const searchRef = useRef();
-	const dropRef = useRef();
 
+	console.log(store.token);
 	const handlerUserState = () => {
 		if (store.token != null) {
 			setUserState("LOGOUT");
-		} else {
+		} else if (userState == "LOGOUT") {
 			setUserState("LOGIN");
-			console.log("ya hay toquen , hago click y fuera token");
+			actions.logOut();
 		}
 	};
 
@@ -44,7 +45,7 @@ export const Navbar = () => {
 			<li
 				className="my-1"
 				key={index}
-				//cuando le de click borro mi busqueda y con history.push busco segun el globaId
+				//cuando le de click borro mi busqueda y con history.push busco segun el city_name
 				onClick={() => {
 					setSearch("");
 					history.push(`/city/${city.city_name}`);
@@ -88,7 +89,6 @@ export const Navbar = () => {
 								</div>
 							)}
 						</div>
-						<div className="auto" id="auto" />
 					</form>
 				</div>
 				<Dropdown>

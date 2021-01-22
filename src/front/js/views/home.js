@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 import "../../styles/home.scss";
@@ -12,7 +12,6 @@ import { Card } from "../component/card";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
-	const history = useHistory();
 
 	useEffect(() => {
 		actions.getAllCities();
@@ -50,19 +49,7 @@ export const Home = () => {
 
 			<div className="container-fluid d-flex justify-content-center row mb-3">
 				<h2 className="col-12 text-center magic">Los más buscados</h2>
-
 				{allCities}
-
-				{/*
-			
-				<div className="card d-flex flex-column topCityCard">
-					<Link to="/city" onMouseOver={info}>
-						<img src="https://picsum.photos/id/267/200/200" className="card-img-top" alt="..." />
-					</Link>
-					<button id="likeButton" onClick={() => handleClick(event)}>
-						<i className={like} title="ciudad 1" />
-					</button>
-				</div>*/}
 			</div>
 			<h2 className="text-center">Elige el próximo destino</h2>
 			<div className="container row">{allCities}</div>
