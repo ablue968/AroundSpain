@@ -26,7 +26,6 @@ export const CityPage = () => {
 		return <Post post={element} key={index} />;
 	});
 
-
 	console.log("SOY EL POSTLIST", postsList);
 	console.log("Store del post", store.posts);
 
