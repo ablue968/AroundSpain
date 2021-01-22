@@ -45,6 +45,7 @@ def get_one_or_404(models,id):
 
 def do_a_post(models, payload=None):
     payload = payload or request.get_json()
+    print("payload 48", payload)
 
     required = models.serialize_required(models).keys()
     testing = models.serialize_all_types(models)
@@ -55,10 +56,11 @@ def do_a_post(models, payload=None):
     
     for key, value in testing.items():
         print(payload[key],key)
-        if payload[key] in payload and payload[key] is not None and not isinstance(payload[key],value): #CORREGUIR ESTO
+        if payload[key] in payload and payload[key] is not None and not isinstance(payload[key],value): 
             abort(422,f"Error in {key}'s data type")
     
     post = models(**payload)
+    print("post 63",post)
     db.session.add(post)
     db.session.commit()
     return jsonify(post.serialize()), 201
@@ -259,7 +261,8 @@ def handle_get_post(id):
 def handle_create_posts():
     user = authorization_user()
     payload = request.get_json()
-    return do_a_post(Posts,payload), 201
+    payload["user_id"]= user.id
+    return do_a_post(Posts,payload)
 
 
 

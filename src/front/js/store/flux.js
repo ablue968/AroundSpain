@@ -33,12 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				///////////////////////// FETCH
 				fetch(endpoint, config)
-					.then(response => {
-						if (!response.ok) {
-							throw Error("veamos que aparece");
-						}
-						return response.json();
-					})
+					.then(response => response.json())
 					.then(data => {
 						console.log(data, "usuario creado");
 						callback();
@@ -142,10 +137,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				///////////////////////// FETCH
 				fetch(endpoint, config)
 					.then(response => response.json())
+					.then(data => setStore({ posts: data }));
+			},
 
+			publishPost(data) {
+				console.log(data, "inicio del flux, data que recibe");
+				const store = getStore();
+				const endpoint = `${baseUrl}/posts`;
+				let headers = {
+					"Content-Type": "application/json"
+				};
+				headers["Authorization"] = `Bearer ${store.token}`;
+				const config = {
+					method: "POST",
+					body: JSON.stringify({
+						city_id: data.cityId,
+						text: data.text
+					}),
+					headers: headers
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
 					.then(data => {
-						console.log("data del post en flux", data);
-						setStore({ posts: data });
+						console.log("posteado", data);
 					});
 			}
 		}

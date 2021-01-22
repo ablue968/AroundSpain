@@ -57,7 +57,7 @@ export const Home = () => {
 			<h2 className="text-center text-light" id="lobster">
 				Check all of our cities!!
 			</h2>
-			<div className="container row">{allCities}</div>
+			<div className="container-fluid row d-flex justify-content-center">{allCities}</div>
 		</>
 	);
 };
