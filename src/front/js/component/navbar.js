@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 
 import { Link, useHistory } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
-import logo from "../../img/Logo.png";
+import logo from "../../img/logo3.png";
 
 import { Context } from "../store/appContext";
 
@@ -60,7 +60,7 @@ export const Navbar = () => {
 		<nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark d-flex justify-content-around">
 			<div className="container-fluid row">
 				<Link to="/">
-					<h4>AroundSpain</h4>
+					<img src={logo} />
 				</Link>
 				<div className="collapse navbar-collapse">
 					<form className="d-flex col-8 ml-4">
@@ -107,9 +107,8 @@ export const Navbar = () => {
 										onClick={() => actions.deleteFav(value)}
 										type="btn"
 										className="close"
-										aria-label="Close">
-										x
-									</button>
+										aria-label="Close"
+									/>
 								</Dropdown.Item>
 							);
 						})}
