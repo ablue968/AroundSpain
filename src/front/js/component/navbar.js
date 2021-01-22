@@ -18,15 +18,15 @@ export const Navbar = () => {
 	const history = useHistory();
 	const searchRef = useRef();
 
-	console.log(store.token);
-	const handlerUserState = () => {
-		if (store.token != null) {
-			setUserState("LOGOUT");
-		} else if (userState == "LOGOUT") {
-			setUserState("LOGIN");
-			actions.logOut();
-		}
-	};
+	// const handlerUserState = () => {
+	// 	if (store.token != null) {
+	// 		setUserState("LOGOUT");
+	// 	}
+	// 	if (userState == "LOGOUT") {
+	// 		setUserState("LOGIN");
+	// 		actions.logOut();
+	// 	}
+	// };
 
 	function searchCities(search) {
 		console.log("Soy el search", store.cities);
@@ -96,7 +96,7 @@ export const Navbar = () => {
 									key={index}
 									className="dropdown-item d-flex justify-content-between"
 									href="#">
-									{value}
+									<Link to={`/city/${value}`}>{value}</Link>
 									<button
 										onClick={() => actions.deleteFav(value)}
 										type="btn"
@@ -120,8 +120,9 @@ export const Navbar = () => {
 					</button>
 				</Link>
 				<Link to="/login">
-					<button type="btn" className="btn btn-success ml-2" onClick={handlerUserState}>
-						{userState}
+					<button type="btn" className="btn btn-success ml-2">
+						{/* onClick={handlerUserState} en etiqueta, {userState} */}
+						LOGIN
 					</button>
 				</Link>
 			</div>
