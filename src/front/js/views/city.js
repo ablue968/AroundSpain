@@ -31,22 +31,6 @@ export const CityPage = () => {
 		return <Post post={element} key={index} />;
 	});
 
-	// const cityInfo = store.cities[params.appContext];
-
-	const handleClick = () => {
-		if (detail.city_name in store.favorites) {
-			console.log("ya lo tenemos");
-			setLike("fas fa-heart text-danger");
-		}
-		if (like == "far fa-heart text-danger") {
-			setLike("fas fa-heart text-danger");
-			actions.addFav(detail.city_name);
-		} else {
-			setLike("far fa-heart text-danger");
-			actions.deleteFav(detail.city_name);
-		}
-	};
-
 	function onSubmit() {
 		const data = {
 			cityId: detail.id,
@@ -54,6 +38,22 @@ export const CityPage = () => {
 		};
 		actions.publishPost(data);
 	}
+
+	// const cityInfo = store.cities[params.appContext];
+
+	// const handleClick = () => {
+	// 	if (detail.city_name in store.favorites) {
+	// 		console.log("ya lo tenemos");
+	// 		setLike("fas fa-heart text-danger");
+	// 	}
+	// 	if (like == "far fa-heart text-danger") {
+	// 		setLike("fas fa-heart text-danger");
+	// 		actions.addFav(detail.city_name);
+	// 	} else {
+	// 		setLike("far fa-heart text-danger");
+	// 		actions.deleteFav(detail.city_name);
+	// 	}
+	// };
 
 	return (
 		<div className="container p-0">
@@ -104,7 +104,7 @@ export const CityPage = () => {
 						</button>
 					</form>
 					{postsList}
-					<p>EL POST</p>
+					<div className="paraElTituloEnPost">Posts</div>
 				</div>
 			</div>
 		</div>
