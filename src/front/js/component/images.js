@@ -12,7 +12,7 @@ export const MyCarousel = () => (
 				height="400px"
 			/>
 			<Carousel.Caption>
-				<h3>Sevilla</h3>
+				<h3 id="carousel">Sevilla</h3>
 				<p>Feria de Abril</p>
 			</Carousel.Caption>
 		</Carousel.Item>
@@ -25,7 +25,7 @@ export const MyCarousel = () => (
 				height="400px"
 			/>
 			<Carousel.Caption>
-				<h3>Valencia</h3>
+				<h3 id="carousel">Valencia</h3>
 				<p>Fallas</p>
 			</Carousel.Caption>
 		</Carousel.Item>
@@ -38,65 +38,22 @@ export const MyCarousel = () => (
 				height="400px"
 			/>
 			<Carousel.Caption>
-				<h3>Barcelona</h3>
+				<h3 id="carousel">Barcelona</h3>
 				<p>Fiesta de la Mercé</p>
 			</Carousel.Caption>
 		</Carousel.Item>
 		<Carousel.Item interval={3000}>
 			<img
 				className="d-block mx-auto"
-				src="https://eraseunhotel.com/wp-content/uploads/2018/05/san-isidro-2018-programacion-espectaculos-pirotecnicos-retiro.jpg"
+				src="https://traductorjurado-madrid.es/wp-content/uploads/2018/02/Plaza-Mayor.jpg"
 				alt="First slide"
 				width="100%"
 				height="400px"
 			/>
 			<Carousel.Caption>
-				<h3>Madrid</h3>
-				<p>San Isidro</p>
+				<h3 id="carousel">Madrid</h3>
+				<p>Plaza Mayor</p>
 			</Carousel.Caption>
 		</Carousel.Item>
 	</Carousel>
 );
-
-// const _ = () => (
-// 	<images className="images">
-// 		<div className="row">
-// 			<div clasName="col-12">
-// 				<div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-// 					<ol className="carousel-indicators">
-// 						<li data-target="#carouselExampleIndicators" data-slide-to="0" className="active" />
-// 						<li data-target="#carouselExampleIndicators" data-slide-to="1" />
-// 						<li data-target="#carouselExampleIndicators" data-slide-to="2" />
-// 					</ol>
-// 					<div className="carousel-inner">
-// 						<div className="carousel-item active">
-// 							<img className="d-block w-100" src="https://picsum.photos/seed/picsum/900/400" />
-// 						</div>
-// 						<div className="carousel-item">
-// 							<img className="d-block w-100" src="https://picsum.photos/id/237/900/400" />
-// 						</div>
-// 						<div className="carousel-item">
-// 							<img className="d-block w-100" src="https://picsum.photos/seed/picsum/900/400" />
-// 						</div>
-// 					</div>
-// 					<a
-// 						className="carousel-control-prev"
-// 						href="#carouselExampleIndicators"
-// 						role="button"
-// 						data-slide="prev">
-// 						<span className="carousel-control-prev-icon" aria-hidden="true" />
-// 						<span className="sr-only">Previous</span>
-// 					</a>
-// 					<a
-// 						className="carousel-control-next"
-// 						href="#carouselExampleIndicators"
-// 						role="button"
-// 						data-slide="next">
-// 						<span className="carousel-control-next-icon" aria-hidden="true" />
-// 						<span className="sr-only">Next</span>
-// 					</a>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	</images>
-// );
