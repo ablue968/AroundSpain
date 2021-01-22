@@ -1,13 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
-import "../../styles/all.scss";
-
 export const Card = props => {
 	const { store, actions } = useContext(Context);
-	const history = useHistory;
+
 	const { city } = props;
 
 	const [like, setLike] = useState("far fa-heart text-danger");
@@ -23,20 +21,17 @@ export const Card = props => {
 
 	return (
 		<div className="card d-flex flex-column topCityCard">
-			<img
-				src={city.image}
-				className="card-img-top"
-				alt={city.city_name}
-				// onClick={() => history.push(`/city/${city.city_name}`)}
-			/>
+			<Link
+				to={`/city/${city.city_name}`}
+				onMouseOver={() => {
+					console.log("info funciton");
+				}}>
+				<img src={city.image} className="card-img-top" alt={city.city_name} />
+			</Link>
 			<div className="card-img-overlay d-flex flex-column  pt-2">
-				<p className="text-center" id="lobster">
-					{city.city_name}
-				</p>
+				<p className="text-right">{city.city_name}</p>
 			</div>
-			<div
-				className="card-img-overlay d-flex flex-column  pt-2"
-				onClick={() => history.push(`/city/${city.city_name}`)}>
+			<div className="card-img-overlay d-flex flex-column  pt-2">
 				<button id="likeButton" onClick={() => handleClick(event)}>
 					<i className={like} title={city.city_name} />
 				</button>
