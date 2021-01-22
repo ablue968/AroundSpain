@@ -62,35 +62,29 @@ export const Navbar = () => {
 				<Link to="/">
 					<h4>AroundSpain</h4>
 				</Link>
-				<div className="collapse navbar-collapse">
-					<form className="d-flex col-8 ml-4">
-						{/*<input className="form-control" type="search" placeholder="Ciudad" aria-label="Search" />
-						<button className="btn btn-outline-danger" type="submit">
-							BUSCAR
-						</button>*/}
-						{/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  */}{" "}
-						<div ref={searchRef} className="col-6 mx-auto d-none d-md-flex">
-							<input
-								className="form-control"
-								type="text"
-								placeholder="search..."
-								value={search}
-								onChange={e => searchCities(e.target.value)}
-								// onBlur={e => setSearch("")}
-							/>
-							{/*Si mi longitud es menor que dos no voy a entrar a esto, en el momento que sea mayor que dos entro.*/}
-							{search.length > 2 && (
-								<div className={"search-options"}>
-									<ul>
-										{/*Recorro de mi store los searcResultos y le pregunto si hay algo y si si entro dentro y si no , no muestro ningun resultado */}
+				<form className="d-flex col-8 ml-4">
+					{/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  */}{" "}
+					<div ref={searchRef} className="col-8 d-none d-md-flex">
+						<input
+							className="form-control"
+							type="text"
+							placeholder="Looking for next destination?"
+							value={search}
+							onChange={e => searchCities(e.target.value)}
+							// onBlur={e => setSearch("")}
+						/>
+						{/*Si mi longitud es menor que dos no voy a entrar a esto, en el momento que sea mayor que dos entro.*/}
+						{search.length > 2 && (
+							<div className={"search-options"}>
+								<ul>
+									{/*Recorro de mi store los searcResultos y le pregunto si hay algo y si si entro dentro y si no , no muestro ningun resultado */}
 
-										{searchResult}
-									</ul>
-								</div>
-							)}
-						</div>
-					</form>
-				</div>
+									{searchResult}
+								</ul>
+							</div>
+						)}
+					</div>
+				</form>
 				<Dropdown>
 					<Dropdown.Toggle variant="danger" id="dropdown-basic">
 						<i className="fas fa-heart" />
