@@ -26,12 +26,14 @@ export const Card = props => {
 				onMouseOver={() => {
 					console.log("info funciton");
 				}}>
-				<p>{city.city_name}</p>
 				<img src={city.image} className="card-img-top" alt={city.city_name} />
 			</Link>
-			<button id="likeButton" onClick={() => handleClick(event)}>
-				<i className={like} title={city.city_name} />
-			</button>
+			<div className="card-img-overlay">
+				<p>{city.city_name}</p>
+				<button id="likeButton" onClick={() => handleClick(event)}>
+					<i className={like} title={city.city_name} />
+				</button>
+			</div>
 		</div>
 	);
 };

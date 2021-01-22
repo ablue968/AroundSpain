@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 import "../../styles/home.scss";
+import "../../styles/all.scss";
 
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -48,10 +49,14 @@ export const Home = () => {
 			</div>
 
 			<div className="container-fluid d-flex justify-content-center row mb-3">
-				<h2 className="col-12 text-center magic">Los más buscados</h2>
+				<h2 className="col-12 text-center  text-light" id="lobster">
+					The VIP&apos;S
+				</h2>
 				{allCities}
 			</div>
-			<h2 className="text-center">Elige el próximo destino</h2>
+			<h2 className="text-center text-light" id="lobster">
+				Check all of our cities!!
+			</h2>
 			<div className="container row">{allCities}</div>
 		</>
 	);
