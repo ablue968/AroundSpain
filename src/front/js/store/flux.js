@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-a614934d-9f77-4695-bda3-645e55d4d6c8.ws-eu03.gitpod.io/api";
+const baseUrl = "https://3001-ea15ad6d-a8ef-41ad-bd02-75b76e39ee57.ws-eu03.gitpod.io/api";
 
 const cityPopulationURL = null; //LA API DEL INE ES UN CAOS
 const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo relacionado con tiempo, es más facil que la del ine
@@ -33,15 +33,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				///////////////////////// FETCH
 				fetch(endpoint, config)
-					.then(response => response.json())
+					.then(response => {
+						if (!response.ok) {
+							throw Error("veamos que aparece");
+						}
+						return response.json();
+					})
 					.then(data => {
 						console.log(data, "usuario creado");
 						callback();
+					})
+					.catch(error => {
+						console.log(error);
 					});
 			},
 
 			login(data, callback) {
-				const actions = getActions();
 				console.log(data, "inicio del flux, data que recibe");
 				const endpoint = `${baseUrl}/login`;
 				const config = {
@@ -61,7 +68,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ token: data.token });
 						localStorage.setItem("token", data.token);
 						callback();
-						console.log(data, "usuario logeado y redirigido al home");
 					});
 			},
 
@@ -71,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			addFav(item) {
-				//añadir a la lista
+				const actions = getActions();
 				const store = getStore();
 				if (store.token) {
 					let newList = store.favorites;
@@ -110,22 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//console.log(store.favorites);
 			},
 
-			//HE CREADO EL FETCH DE API, para cuando consigamos ver como carajo funciona el ine
-			population() {
-				const store = getStore();
-				const endpoint = `${cityPopulationURL}`;
-				const config = {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json"
-					}
-				};
-				fetch(endpoint, config)
-					.then(response => response.json())
-					.then(data => console.log("DATOS DE POBLACION", data));
-			},
 			getAllCities() {
-				const store = getStore();
 				const endpoint = `${baseUrl}/cities`;
 				const config = {
 					method: "GET",
@@ -136,7 +127,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						console.log("cities", data);
 						setStore({ cities: data });
 					});
 			},
@@ -155,23 +145,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						setStore({ posts: data });
 					});
-			},
-
-			// Creo que test se puede borrar
-			test() {
-				const store = getStore();
-				console.log({ TOKEN_TEST: store.token }, "token que recibe para el login");
-				const endpoint = `${baseUrl}/test`;
-				const config = {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${store.token}`
-					}
-				};
-				fetch(endpoint, config)
-					.then(response => response.json())
-					.then(data => console.log(data, "este es el test"));
 			}
 		}
 	};
