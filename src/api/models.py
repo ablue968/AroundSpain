@@ -138,7 +138,7 @@ class Posts(db.Model):
 
 
     def __str__(self):
-        return f"<{self.user.user_name} posted: {self.text}>"
+        return f"<{self.user_id} posted: {self.text}>"
 
     def serialize(self):
         comments = []
@@ -160,6 +160,12 @@ class Posts(db.Model):
             'city_id': self.city_id,
             'user_id': self.user_id,
             'text': self.text,
+        }
+    def serialize_all_types(self):
+        return {
+            'user_id': int,
+            'city_id': int,
+            'text': str,
         }
 
 ######### TABLA LIKES

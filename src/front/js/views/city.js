@@ -16,35 +16,44 @@ export const CityPage = () => {
 	const params = useParams();
 	const [like, setLike] = useState("far fa-heart text-danger");
 	const [detail, setDetail] = useState({});
+	const [postText, setPostText] = useState();
 
 	useEffect(() => {
-		setDetail(actions.cityDetail(params.city_name));
-
-		actions.postCity(params.city_id);
+		const foo = async () => {
+			let currentCity = await actions.cityDetail(params.city_name);
+			setDetail(currentCity);
+			actions.postCity(currentCity.id);
+		};
+		foo();
 	}, []);
 
 	const postsList = store.posts.map((element, index) => {
 		return <Post post={element} key={index} />;
 	});
 
-	console.log("SOY EL POSTLIST", postsList);
-	console.log("Store del post", store.posts);
+	function onSubmit() {
+		const data = {
+			cityId: detail.id,
+			text: postText
+		};
+		actions.publishPost(data);
+	}
 
 	// const cityInfo = store.cities[params.appContext];
 
-	const handleClick = () => {
-		if (detail.city_name in store.favorites) {
-			console.log("ya lo tenemos");
-			setLike("fas fa-heart text-danger");
-		}
-		if (like == "far fa-heart text-danger") {
-			setLike("fas fa-heart text-danger");
-			actions.addFav(detail.city_name);
-		} else {
-			setLike("far fa-heart text-danger");
-			actions.deleteFav(detail.city_name);
-		}
-	};
+	// const handleClick = () => {
+	// 	if (detail.city_name in store.favorites) {
+	// 		console.log("ya lo tenemos");
+	// 		setLike("fas fa-heart text-danger");
+	// 	}
+	// 	if (like == "far fa-heart text-danger") {
+	// 		setLike("fas fa-heart text-danger");
+	// 		actions.addFav(detail.city_name);
+	// 	} else {
+	// 		setLike("far fa-heart text-danger");
+	// 		actions.deleteFav(detail.city_name);
+	// 	}
+	// };
 
 	return (
 		<div className="container p-0">
@@ -81,8 +90,21 @@ export const CityPage = () => {
 					</div>
 				</div>
 				<div className="d-flex flex-column-reverse col-12">
+					<form>
+						<div className="form-group">
+							<textarea
+								className="form-control"
+								id="exampleFormControlTextarea1"
+								rows="3"
+								onChange={event => setPostText(event.target.value)}
+							/>
+						</div>
+						<button type="button" className="btn btn-success" onClick={() => onSubmit()}>
+							Submit
+						</button>
+					</form>
 					{postsList}
-					<p>EL POST</p>
+					<div className="paraElTituloEnPost">Posts</div>
 				</div>
 			</div>
 		</div>
