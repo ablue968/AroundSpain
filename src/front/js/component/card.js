@@ -28,8 +28,10 @@ export const Card = props => {
 				}}>
 				<img src={city.image} className="card-img-top" alt={city.city_name} />
 			</Link>
-			<div className="card-img-overlay">
-				<p>{city.city_name}</p>
+			<div className="card-img-overlay d-flex flex-column  pt-2">
+				<p className="text-right">{city.city_name}</p>
+			</div>
+			<div className="card-img-overlay d-flex flex-column  pt-2">
 				<button id="likeButton" onClick={() => handleClick(event)}>
 					<i className={like} title={city.city_name} />
 				</button>
