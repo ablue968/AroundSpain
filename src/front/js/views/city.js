@@ -18,6 +18,10 @@ export const CityPage = () => {
 
 	useEffect(() => {
 		setDetail(actions.cityDetail(params.city_name));
+<<<<<<< HEAD
+=======
+
+>>>>>>> c850abdec9fc60d9124f2102e8876f7767ea36cc
 		actions.postCity(params.city_id);
 	}, []);
 
