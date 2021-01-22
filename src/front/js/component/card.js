@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
 export const Card = props => {
 	const { store, actions } = useContext(Context);
-
-	const history = useHistory();
 
 	const { city } = props;
 
@@ -23,7 +21,7 @@ export const Card = props => {
 
 	return (
 		<div className="card d-flex flex-column topCityCard">
-			<Link //No esta funcionando
+			<Link
 				to={`/city/${city.city_name}`}
 				onMouseOver={() => {
 					console.log("info funciton");
