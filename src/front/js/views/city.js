@@ -6,6 +6,7 @@ import { Context } from "../store/appContext";
 
 import "../../styles/home.scss";
 import "../../styles/city.scss";
+
 import { propTypes } from "react-bootstrap/esm/Image";
 
 export const CityPage = () => {
@@ -17,6 +18,7 @@ export const CityPage = () => {
 
 	useEffect(() => {
 		setDetail(actions.cityDetail(params.city_name));
+
 		actions.postCity(params.city_id);
 	}, []);
 
@@ -24,18 +26,23 @@ export const CityPage = () => {
 		return <Post post={element} key={index} />;
 	});
 
+
 	console.log("SOY EL POSTLIST", postsList);
 	console.log("Store del post", store.posts);
 
 	// const cityInfo = store.cities[params.appContext];
 
 	const handleClick = () => {
-		if (like === "far fa-heart text-danger") {
+		if (detail.city_name in store.favorites) {
+			console.log("ya lo tenemos");
 			setLike("fas fa-heart text-danger");
-			actions.addFav("nombre de ciudad");
+		}
+		if (like == "far fa-heart text-danger") {
+			setLike("fas fa-heart text-danger");
+			actions.addFav(detail.city_name);
 		} else {
 			setLike("far fa-heart text-danger");
-			actions.addFav("nombre de ciudad");
+			actions.deleteFav(detail.city_name);
 		}
 	};
 
