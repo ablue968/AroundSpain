@@ -70,7 +70,10 @@ export const CityPage = () => {
 						<p>{detail.cost_of_living}</p>
 					</div>
 				</div>
-				<div className="d-flex flex-column-reverse col-12">{postsList}</div>
+				<div className="d-flex flex-column-reverse col-12">
+					AQUI ESTAN LOS POST
+					{postsList}
+				</div>
 			</div>
 		</div>
 	);
