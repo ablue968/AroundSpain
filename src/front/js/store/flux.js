@@ -4,7 +4,6 @@ const cityPopulationURL = null; //LA API DEL INE ES UN CAOS
 const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo relacionado con tiempo, es más facil que la del ine
 //
 const token = localStorage.getItem("token");
-
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -42,7 +41,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error);
 					});
 			},
-
 			login(data, callback) {
 				console.log(data, "inicio del flux, data que recibe");
 				const endpoint = `${baseUrl}/login`;
@@ -56,7 +54,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				};
-
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
@@ -65,36 +62,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 						callback();
 					});
 			},
-
 			logOut() {
 				localStorage.removeItem("token");
 				setStore({ token: null });
 			},
-
 			addFav(item) {
 				const actions = getActions();
 				const store = getStore();
 				if (store.token) {
 					let newList = store.favorites;
-
 					newList.push(item);
 					newList = [...new Set(newList)];
 					setStore({ favorites: newList });
 				}
 				//debo crear action que sea para llevar al login
 			},
-
 			cityDetail(cityName) {
 				//añadir a la lista
 				const store = getStore();
-
 				let detail = store.cities.filter(city => {
 					return city.city_name === cityName;
 				})[0];
-
 				return detail;
 			},
-
 			deleteFav(item) {
 				//eliminar de la lista
 				const store = getStore();
@@ -104,13 +94,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ favorites: newList });
 				//console.log(store.favorites);
 			},
-
 			deleteAllFav() {
 				//eliminar de la lista
 				setStore({ favorites: [] });
 				//console.log(store.favorites);
 			},
-
 			getAllCities() {
 				const endpoint = `${baseUrl}/cities`;
 				const config = {
@@ -125,7 +113,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ cities: data });
 					});
 			},
-
 			postCity(city_id) {
 				const endpoint = `${baseUrl}/cities/${city_id}/posts`;
 				const config = {
@@ -139,10 +126,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => setStore({ posts: data }));
 			},
-
 			publishPost(data) {
-				console.log(data, "inicio del flux, data que recibe");
 				const store = getStore();
+				const actions = getActions();
 				const endpoint = `${baseUrl}/posts`;
 				let headers = {
 					"Content-Type": "application/json"
@@ -158,12 +144,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				fetch(endpoint, config)
 					.then(response => response.json())
-					.then(data => {
-						console.log("posteado", data);
+					.then(() => {
+						console.log(data.cityId);
+						actions.postCity(data.cityId);
+						console.log(data.cityId);
 					});
 			}
 		}
 	};
 };
-
 export default getState;
