@@ -101,8 +101,9 @@ export const Navbar = () => {
 										onClick={() => actions.deleteFav(value)}
 										type="btn"
 										className="close"
-										aria-label="Close"
-									/>
+										aria-label="Close">
+										x
+									</button>
 								</Dropdown.Item>
 							);
 						})}
