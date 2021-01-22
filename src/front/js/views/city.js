@@ -18,11 +18,19 @@ export const CityPage = () => {
 
 	useEffect(() => {
 		setDetail(actions.cityDetail(params.city_name));
+
+		actions.postCity(params.city_id);
 	}, []);
 
 	const postsList = store.posts.map((element, index) => {
 		return <Post post={element} key={index} />;
 	});
+
+
+	console.log("SOY EL POSTLIST", postsList);
+	console.log("Store del post", store.posts);
+
+	// const cityInfo = store.cities[params.appContext];
 
 	const handleClick = () => {
 		if (detail.city_name in store.favorites) {
@@ -71,8 +79,8 @@ export const CityPage = () => {
 					</div>
 				</div>
 				<div className="d-flex flex-column-reverse col-12">
-					AQUI ESTAN LOS POST
 					{postsList}
+					<p>EL POST</p>
 				</div>
 			</div>
 		</div>

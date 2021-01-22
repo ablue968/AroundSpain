@@ -18,11 +18,11 @@ export const Navbar = () => {
 	const history = useHistory();
 	const searchRef = useRef();
 
+	console.log(store.token);
 	const handlerUserState = () => {
 		if (store.token != null) {
 			setUserState("LOGOUT");
-		}
-		if (userState == "LOGOUT") {
+		} else if (userState == "LOGOUT") {
 			setUserState("LOGIN");
 			actions.logOut();
 		}
