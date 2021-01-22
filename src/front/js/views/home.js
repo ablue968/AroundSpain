@@ -22,7 +22,11 @@ export const Home = () => {
 		console.log("Soy el onMouseOver");
 	};
 
-	const allCities = store.cities.map((city, index) => {
+	const allCities = store.cities.slice(0, 4).map((city, index) => {
+		return <Card key={index} city={city} />;
+	});
+
+	const allCities2 = store.cities.map((city, index) => {
 		return <Card key={index} city={city} />;
 	});
 	return (
@@ -57,7 +61,7 @@ export const Home = () => {
 			<h2 className="text-center text-light" id="lobster">
 				Check all of our cities!!
 			</h2>
-			<div className="container-fluid row d-flex justify-content-center">{allCities}</div>
+			<div className="container-fluid row d-flex justify-content-center">{allCities2}</div>
 		</>
 	);
 };
