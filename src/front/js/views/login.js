@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { Context } from "../store/appContext";
 
@@ -25,6 +25,10 @@ export const Login = () => {
 			});
 		}
 	};
+
+	useEffect(() => {
+		actions.logOut();
+	}, []);
 
 	return (
 		<main className="d-flex justify-content-center row mt-5">

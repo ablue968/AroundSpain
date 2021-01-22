@@ -62,9 +62,9 @@ export const Navbar = () => {
 				<Link to="/">
 					<img src={logo} />
 				</Link>
-				<form className="d-flex col-8 ml-4">
+				<form className="d-flex ml-4">
 					{/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  */}{" "}
-					<div ref={searchRef} className="col-8 d-none d-md-flex">
+					<div ref={searchRef} className="d-none d-md-flex mx-auto">
 						<input
 							className="form-control"
 							type="text"
@@ -85,35 +85,40 @@ export const Navbar = () => {
 						)}
 					</div>
 				</form>
-				<Dropdown>
-					<Dropdown.Toggle variant="danger" id="dropdown-basic">
-						<i className="fas fa-heart" />
-					</Dropdown.Toggle>
-					<Dropdown.Menu>
-						{store.favorites.map((value, index) => {
-							return (
-								<Dropdown.Item
-									key={index}
-									className="dropdown-item d-flex justify-content-between"
-									href="#">
-									<Link to={`/city/${value}`}>{value}</Link>
-									<button
-										onClick={() => actions.deleteFav(value)}
-										type="btn"
-										className="close"
-										aria-label="Close">
-										x
-									</button>
-								</Dropdown.Item>
-							);
-						})}
-						<Dropdown.Item className="d-flex justify-content-center p-0">
-							<button type="button" className="btn btn-info" onClick={() => actions.deleteAllFav()}>
-								Clear all
-							</button>
-						</Dropdown.Item>
-					</Dropdown.Menu>
-				</Dropdown>
+				{store.token ? (
+					<Dropdown>
+						<Dropdown.Toggle variant="danger" id="dropdown-basic">
+							<i className="fas fa-heart" />
+							<span>My Favorites</span>
+						</Dropdown.Toggle>
+						<Dropdown.Menu>
+							{store.favorites.map((value, index) => {
+								return (
+									<Dropdown.Item
+										key={index}
+										className="dropdown-item d-flex justify-content-between"
+										href="#">
+										<Link to={`/city/${value}`}>{value}</Link>
+										<button
+											onClick={() => actions.deleteFav(value)}
+											type="btn"
+											className="close"
+											aria-label="Close">
+											x
+										</button>
+									</Dropdown.Item>
+								);
+							})}
+							<Dropdown.Item className="d-flex justify-content-center p-0">
+								<button type="button" className="btn btn-info" onClick={() => actions.deleteAllFav()}>
+									Clear all
+								</button>
+							</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
+				) : (
+					""
+				)}
 				<Link to="/about">
 					<button type="btn" className="btn btn-info d-flex ml-2">
 						ABOUT US
@@ -121,8 +126,7 @@ export const Navbar = () => {
 				</Link>
 				<Link to="/login">
 					<button type="btn" className="btn btn-success ml-2">
-						{/* onClick={handlerUserState} en etiqueta, {userState} */}
-						LOGIN
+						{store.token ? "LOGOUT" : "LOGIN"}
 					</button>
 				</Link>
 			</div>
