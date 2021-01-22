@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 const baseUrl = "https://3001-b279386c-aa3a-4a70-af2c-e0c9a68d7f3b.ws-eu03.gitpod.io/api";
+=======
+
+const baseUrl = "https://3001-b47cbeae-4556-41a9-8deb-f930c0805ded.ws-eu03.gitpod.io/api";
+
+>>>>>>> 169990c6974c4d68dc4d51e492ea51cca3d21d49
 
 const weatherCity = null; // en https://www.el-tiempo.net/api tenemos toda lo relacionado con tiempo, es más facil que la del ine
 //
