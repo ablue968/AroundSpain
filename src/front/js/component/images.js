@@ -12,7 +12,7 @@ export const MyCarousel = () => (
 				height="400px"
 			/>
 			<Carousel.Caption>
-				<h3>Sevilla</h3>
+				<h3 id="carousel">Sevilla</h3>
 				<p>Feria de Abril</p>
 			</Carousel.Caption>
 		</Carousel.Item>
@@ -25,7 +25,7 @@ export const MyCarousel = () => (
 				height="400px"
 			/>
 			<Carousel.Caption>
-				<h3>Valencia</h3>
+				<h3 id="carousel">Valencia</h3>
 				<p>Fallas</p>
 			</Carousel.Caption>
 		</Carousel.Item>
@@ -38,21 +38,21 @@ export const MyCarousel = () => (
 				height="400px"
 			/>
 			<Carousel.Caption>
-				<h3>Barcelona</h3>
+				<h3 id="carousel">Barcelona</h3>
 				<p>Fiesta de la Mercé</p>
 			</Carousel.Caption>
 		</Carousel.Item>
 		<Carousel.Item interval={3000}>
 			<img
 				className="d-block mx-auto"
-				src="https://eraseunhotel.com/wp-content/uploads/2018/05/san-isidro-2018-programacion-espectaculos-pirotecnicos-retiro.jpg"
+				src="https://traductorjurado-madrid.es/wp-content/uploads/2018/02/Plaza-Mayor.jpg"
 				alt="First slide"
 				width="100%"
 				height="400px"
 			/>
 			<Carousel.Caption>
-				<h3>Madrid</h3>
-				<p>San Isidro</p>
+				<h3 id="carousel">Madrid</h3>
+				<p>Plaza Mayor</p>
 			</Carousel.Caption>
 		</Carousel.Item>
 	</Carousel>
