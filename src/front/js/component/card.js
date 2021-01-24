@@ -49,8 +49,7 @@ export const Card = props => {
 			{showCardText ? (
 				<React.Fragment className=" d-flex card-img-overlay">
 					<h5
-						className="text-right d-flex "
-						id="lobster"
+						className="text-right d-flex lobster "
 						onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}>
 						{city.city_name}
 					</h5>
