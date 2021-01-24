@@ -45,24 +45,14 @@ export const Home = () => {
 	});
 
 	return (
-		<div className="mt5">
-			<div
-				className="container-fluid d-flex justify-content-center row mx-auto"
-				onMOuseEnter={() => handleShow(true)}
-				onMouseLeave={() => handleShow(false)}
-				ref={confettiRef}>
-				<h2 className="col-12 text-center mt-5 bgtitles text-light lobster">The Most Visited!!</h2>
+		<div onMOuseEnter={() => handleShow(true)} onMouseLeave={() => handleShow(false)} ref={confettiRef}>
+			<Confetti recycle={true} numberOfPieces={200} width={width} height={height} />
+			<div className="container-fluid d-flex justify-content-center row mx-auto borderW">
+				<h2 className="col-12 text-center mt-5 bgtitles text-light lobsterHome">The Most Visited!!</h2>
 				{allCities}
 			</div>
-			<h2 className="text-center text-light mt-5 lobster">Check all of our cities!!</h2>
-			<div
-				className="container-fluid row d-flex justify-content-center"
-				onMOuseEnter={() => handleShow(true)}
-				onMouseLeave={() => handleShow(false)}
-				ref={confettiRef}>
-				{allCities2}
-			</div>
-			<Confetti recycle={show} numberOfPieces={200} width={width} height={height} />
+			<h2 className="text-center text-light mt-5 lobsterHome">Check all of our cities!!</h2>
+			<div className="container-fluid row d-flex justify-content-center borderW2 mx-auto">{allCities2}</div>
 		</div>
 	);
 };

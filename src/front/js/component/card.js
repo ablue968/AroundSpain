@@ -36,8 +36,8 @@ export const Card = props => {
 	};
 
 	return (
-		<div className="card d-flex flex-column topCityCard">
-			<Link to={`/city/${city.city_name}`}>
+		<>
+			<div className="card d-flex flex-column topCityCard">
 				<img
 					src={city.image}
 					className={background}
@@ -45,26 +45,31 @@ export const Card = props => {
 					onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
 					onMouseOut={() => setCardBackground("card-img-top", false)}
 				/>
-			</Link>
-			{showCardText ? (
-				<React.Fragment className=" d-flex card-img-overlay">
-					<h5
-						className="text-right d-flex lobster "
-						onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}>
-						{city.city_name}
-					</h5>
-					<h5
-						className="d-flex btn-block"
-						id="likeButton"
-						onClick={() => handleClick(event)}
-						onMouseOut={() => setCardBackground("card-img-top", false)}>
-						<i className={like} title={city.city_name} />
-					</h5>
-				</React.Fragment>
-			) : (
-				""
-			)}
-		</div>
+				{showCardText ? (
+					<>
+						<h5
+							className="text-right d-flex lobster "
+							onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
+							onMouseOut={() => setCardBackground("card-img-top", false)}>
+							{city.city_name}
+						</h5>
+						<h5
+							className="d-flex btn-block"
+							id="likeButton"
+							onClick={() => handleClick(event)}
+							onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
+							onMouseOut={() => setCardBackground("card-img-top", false)}>
+							<i className={like} title={city.city_name} />
+						</h5>
+						<Link to={`/city/${city.city_name}`}>
+							<span>take me there!!</span>
+						</Link>
+					</>
+				) : (
+					""
+				)}
+			</div>
+		</>
 	);
 };
 Card.propTypes = {

@@ -57,9 +57,7 @@ export const CityPage = () => {
 
 	return (
 		<div className="container p-0">
-			<h1 className="text-light text-center col-8" id="lobster">
-				{detail.city_name}
-			</h1>
+			<h1 className="text-light text-center col-8 lobster">{detail.city_name}</h1>
 			<div className="row">
 				<div className="col-8 text-center mb-3 p-0">
 					<img className="img-thumbnail" src={detail.image} />
@@ -69,23 +67,23 @@ export const CityPage = () => {
 				</div>
 				<div className="col-3">
 					<div className="text-light">
-						<h5 id="lobster">Population</h5>
+						<h5 className="lobster">Population</h5>
 						<p>{detail.population}</p>
 					</div>
 					<div className="text-light">
-						<h5 id="lobster">highest temperature</h5>
+						<h5 className="lobster">highest temperature</h5>
 						<p>{detail.average_highest_temp}</p>
 					</div>
 					<div className="text-light">
-						<h5 id="lobster">Lowest temperature</h5>
+						<h5 className="lobster">Lowest temperature</h5>
 						<p>{detail.average_lowest_temp}</p>
 					</div>
 					<div className="text-light">
-						<h5 id="lobster">Population density</h5>
+						<h5 className="lobster">Population density</h5>
 						<p>{detail.population_density}</p>
 					</div>
 					<div className="text-light">
-						<h5 id="lobster">Cost of living</h5>
+						<h5 className="lobster">Cost of living</h5>
 						<p>{detail.cost_of_living}</p>
 					</div>
 				</div>
