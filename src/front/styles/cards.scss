@@ -1,0 +1,31 @@
+.toBlur{
+    filter: blur(0.5rem);
+    -webkit-filter: blur(8px);
+    opacity: 90%;
+    filter: brightness(10%);
+}
+
+.card-img-overlay{
+    padding: 0px;
+    margin: 0px;
+    height: 1px;
+}
+
+.topCityCard{
+   width: 18rem;
+   margin-left: 2rem;
+   margin-top: 2rem;
+   padding: 0px;
+}
+
+.card-img-top{
+    height: 15rem;
+}
+
+#likeButton{
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    padding: 0px;
+    border: none;
+}

@@ -54,9 +54,9 @@ export const Navbar = () => {
 
 				<form className="d-flex ml-4">
 					{/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  */}{" "}
-					<div ref={searchRef} className="d-none d-md-flex mx-auto">
+					<div ref={searchRef} className="col-6 mx-auto d-none d-md-flex">
 						<input
-							className="form-control"
+							className="form-control inputSpecial"
 							type="text"
 							placeholder="Looking for next destination?"
 							value={search}
@@ -65,7 +65,7 @@ export const Navbar = () => {
 						/>
 						{/*Si mi longitud es menor que dos no voy a entrar a esto, en el momento que sea mayor que dos entro.*/}
 						{search.length > 2 && (
-							<div className={"search-options"}>
+							<div className="search-options">
 								<ul>
 									{/*Recorro de mi store los searcResultos y le pregunto si hay algo y si si entro dentro y si no , no muestro ningun resultado */}
 
@@ -75,50 +75,55 @@ export const Navbar = () => {
 						)}
 					</div>
 				</form>
-				{store.token ? (
-					<Dropdown>
-						<Dropdown.Toggle variant="danger" id="dropdown-basic">
-							<i className="fas fa-heart" />
-							<span>My Favorites</span>
-						</Dropdown.Toggle>
-						<Dropdown.Menu>
-							{store.favorites.map((value, index) => {
-								return (
-									<Dropdown.Item
-										key={index}
-										className="dropdown-item d-flex justify-content-between"
-										href="#">
-										<Link to={`/city/${value}`}>{value}</Link>
-										<button
-											onClick={() => actions.deleteFav(value)}
-											type="btn"
-											className="close"
-											aria-label="Close">
-											x
-										</button>
-									</Dropdown.Item>
-								);
-							})}
-							<Dropdown.Item className="d-flex justify-content-center p-0">
-								<button type="button" className="btn btn-info" onClick={() => actions.deleteAllFav()}>
-									Clear all
-								</button>
-							</Dropdown.Item>
-						</Dropdown.Menu>
-					</Dropdown>
-				) : (
-					""
-				)}
-				<Link to="/about">
-					<button type="btn" className="btn btn-info d-flex ml-2">
-						ABOUT US
-					</button>
-				</Link>
-				<Link to="/login">
-					<button type="btn" className="btn btn-success ml-2">
-						{store.token ? "LOGOUT" : "LOGIN"}
-					</button>
-				</Link>
+				<div className="d-flex justify-content-end">
+					{store.token ? (
+						<Dropdown>
+							<Dropdown.Toggle variant="danger" id="dropdown-basic">
+								<i className="fas fa-heart" />
+								<span>My Favorites</span>
+							</Dropdown.Toggle>
+							<Dropdown.Menu>
+								{store.favorites.map((value, index) => {
+									return (
+										<Dropdown.Item
+											key={index}
+											className="dropdown-item d-flex justify-content-between"
+											href="#">
+											<Link to={`/city/${value}`}>{value}</Link>
+											<button
+												onClick={() => actions.deleteFav(value)}
+												type="btn"
+												className="close"
+												aria-label="Close">
+												<i className="fas fa-minus-circle text-danger" />
+											</button>
+										</Dropdown.Item>
+									);
+								})}
+								<Dropdown.Item className="d-flex justify-content-center p-0">
+									<button
+										type="button"
+										className="btn btn-info"
+										onClick={() => actions.deleteAllFav()}>
+										Clear all
+									</button>
+								</Dropdown.Item>
+							</Dropdown.Menu>
+						</Dropdown>
+					) : (
+						""
+					)}
+					<Link to="/about">
+						<button type="btn" className="btn btn-info d-flex ml-2">
+							ABOUT US
+						</button>
+					</Link>
+					<Link to="/login">
+						<button type="btn" className="btn btn-success ml-2">
+							{store.token ? "LOGOUT" : "LOGIN"}
+						</button>
+					</Link>
+				</div>
 			</div>
 		</nav>
 	);

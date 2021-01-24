@@ -32,39 +32,16 @@ export const Home = () => {
 
 	return (
 		<>
-			<div className="container-fluid d-flex justify-content-center row mb-3">
-				<h2 className="col-12 text-center text-light" id="lobster">
+			<div className="container-fluid d-flex justify-content-center row mt-5">
+				<h2 className="col-12 text-center text-light mt-5" id="lobster">
 					The Most Visited!!
 				</h2>
 				{allCities}
 			</div>
-			<h2 className="text-center text-light" id="lobster">
+			<h2 className="text-center text-light mt-5" id="lobster">
 				Check all of our cities!!
 			</h2>
 			<div className="container-fluid row d-flex justify-content-center">{allCities2}</div>
 		</>
 	);
 };
-
-{
-	/* <div>
-				{["Warning"].map(variant => (
-					<SplitButton
-						key={variant}
-						id={`dropdown-split-variants-"Warning"`}
-						variant={variant.toLowerCase()}
-						title="Filter">
-						<Dropdown.Item eventKey="1">Más habitantes</Dropdown.Item>
-						<Dropdown.Item eventKey="2">Menos habitantes</Dropdown.Item>
-						<Dropdown.Item eventKey="3">Con playa</Dropdown.Item>
-						<Dropdown.Item eventKey="4">Con Montaña</Dropdown.Item>
-						<Dropdown.Item eventKey="5">Más frio</Dropdown.Item>
-						<Dropdown.Item eventKey="6">Más caluroso</Dropdown.Item>
-						<Dropdown.Item eventKey="7" active>
-							{" "}
-							Esto es un itme activado{" "}
-						</Dropdown.Item>
-					</SplitButton>
-				))}
-			</div> */
-}
