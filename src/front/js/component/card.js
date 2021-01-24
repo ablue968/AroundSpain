@@ -1,5 +1,5 @@
-import React, { useContext, useState, Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
@@ -12,6 +12,7 @@ import "../../styles/cards.scss";
 
 export const Card = props => {
 	const { store, actions } = useContext(Context);
+	const history = useHistory();
 
 	const { city } = props;
 
@@ -35,9 +36,48 @@ export const Card = props => {
 		setShowCardText(text);
 	};
 
+	const info = (
+		<>
+			<div
+				className="d-flex btn-block card-img-overlay"
+				id="likeButton"
+				onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
+				onMouseOut={() => setCardBackground("card-img-top", false)}
+				onClick={() => handleClick(event)}>
+				<i className={like} title={city.city_name} />
+			</div>
+		</>
+	);
+
 	return (
 		<>
-			<div className="card d-flex flex-column topCityCard">
+			<div
+				className="card d-flex flex-column topCityCard"
+				onMouseOut={() => setCardBackground("card-img-top", false)}
+				onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}>
+				<img
+					src={city.image}
+					className={background}
+					alt={city.city_name}
+					onClick={() => history.push(`/city/${city.city_name}`)}
+					onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
+				/>
+				<h5
+					onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
+					className="text-right d-flex text-light lobster overlay-h5 ">
+					{city.city_name}
+				</h5>
+				{showCardText ? info : ""}
+			</div>
+		</>
+	);
+};
+Card.propTypes = {
+	city: PropTypes.object
+};
+
+{
+	/*<div className="card d-flex flex-column topCityCard">
 				<img
 					src={city.image}
 					className={background}
@@ -48,30 +88,25 @@ export const Card = props => {
 				{showCardText ? (
 					<>
 						<h5
-							className="text-right d-flex lobster "
+							className="text-right d-flex text-light lobster "
 							onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
 							onMouseOut={() => setCardBackground("card-img-top", false)}>
 							{city.city_name}
 						</h5>
-						<h5
+						<div
 							className="d-flex btn-block"
 							id="likeButton"
 							onClick={() => handleClick(event)}
 							onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
 							onMouseOut={() => setCardBackground("card-img-top", false)}>
 							<i className={like} title={city.city_name} />
-						</h5>
+						</div>
 						<Link to={`/city/${city.city_name}`}>
-							<span>take me there!!</span>
+							<span className="text-light lobster">take me there!!</span>
 						</Link>
 					</>
 				) : (
 					""
 				)}
-			</div>
-		</>
-	);
-};
-Card.propTypes = {
-	city: PropTypes.object
-};
+			</div> */
+}
