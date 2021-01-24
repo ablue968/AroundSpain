@@ -26,7 +26,7 @@ export const Home = () => {
 	useEffect(() => {
 		setHeight(confettiRef.current.clientHeight);
 		setWidth(confettiRef.current.clientWidth);
-	});
+	}, []);
 
 	const handleShow = toggle => {
 		setShow(toggle);

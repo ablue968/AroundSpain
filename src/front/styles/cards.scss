@@ -10,6 +10,7 @@
     padding: 0px;
     margin: 0px;
     height: 1px;
+    top: 15px;
 }
 
 .topCityCard{
@@ -18,6 +19,7 @@
    margin-top: 2rem;
    padding: 0px;
    border-radius: 10%;
+   cursor: pointer;
 }
 
 .card-img-top{
@@ -32,3 +34,22 @@
     padding: 0px;
     border: none;
 }
+
+div i{
+    font-size: 2rem;;
+}
+
+.overlay-h5{
+    position: absolute;
+    top:30px;
+    left:120px;
+}
+
+.overlay-hearth{
+    position: absolute;
+    top:190px;
+    left: 120px;
+}
+
+
+				
