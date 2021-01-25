@@ -7,6 +7,7 @@ import { All_countries } from "../resources/all_countries";
 import { All_Languages } from "../resources/all_languages";
 
 import "../../styles/register.scss";
+import { Background_images } from "../resources/backgroundImages";
 
 export const Register = () => {
 	const params = useParams();
@@ -48,7 +49,10 @@ export const Register = () => {
 	};
 
 	return (
-		<main className=" d-flex justify-content-center row mt-5 mr-0">
+		<main className=" d-flex justify-content-center row mr-0">
+			<div className="rowSpecial toBackGround">
+				<Background_images />
+			</div>
 			<div className="p-4" id="registerBackground">
 				<h1 className=" text-center text-light bg-dark">Hello adventurer! Join us!</h1>
 				<br />
