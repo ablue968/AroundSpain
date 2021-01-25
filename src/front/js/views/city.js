@@ -65,7 +65,7 @@ export const CityPage = () => {
 						<i className={like} />
 					</button> */}
 				</div>
-				<div className="col-3">
+				<div className="col-3 mx-auto">
 					<div className="text-light">
 						<h5 className="lobster">Population</h5>
 						<p>{detail.population}</p>
@@ -88,7 +88,11 @@ export const CityPage = () => {
 					</div>
 				</div>
 				<div className="container d-flex row">
-					<div className="d-flex flex-column-reverse col-12 mb-4">
+					<div className="col-6 bg-postArea">
+						<div className="paraElTituloEnPost">Posts</div>
+						{postsList}
+					</div>
+					<div className="d-flex flex-column-reverse col-6 mb-4">
 						<form>
 							<div className="form-group">
 								<textarea
@@ -102,11 +106,6 @@ export const CityPage = () => {
 								Submit
 							</button>
 						</form>
-						{postsList}
-						<div className="paraElTituloEnPost">Posts</div>
-					</div>
-					<div className="d-flex row" id="lobster">
-						<h1>prueba</h1>
 					</div>
 				</div>
 			</div>
