@@ -21,6 +21,9 @@ export const Home = () => {
 
 	useEffect(() => {
 		actions.getAllCities();
+		if (store.loginUser > 0) {
+			actions.getLikesUser(store.loginUser);
+		}
 	}, []);
 
 	useEffect(() => {
