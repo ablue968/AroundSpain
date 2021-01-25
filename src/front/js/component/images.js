@@ -5,7 +5,7 @@ import "../../styles/all.scss";
 
 export const MyCarousel = () => (
 	<Carousel>
-		<Carousel.Item interval={3000}>
+		<Carousel.Item interval={5000}>
 			<img
 				className="d-block mx-auto"
 				src="https://res.cloudinary.com/weekendesk/images/s--5pkII89S--/c_fill,f_auto,g_auto,h_400,q_50,w_1920/rljufxzqw8g1atgkjeyo/feria-de-abril-en-sevilla.jpg"
@@ -20,7 +20,7 @@ export const MyCarousel = () => (
 				<p className="carouselLobster">Feria de Abril</p>
 			</Carousel.Caption>
 		</Carousel.Item>
-		<Carousel.Item interval={3000}>
+		<Carousel.Item interval={5000}>
 			<img
 				className="d-block mx-auto"
 				src="https://www.visitvalencia.com/sites/default/files/styles/listados_full/public/_dsc5403_4.jpg?itok=GUMyvM3v"
@@ -35,7 +35,7 @@ export const MyCarousel = () => (
 				<p className="carouselLobster">Fallas</p>
 			</Carousel.Caption>
 		</Carousel.Item>
-		<Carousel.Item interval={3000}>
+		<Carousel.Item interval={5000}>
 			<img
 				className="d-block mx-auto"
 				src="https://res.cloudinary.com/weekendesk/images/s--5iWy3B19--/c_fill,f_auto,g_auto,h_400,q_50,w_1920/yitnohdffn3jk5jxcqch/piromusical.jpg"
