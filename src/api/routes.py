@@ -153,7 +153,7 @@ def login():
     token =  jwt.encode(payload, secret, algorithm=algo)
     #toke = jwt.encoded_jwt = jwt.encode({"some": "payload"}, "secret", algorithm="HS256")
 
-    return jsonify({'token': token}), 200
+    return jsonify({'token': token,'id':user.id}), 200
 
 
 

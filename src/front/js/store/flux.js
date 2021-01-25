@@ -7,7 +7,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: null,
 			favorites: [],
 			posts: [],
-			cities: []
+			cities: [],
+			likes: [],
+			loginUser: 1
 		},
 		actions: {
 			newUser(data, callback) {
@@ -54,7 +56,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						setStore({ token: data.token });
+						setStore({
+							token: data.token,
+							loginUser: data.id
+						});
 						localStorage.setItem("token", data.token);
 						callback();
 					});
@@ -146,6 +151,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 						actions.postCity(data.cityId);
 						console.log(data.cityId);
 					});
+			},
+			getLikesUser(id_user) {
+				const endpoint = `${baseUrl}/users/${id_user}/likes`;
+				const config = {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
+					}
+				};
+				///////////////////////// FETCH
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => console.log(data));
 			}
 		}
 	};
