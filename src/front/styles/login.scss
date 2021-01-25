@@ -1,37 +1,15 @@
-#registerBackground{
+.loginBackground{
     background-color: #343a40;
     width: 50rem;
     border-color: #007bff;
     border-style: solid;
     border-radius: 0.5rem;
-    border-width: solid;
+    border-width: thin;
     position: relative;
     right: auto;
     bottom: 40rem;
 
 }
-.autocomplete-multivalue {
-    display: flex;
-    flex-wrap: wrap;
-    display: block;
-}
-
-.list-inline > li{
-    margin: 1rem;
-    background-color: whitesmoke;
-    border-radius: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-.list-inline{
-    margin-left: 0px;
-}
-ul{
-    background-color: gray;
-}
-
-
-///////////////////// esto es para el fondo///////////////
 
 .rowSpecial {
   display: -ms-flexbox; /* IE10 */

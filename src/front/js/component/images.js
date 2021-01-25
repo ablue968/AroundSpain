@@ -14,10 +14,10 @@ export const MyCarousel = () => (
 				height="500px"
 			/>
 			<Carousel.Caption>
-				<h3 className="lobster" id="carousel">
+				<h3 className="carouselLobster" id="carousel">
 					Sevilla
 				</h3>
-				<p className="lobster">Feria de Abril</p>
+				<p className="carouselLobster">Feria de Abril</p>
 			</Carousel.Caption>
 		</Carousel.Item>
 		<Carousel.Item interval={3000}>
@@ -29,10 +29,10 @@ export const MyCarousel = () => (
 				height="500px"
 			/>
 			<Carousel.Caption>
-				<h3 className="lobster" id="carousel">
+				<h3 className="carouselLobster" id="carousel">
 					Valencia
 				</h3>
-				<p className="lobster">Fallas</p>
+				<p className="carouselLobster">Fallas</p>
 			</Carousel.Caption>
 		</Carousel.Item>
 		<Carousel.Item interval={3000}>
@@ -44,10 +44,10 @@ export const MyCarousel = () => (
 				height="500px"
 			/>
 			<Carousel.Caption>
-				<h3 className="lobster" id="carousel">
+				<h3 className="carouselLobster" id="carousel">
 					Barcelona
 				</h3>
-				<p className="lobster">Fiesta de la Mercé</p>
+				<p className="carouselLobster">Fiesta de la Mercé</p>
 			</Carousel.Caption>
 		</Carousel.Item>
 		<Carousel.Item interval={3000}>
@@ -59,10 +59,10 @@ export const MyCarousel = () => (
 				height="500px"
 			/>
 			<Carousel.Caption>
-				<h3 className="lobster" id="carousel">
+				<h3 className="carouselLobster" id="carousel">
 					Madrid
 				</h3>
-				<p className="lobster">Plaza Mayor</p>
+				<p className="carouselLobster">Plaza Mayor</p>
 			</Carousel.Caption>
 		</Carousel.Item>
 	</Carousel>

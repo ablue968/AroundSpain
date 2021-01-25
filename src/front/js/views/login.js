@@ -4,7 +4,8 @@ import { Context } from "../store/appContext";
 
 import { Link, useHistory } from "react-router-dom";
 
-import "../../styles/home.scss";
+import "../../styles/login.scss";
+import { Background_images } from "../resources/backgroundImages";
 
 export const Login = () => {
 	const { store, actions } = useContext(Context);
@@ -31,8 +32,11 @@ export const Login = () => {
 	}, []);
 
 	return (
-		<main className="d-flex justify-content-center row mt-5">
-			<div className="col-2 pt-2 pb-3" id="loginBackground">
+		<main className="d-flex justify-content-center row">
+			<div className="rowSpecial toBackGround">
+				<Background_images />
+			</div>
+			<div className="col-2 pt-2 pb-3 loginBackground">
 				<h1 className="d-flex justify-content-center mb-3 text-light bg-dark">Login</h1>
 				<div className="text-center">
 					<h2 className="text-light bg-dark">Email</h2>
