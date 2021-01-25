@@ -189,8 +189,7 @@ class Likes(db.Model):
             'id': self.id,
             'user': self.user_id,
             'users': self.user.user_name,
-            'city_id': self.city_id,
-            'text': self.text       
+            'city_id': self.city_id,      
         }
 
     def serialize_required(self):
