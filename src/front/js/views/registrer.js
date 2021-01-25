@@ -7,6 +7,7 @@ import { All_countries } from "../resources/all_countries";
 import { All_Languages } from "../resources/all_languages";
 
 import "../../styles/register.scss";
+import "../../styles/all.scss";
 import { Background_images } from "../resources/backgroundImages";
 
 export const Register = () => {
@@ -54,7 +55,7 @@ export const Register = () => {
 				<Background_images />
 			</div>
 			<div className="p-4" id="registerBackground">
-				<h1 className=" text-center text-light bg-dark">Hello adventurer! Join us!</h1>
+				<h1 className=" text-center text-light bg-dark lobster">Hello adventurer! Join us!</h1>
 				<br />
 				<form>
 					{/*----------------------------------------Username ----------------------------------------------*/}
@@ -152,11 +153,11 @@ export const Register = () => {
 
 					{/*preguntar acá la opción del avatar---> https://getbootstrap.com/docs/4.4/components/forms/#form-controls // https://getbootstrap.com/docs/4.4/components/input-group/#custom-file-input*/}
 
-					<div className="d-flex justify-content-center">
+					<div className="d-flex justify-content-between  mx-auto specialWidth">
 						<Link to="/">
-							<button className="btn btn-primary">Back home</button>
+							<button className="btn btn-primary lobster">Back home</button>
 						</Link>
-						<button type="button" className="btn btn-primary ml-5" onClick={() => onSubmit()}>
+						<button type="button" className="btn lobster" id="buttonThemeColor" onClick={() => onSubmit()}>
 							Submit
 						</button>
 					</div>
