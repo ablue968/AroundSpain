@@ -7,6 +7,7 @@ import logo from "../../img/logo3.png";
 import { Context } from "../store/appContext";
 
 import "../../styles/navbar.scss";
+import "../../styles/all.scss";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -78,7 +79,7 @@ export const Navbar = () => {
 						<Dropdown>
 							<Dropdown.Toggle variant="danger" id="dropdown-basic">
 								<i className="fas fa-heart" />
-								<span>My Favorites</span>
+								<span className="lobster">My Favorites</span>
 							</Dropdown.Toggle>
 							<Dropdown.Menu>
 								{store.favorites.map((value, index) => {
@@ -101,7 +102,7 @@ export const Navbar = () => {
 								<Dropdown.Item className="d-flex justify-content-center p-0">
 									<button
 										type="button"
-										className="btn btn-info"
+										className="btn btn-info lobster"
 										onClick={() => actions.deleteAllFav()}>
 										Clear all
 									</button>
@@ -112,12 +113,12 @@ export const Navbar = () => {
 						""
 					)}
 					<Link to="/about">
-						<button type="btn" className="btn btn-info d-flex ml-2">
+						<button type="btn" className="btn btn-info d-flex ml-2 lobster">
 							ABOUT US
 						</button>
 					</Link>
 					<Link to="/login">
-						<button type="btn" className="btn btn-success ml-2">
+						<button type="btn" className="btn btn-success ml-2 lobster" id="buttonThemeColor">
 							{store.token ? "LOGOUT" : "LOGIN"}
 						</button>
 					</Link>

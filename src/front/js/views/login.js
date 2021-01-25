@@ -37,13 +37,13 @@ export const Login = () => {
 				<Background_images />
 			</div>
 			<div className="col-2 pt-2 pb-3 loginBackground">
-				<h1 className="d-flex justify-content-center mb-3 text-light bg-dark">Login</h1>
+				<h1 className="d-flex justify-content-center mb-3 text-light bg-dark lobster">Login</h1>
 				<div className="text-center">
-					<h2 className="text-light bg-dark">Email</h2>
+					<h2 className="text-light bg-dark lobster">Email</h2>
 					<input value={email} type="text" onChange={() => setEmail(event.target.value)} />
 				</div>
 				<div className="text-center">
-					<h2 className="text-light bg-dark">Password</h2>
+					<h2 className="text-light bg-dark lobster">Password</h2>
 					<input value={password} type="password" onChange={() => setPassword(event.target.value)} />
 				</div>
 				<div className="form-group form-check mt-3">
@@ -55,14 +55,18 @@ export const Login = () => {
 
 				<div className="d-flex justify-content-center mt-2">
 					<Link to="/">
-						<button className="btn btn-primary">Back home</button>
+						<button className="btn btn-primary lobster">Back home</button>
 					</Link>
-					<button type="button" onClick={() => onSubmit()} className="btn btn-primary ml-5">
+					<button
+						type="button"
+						onClick={() => onSubmit()}
+						className="btn btn-primary ml-5 lobster"
+						id="buttonThemeColor">
 						Submit
 					</button>
 				</div>
 				<Link to="/register">
-					<div className="mt-4 text-center ">
+					<div className="mt-4 text-center lobster">
 						<h5>Come and register!!</h5>
 					</div>
 				</Link>

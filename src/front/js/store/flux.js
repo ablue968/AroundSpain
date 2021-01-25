@@ -33,7 +33,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						console.log(data, "usuario creado");
 						callback();
 					})
 					.catch(error => {
