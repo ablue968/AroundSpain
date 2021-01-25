@@ -28,7 +28,7 @@ def get_a_list_of(models):
         listed_model.append(model.serialize())
     return jsonify(listed_model), 200
 
-##GET BY ID
+##GET BY ID/
 
 def get_one_or_404(models,id):
     result_by_id = models.query.get(id)
@@ -303,10 +303,15 @@ def handle_delete_posts(id):
 # ******************************----TABLE LIKES------******************************
 @api.route('/likes', methods=['GET'])
 def handle_list_likes():
-    likes = []
-    for like in Likes.query.all():
-        likes.append(like.serialize())
+    return get_a_list_of(Likes)
+    
+
+@api.route('/users/<int:id_user>/likes', methods=['GET'])
+def hadle_list_user_likes(id_user):
+    user = Users.query.get(id_user)
+    likes = list(map(lambda like: like.serialize(), user.likes))
     return jsonify(likes), 200
+
 
 @api.route('/likes/<int:id>', methods=['GET'])
 def handle_get_like(id):
