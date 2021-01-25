@@ -39,7 +39,7 @@ export const Card = props => {
 	const info = (
 		<>
 			<div
-				className="d-flex btn-block card-img-overlay"
+				className="d-flex btn-block card-img-overlay cardHeart"
 				id="likeButton"
 				onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
 				onMouseOut={() => setCardBackground("card-img-top", false)}

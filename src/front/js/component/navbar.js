@@ -19,11 +19,9 @@ export const Navbar = () => {
 	const searchRef = useRef();
 
 	function searchCities(search) {
-		console.log("Soy el search", store.cities);
 		const filteredCities = store.cities.filter(city => {
 			return city.city_name.toLowerCase().includes(search.toLowerCase());
 		});
-		console.log("Soy Filtered", filteredCities);
 		setSearch(search);
 		setResults(filteredCities);
 	}
