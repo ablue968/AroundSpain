@@ -20,6 +20,9 @@ mysqlclient = "*"
 cloudinary = "*"
 flask-admin = "*"
 pyjwt = "*"
+beautifulsoup4 = "*"
+html5lib = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"

@@ -4,6 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 import hashlib
 import hmac
 import jwt
+import requests
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
 from datetime import datetime
@@ -189,7 +190,13 @@ def handle_update_user(id):
 def handle_delete_user(id):
     return delete_element(Users,id)
 
-
+# ******************************---- SCRAPING------******************************
+@api.route('/scraper', methods=['GET'])
+def do_a_quest():
+    URL = "https://www.spain.info/es/agenda/cabalgata-reyes-magos/"
+    r = requests.get(URL) 
+    print(r.content)
+    return 200 
 
 # ******************************----TABLE CITIES------******************************
 @api.route('/cities', methods=['GET'])
