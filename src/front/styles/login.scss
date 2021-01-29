@@ -1,14 +1,37 @@
-.loginBackground{
-    background-color: #343a40;
-    width: 50rem;
-    border-color: #007bff;
-    border-style: solid;
-    border-radius: 0.5rem;
-    border-width: thin;
-    position: relative;
-    right: auto;
-    bottom: 40rem;
+*{
+    border: none;
+    border-radius: 5px;
+}
+input{
+    opacity: 0.3;
 
+}
+.loginBackground{
+    background-size: auto;
+    width: 50rem;
+    position: absolute;
+    right: auto;
+    top: 12rem;
+}
+
+.registerStyle{
+    margin-top: 3rem;
+    margin-bottom: 0px;
+}
+
+.loginBorder{
+    background: linear-gradient(115deg,#FF0A3F,#FFEBEF,#FFADBF,#FF335F);
+    background-size: 100% 100%;
+    padding: 0.5rem;
+}
+
+.loginMainColor{
+    position: relative;
+    z-index: 2;
+    align-items: center;
+    background: #1e1f26;
+    box-sizing: border-box;
+    height: 100%;
 }
 
 .rowSpecial {
@@ -16,7 +39,7 @@
   display: flex;
   -ms-flex-wrap: wrap; /* IE10 */
   flex-wrap: wrap;
-  padding: 0 4px;
+  padding: 4px;
 }
 
 /* Create four equal columns that sits next to each other */
@@ -36,8 +59,6 @@
 
 .toBackGround{
     z-index: -1;
-}
-
-main{
-    height: 750px;
+    filter: sepia(50%);
+    filter: blur(1px);
 }

@@ -32,44 +32,46 @@ export const Login = () => {
 	}, []);
 
 	return (
-		<main className="d-flex justify-content-center row">
+		<main className=" container-fluid d-flex justify-content-center row">
 			<div className="rowSpecial toBackGround">
 				<Background_images />
 			</div>
-			<div className="col-2 pt-2 pb-3 loginBackground">
-				<h1 className="d-flex justify-content-center mb-3 text-light bg-dark lobster">Login</h1>
-				<div className="text-center">
-					<h2 className="text-light bg-dark lobster">Email</h2>
-					<input value={email} type="text" onChange={() => setEmail(event.target.value)} />
-				</div>
-				<div className="text-center">
-					<h2 className="text-light bg-dark lobster">Password</h2>
-					<input value={password} type="password" onChange={() => setPassword(event.target.value)} />
-				</div>
-				<div className="form-group form-check mt-3">
-					<input type="checkbox" className="form-check-input" id="exampleCheck1" />
-					<label className="form-check-label text-light bg-dark" htmlFor="exampleCheck1">
-						Remember my user!
-					</label>
-				</div>
-
-				<div className="d-flex justify-content-center mt-2">
-					<Link to="/">
-						<button className="btn btn-primary lobster">Back home</button>
-					</Link>
-					<button
-						type="button"
-						onClick={() => onSubmit()}
-						className="btn btn-primary ml-5 lobster"
-						id="buttonThemeColor">
-						Submit
-					</button>
-				</div>
-				<Link to="/register">
-					<div className="mt-4 text-center lobster">
-						<h5>Come and register!!</h5>
+			<div className="col-2 pt-2 pb-3 loginBackground text-light loginBorder">
+				<div className="loginMainColor">
+					<h1 className="d-flex justify-content-center mb-3 text-light lobster">Login</h1>
+					<div className="text-center">
+						<h2 className="text-light lobster">Email</h2>
+						<input value={email} type="text" onChange={() => setEmail(event.target.value)} />
 					</div>
-				</Link>
+					<div className="text-center">
+						<h2 className="text-light lobster">Password</h2>
+						<input value={password} type="password" onChange={() => setPassword(event.target.value)} />
+					</div>
+					{/* <div className="form-group form-check mt-3">
+						<input type="checkbox" className="form-check-input" id="exampleCheck1" />
+						<label className="form-check-label text-light" htmlFor="exampleCheck1">
+							Remember my user!
+						</label>
+					</div> */}
+
+					<div className="d-flex justify-content-center mt-5">
+						<Link to="/">
+							<button className="btn btn-primary lobster">Back home</button>
+						</Link>
+						<button
+							type="button"
+							onClick={() => onSubmit()}
+							className="btn btn-primary ml-5 lobster"
+							id="buttonThemeColor">
+							Submit
+						</button>
+					</div>
+					<Link to="/register">
+						<div className=" px-auto text-center text-light  lobster">
+							<h5 className="registerStyle">Come and register!!</h5>
+						</div>
+					</Link>
+				</div>
 			</div>
 		</main>
 	);

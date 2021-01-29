@@ -23,6 +23,7 @@ pyjwt = "*"
 beautifulsoup4 = "*"
 html5lib = "*"
 requests = "*"
+lxml = "*"
 
 [requires]
 python_version = "3.8"
