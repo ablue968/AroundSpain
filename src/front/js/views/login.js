@@ -14,7 +14,7 @@ export const Login = () => {
 
 	const history = useHistory();
 
-	const onSubmit = () => {
+	const onLogin = () => {
 		if (email != "") {
 			const data = {
 				email: email,
@@ -32,45 +32,67 @@ export const Login = () => {
 	}, []);
 
 	return (
-		<main className=" container-fluid d-flex justify-content-center row">
+		<main className=" container-fluid d-flex justify-content-center row mx-auto">
 			<div className="rowSpecial toBackGround">
 				<Background_images />
 			</div>
-			<div className="col-2 pt-2 pb-3 loginBackground text-light loginBorder">
-				<div className="loginMainColor">
-					<h1 className="d-flex justify-content-center mb-3 text-light lobster">Login</h1>
-					<div className="text-center">
-						<h2 className="text-light lobster">Email</h2>
-						<input value={email} type="text" onChange={() => setEmail(event.target.value)} />
+			{/* loginBorder  */}
+			<div className="pt-2 pb-3 text-light signInBackground">
+				<div className="signInMainColor">
+					<h1 className=" pl-3 mb-5 text-light lobster">SIGN IN</h1>
+					<div className="mt-4">
+						<div className="input-group flex-nowrap">
+							<div className="input-group-prepend">
+								<span className="input-group-text specialColor" id="addon-wrapping">
+									<i className="fas fa-user pr-2 text-white" />
+								</span>
+							</div>
+							<input
+								value={email}
+								type="text"
+								className="form-control "
+								placeholder="Email"
+								aria-label="Email"
+								aria-describedby="addon-wrapping"
+								onChange={() => setEmail(event.target.value)}
+							/>
+						</div>
 					</div>
-					<div className="text-center">
-						<h2 className="text-light lobster">Password</h2>
-						<input value={password} type="password" onChange={() => setPassword(event.target.value)} />
+					<div className="mt-4">
+						<div className="input-group flex-nowrap">
+							<div className="input-group-prepend">
+								<span className="input-group-text specialColor" id="addon-wrapping">
+									<i className="fas fa-key pr-2 text-white" />
+								</span>
+							</div>
+							<input
+								value={password}
+								type="password"
+								className="form-control "
+								placeholder="Email"
+								aria-label="Email"
+								aria-describedby="addon-wrapping"
+								onChange={() => setPassword(event.target.value)}
+							/>
+						</div>
 					</div>
-					{/* <div className="form-group form-check mt-3">
-						<input type="checkbox" className="form-check-input" id="exampleCheck1" />
-						<label className="form-check-label text-light" htmlFor="exampleCheck1">
-							Remember my user!
-						</label>
-					</div> */}
-
 					<div className="d-flex justify-content-center mt-5">
 						<Link to="/">
-							<button className="btn btn-primary lobster">Back home</button>
+							<button className="btn btn-outline-info btn-lg lobster">Back home</button>
 						</Link>
 						<button
 							type="button"
-							onClick={() => onSubmit()}
-							className="btn btn-primary ml-5 lobster"
-							id="buttonThemeColor">
-							Submit
+							onClick={() => onLogin()}
+							className="btn ml-5 lobster text-light btn-lg specialColor ">
+							Login
 						</button>
 					</div>
-					<Link to="/register">
-						<div className=" px-auto text-center text-light  lobster">
-							<h5 className="registerStyle">Come and register!!</h5>
-						</div>
-					</Link>
+					<div className=" px-auto text-center text-light lobster">
+						<h5 className="registerStyle">
+							Not a member yet? &nbsp;
+							<Link to="/register">Come and register!!</Link>
+						</h5>
+					</div>
 				</div>
 			</div>
 		</main>

@@ -1,17 +1,23 @@
-*{
-    border: none;
-    border-radius: 5px;
-}
-input{
-    opacity: 0.3;
-
-}
-.loginBackground{
-    background-size: auto;
-    width: 50rem;
+//background color and position for the sign in
+.signInBackground{
     position: absolute;
-    right: auto;
-    top: 12rem;
+    top: 30%;
+    background-color: rgba(0,0,0,0.7);
+    width: 450px;
+}
+
+.specialColor{
+    background-color: #d62252;
+}
+
+.btn-lg{
+    width: 120px;
+}
+///no se usa el border//
+.signInBorder{
+    background: linear-gradient(115deg,#FF0A3F,#FFEBEF,#FFADBF,#FF335F);
+    background-size: 100% 100%;
+    padding: 0.5rem;
 }
 
 .registerStyle{
@@ -19,17 +25,20 @@ input{
     margin-bottom: 0px;
 }
 
-.loginBorder{
-    background: linear-gradient(115deg,#FF0A3F,#FFEBEF,#FFADBF,#FF335F);
-    background-size: 100% 100%;
-    padding: 0.5rem;
+.input-group{
+    width: 300px;
+    margin: auto;
+    border: none;
 }
 
-.loginMainColor{
+.input-group-text{
+    border: none;
+}
+
+.signInMainColor{
     position: relative;
     z-index: 2;
     align-items: center;
-    background: #1e1f26;
     box-sizing: border-box;
     height: 100%;
 }
