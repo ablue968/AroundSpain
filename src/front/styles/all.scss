@@ -14,6 +14,10 @@
 
 }
 
+*{
+    border: none;
+    border-radius: 5px;
+}
 
 .paraElTituloEnPost{
     font-size: 50px;
@@ -26,4 +30,13 @@
     color: white;
     background-color: #fdb6b9;
     border-color: #fdb6b9;
+}
+
+.navbar{
+    padding-bottom: 25px;
+    
+}
+hr {
+  height: 15px;
+  background-color: red;
 }

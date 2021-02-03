@@ -92,20 +92,20 @@ export const Register = () => {
 						/>
 					</div>
 					{/*--------------------------------------------Email --------------------------------------------*/}
-					<div className="form-group">
+					<div className="input-group mb-3">
 						<input
 							type="email"
 							name="Email"
 							className="form-control"
-							id="exampleInputEmail1"
 							placeholder="email@example.com"
+							id="exampleInputEmail1"
 							value={email}
 							onChange={event => setEmail(event.target.value)}
 						/>
-						<small id="emailHelp" className="form-text text-muted">
-							We&prime;ll never share your email with anyone else.
-						</small>
 					</div>
+					<small id="emailHelp" className="form-text text-muted input-group mb-3">
+						We&prime;ll never share your email with anyone else.
+					</small>
 					{/*-------------------------------------Password ---------------------------------------------------*/}
 					<div className="input-group mb-3">
 						<input
