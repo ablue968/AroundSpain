@@ -9,7 +9,7 @@ export const Background_images = () => {
 				<img src="https://media.istockphoto.com/photos/albarracin-historic-village-picture-id1291973714?k=6&m=1291973714&s=612x612&w=0&h=W3GRh-89lRDNJqtGE7yCbnE9aBlpmnoo7X1tp-FWeS8=" />
 			</div>
 			<div className="column">
-				<img src="https://media.istockphoto.com/photos/consuegra-windmills-at-sunset-castilla-la-mancha-spain-picture-id1289275469?k=6&m=1289275469&s=612x612&w=0&h=mTi9MFbjoS5HEOegxViIi56ixL7_4SSf9SdcL7R_7-w=" />
+				<img src="https://media.istockphoto.com/photos/horizontal-view-of-the-chipiona-lighthouse-in-andalusia-at-sunset-picture-id1297933252?k=6&m=1297933252&s=612x612&w=0&h=zev75rgBHoRuNDkxMyNk6lGZjOBaWzolSCG9xdaePtM=" />
 				<img src="https://media.istockphoto.com/photos/barcelona-sunrise-at-the-street-picture-id1297842155?k=6&m=1297842155&s=612x612&w=0&h=nYLT5vRqmjlGotqbajRNrLZL2aWkt9Wt5ZyoYiHIgSI=" />
 				<img src="https://media.istockphoto.com/photos/barcena-mayor-cantabria-spain-with-snow-picture-id1295850946?k=6&m=1295850946&s=612x612&w=0&h=rC2kzNGV3ThhmqMrOPBPJCMrpIlOgNyFsclt8y8z0Dg=" />
 			</div>

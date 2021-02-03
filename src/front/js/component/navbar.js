@@ -45,7 +45,7 @@ export const Navbar = () => {
 	});
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark d-flex justify-content-around">
+		<nav className="navbar navbar-expand-lg navbar d-flex justify-content-around">
 			<div className="container-fluid row">
 				<Link to="/">
 					<img src={logo} />
@@ -77,8 +77,8 @@ export const Navbar = () => {
 				<div className="d-flex justify-content-end">
 					{store.token ? (
 						<Dropdown>
-							<Dropdown.Toggle variant="danger" id="dropdown-basic">
-								<i className="fas fa-heart" />
+							<Dropdown.Toggle className="pl-1 favoriteColor" id="dropdown-basic">
+								<i className="fas fa-heart text-danger" />
 								<span className="lobster">My Favorites</span>
 							</Dropdown.Toggle>
 							<Dropdown.Menu>
@@ -113,13 +113,13 @@ export const Navbar = () => {
 						""
 					)}
 					<Link to="/about">
-						<button type="btn" className="btn btn-info d-flex ml-2 lobster">
+						<button type="btn" className="btn btn-outline-light d-flex justify-content-center d-flex ml-2">
 							ABOUT US
 						</button>
 					</Link>
 					<Link to="/login">
-						<button type="btn" className="btn btn-success ml-2 lobster" id="buttonThemeColor">
-							{store.token ? "LOGOUT" : "LOGIN"}
+						<button type="btn" className="btn ml-2 text-light specialColor lobster">
+							{store.token ? "LOGOUT" : "SIGN IN"}
 						</button>
 					</Link>
 				</div>
