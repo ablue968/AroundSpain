@@ -1,48 +1,44 @@
-#registerBackground{
-    background-color: #343a40;
+.registerBackground{
+    position: absolute;
+    top: 25%;
+    background-color: rgba(0,0,0,0.7);
     width: 50rem;
-    border-color: #007bff;
-    border-style: solid;
-    border-radius: 0.5rem;
-    border-width: solid;
-    position: relative;
-    right: auto;
-    bottom: 40rem;
-
+    height: 27.8rem;
 }
+
 .autocomplete-multivalue {
     display: flex;
     flex-wrap: wrap;
     display: block;
 }
 
-.list-inline > li{
-    margin: 1rem;
-    background-color: whitesmoke;
-    border-radius: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-.list-inline{
-    margin-left: 0px;
-}
-ul{
-    background-color: gray;
+
+//--custom for hello Adventurer--//
+.helloBox{
+    padding: 44% 10px 43%;
+    background-color: rgba(40, 54, 85,0.9)
+
 }
 
-//space for buttons//
-.specialWidth{
-    width: 200px;
+//---setting the collage as a background--//
+.toBackGround{
+    z-index: -1;
+    filter: sepia(50%);
+    filter: blur(1px);
 }
 
-///////////////////// esto es para el fondo///////////////
+//---main color---//
+.specialColor{
+    background-color: #d62252;
+}
 
+//------- esto es para el fondo----------//
 .rowSpecial {
   display: -ms-flexbox; /* IE10 */
   display: flex;
   -ms-flex-wrap: wrap; /* IE10 */
   flex-wrap: wrap;
-  padding: 0 4px;
+  padding: 4px;
 }
 
 /* Create four equal columns that sits next to each other */
@@ -60,10 +56,3 @@ ul{
 }
 
 
-.toBackGround{
-    z-index: -1;
-}
-
-main{
-    height: 750px;
-}

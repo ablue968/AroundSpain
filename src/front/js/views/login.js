@@ -36,7 +36,6 @@ export const Login = () => {
 			<div className="rowSpecial toBackGround">
 				<Background_images />
 			</div>
-			{/* loginBorder  */}
 			<div className="pt-2 pb-3 text-light signInBackground">
 				<div className="signInMainColor">
 					<h1 className=" pl-3 mb-5 text-light lobster">SIGN IN</h1>
