@@ -4,11 +4,11 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 import hashlib
 import hmac
 import jwt
-import requests
+#import requests  Creo que no es neesario porque ya se impora en flask
 
 from flask import Flask, request, jsonify, url_for, Blueprint, abort
 from datetime import datetime
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup  me da error al abrir la api
 
 from api.models import db, Users, Cities, Posts, Comments, Likes
 from api.utils import generate_sitemap, APIException
