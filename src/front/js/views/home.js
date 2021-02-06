@@ -51,10 +51,7 @@ export const Home = () => {
 		<div onMOuseEnter={() => handleShow(true)} onMouseLeave={() => handleShow(false)} ref={confettiRef}>
 			{store.token ? <Confetti recycle={false} numberOfPieces={500} width={width} height={height} /> : ""}
 			<h1 className="col-12 text-center mt-5 bgtitles text-light lobsterHome">The Most Visited!!</h1>
-			<div className="container-fluid row d-flex justify-content-center borderW mx-auto">
-				{/*container-fluid d-flex justify-content-center row mx-auto borderW*/}
-				{allCities}
-			</div>
+			<div className="container-fluid row d-flex justify-content-center borderW mx-auto">{allCities}</div>
 			<h1 className="text-center text-light mt-5 lobsterHome">Check all of our cities!!</h1>
 			<div className="container-fluid row d-flex justify-content-center borderW2 mx-auto">{allCities2}</div>
 		</div>

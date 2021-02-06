@@ -6,13 +6,12 @@ import "../../styles/all.scss";
 export const MyCarousel = () => (
 	<Carousel>
 		<Carousel.Item interval={5000}>
-			<img
-				className="d-block mx-auto"
-				src="https://res.cloudinary.com/weekendesk/images/s--5pkII89S--/c_fill,f_auto,g_auto,h_400,q_50,w_1920/rljufxzqw8g1atgkjeyo/feria-de-abril-en-sevilla.jpg"
-				alt="First slide"
-				width="90%"
-				height="400px"
+			<iframe
+				width="853"
+				height="480"
+				src="https://www.youtube.com/embed/H0LgMWVHbx4?autoplay=1&controls=0&mute=1"
 			/>
+
 			<Carousel.Caption>
 				<h3 className="carouselLobster" id="carousel">
 					Sevilla
