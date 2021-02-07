@@ -6,10 +6,6 @@ import { Context } from "../store/appContext";
 import "../../styles/all.scss";
 import "../../styles/cards.scss";
 
-{
-	/*no está funcionando bien la card, no veo muy bien como resolverlo */
-}
-
 export const Card = props => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
@@ -38,13 +34,15 @@ export const Card = props => {
 
 	const info = (
 		<>
-			<div
-				className="d-flex btn-block card-img-overlay cardHeart"
-				id="likeButton"
-				onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
-				onMouseOut={() => setCardBackground("card-img-top", false)}
-				onClick={() => handleClick(event)}>
-				<i className={store.token ? like : ""} title={city.city_name} />
+			<div className="anchor">
+				<div
+					className="d-flex btn-block cardHeart likeButton"
+					onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
+					onMouseOut={() => setCardBackground("card-img-top", false)}
+					onClick={() => handleClick(event)}>
+					{/* <i className={store.token ? like : ""} title={city.city_name} /> */}
+					<i className={like} title={city.city_name} />
+				</div>
 			</div>
 		</>
 	);
@@ -52,7 +50,7 @@ export const Card = props => {
 	return (
 		<>
 			<div
-				className="card d-flex flex-column topCityCard"
+				className="d-flex flex-column topCityCard"
 				onMouseOut={() => setCardBackground("card-img-top", false)}
 				onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}>
 				<img
@@ -64,7 +62,7 @@ export const Card = props => {
 				/>
 				<h5
 					onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
-					className="text-right d-flex text-light lobster overlay-h5 ">
+					className="text-light lobster overlay-h5 ">
 					{city.city_name}
 				</h5>
 				{showCardText ? info : ""}
