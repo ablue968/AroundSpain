@@ -44,7 +44,7 @@ export const Card = props => {
 				onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
 				onMouseOut={() => setCardBackground("card-img-top", false)}
 				onClick={() => handleClick(event)}>
-				<i className={like} title={city.city_name} />
+				<i className={store.token ? like : ""} title={city.city_name} />
 			</div>
 		</>
 	);
@@ -75,38 +75,3 @@ export const Card = props => {
 Card.propTypes = {
 	city: PropTypes.object
 };
-
-{
-	/*<div className="card d-flex flex-column topCityCard">
-				<img
-					src={city.image}
-					className={background}
-					alt={city.city_name}
-					onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
-					onMouseOut={() => setCardBackground("card-img-top", false)}
-				/>
-				{showCardText ? (
-					<>
-						<h5
-							className="text-right d-flex text-light lobster "
-							onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
-							onMouseOut={() => setCardBackground("card-img-top", false)}>
-							{city.city_name}
-						</h5>
-						<div
-							className="d-flex btn-block"
-							id="likeButton"
-							onClick={() => handleClick(event)}
-							onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
-							onMouseOut={() => setCardBackground("card-img-top", false)}>
-							<i className={like} title={city.city_name} />
-						</div>
-						<Link to={`/city/${city.city_name}`}>
-							<span className="text-light lobster">take me there!!</span>
-						</Link>
-					</>
-				) : (
-					""
-				)}
-			</div> */
-}
