@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 const baseUrl = "https://3001-violet-baboon-ipepasvt.ws-eu03.gitpod.io/api";
 
 const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincias/[codprov]/municipios/[COD_GEO]
+=======
+const baseUrl = "https://3001-cyan-rabbit-pii38xym.ws-eu03.gitpod.io/api";
+const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincioas/[codprov]/municipios/[COD_GEO]
+>>>>>>> 2ed7b94fad80f5a04a55baae35e7d19bdaa8c6ea
 
 const token = localStorage.getItem("token");
 const getState = ({ getStore, getActions, setStore }) => {

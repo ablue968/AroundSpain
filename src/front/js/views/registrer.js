@@ -14,21 +14,21 @@ export const Register = () => {
 	const params = useParams();
 	const { store, actions } = useContext(Context);
 
-	const [username, setUsername] = useState("");
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [country, setCountry] = useState("");
-	const [languages, setLanguages] = useState("");
-
-	// const [username, setUsername] = useState("unocongafas");
-	// const [firstName, setFirstName] = useState("Alejandro");
-	// const [lastName, setLastName] = useState("Castaño González");
-	// const [email, setEmail] = useState("unocongafas@gmail.com");
-	// const [password, setPassword] = useState("12345678");
+	// const [username, setUsername] = useState("");
+	// const [firstName, setFirstName] = useState("");
+	// const [lastName, setLastName] = useState("");
+	// const [email, setEmail] = useState("");
+	// const [password, setPassword] = useState("");
 	// const [country, setCountry] = useState("");
 	// const [languages, setLanguages] = useState("");
+
+	const [username, setUsername] = useState("unocongafas");
+	const [firstName, setFirstName] = useState("Alejandro");
+	const [lastName, setLastName] = useState("Castaño González");
+	const [email, setEmail] = useState("unocongafas@gmail.com");
+	const [password, setPassword] = useState("12345678");
+	const [country, setCountry] = useState("");
+	const [languages, setLanguages] = useState("");
 
 	let history = useHistory();
 
@@ -44,22 +44,30 @@ export const Register = () => {
 		};
 
 		actions.newUser(data, () => {
-			history.push("/");
+			history.push("/login");
 			//console.log("Estoy dentro de newUser");
 		});
 	};
 
 	return (
-		<main className=" d-flex justify-content-center row mr-0">
+		<main className=" container-fluid d-flex justify-content-center row mx-auto ">
 			<div className="rowSpecial toBackGround">
 				<Background_images />
 			</div>
-			<div className="p-4" id="registerBackground">
-				<h1 className=" text-center text-light bg-dark lobster">Hello adventurer! Join us!</h1>
-				<br />
+			<div className="p-4 registerBackground d-flex justify-content-center">
+				<div className=" mr-3">
+					<h1 className=" text-center text-light lobster helloBox mb-0 ">
+						Hello adventurer! &nbsp; Join us!
+					</h1>
+				</div>
 				<form>
 					{/*----------------------------------------Username ----------------------------------------------*/}
 					<div className="input-group mb-3">
+						<div className="input-group-prepend">
+							<span className="input-group-text specialColor" id="addon-wrapping">
+								<i className="fas fa-user pr-2 text-white" />
+							</span>
+						</div>
 						<input
 							type="text"
 							className="form-control"
@@ -93,6 +101,11 @@ export const Register = () => {
 					</div>
 					{/*--------------------------------------------Email --------------------------------------------*/}
 					<div className="input-group mb-3">
+						<div className="input-group-prepend">
+							<span className="input-group-text specialColor" id="addon-wrapping">
+								<i className="fas fa-envelope pr-2 text-white" />
+							</span>
+						</div>
 						<input
 							type="email"
 							name="Email"
@@ -103,11 +116,16 @@ export const Register = () => {
 							onChange={event => setEmail(event.target.value)}
 						/>
 					</div>
-					<small id="emailHelp" className="form-text text-muted input-group mb-3">
+					<small id="emailHelp" className="form-text text-light input-group mb-3">
 						We&prime;ll never share your email with anyone else.
 					</small>
 					{/*-------------------------------------Password ---------------------------------------------------*/}
 					<div className="input-group mb-3">
+						<div className="input-group-prepend">
+							<span className="input-group-text specialColor" id="addon-wrapping">
+								<i className="fas fa-key pr-2 text-white" />
+							</span>
+						</div>
 						<input
 							type="password"
 							name="Password"
@@ -144,24 +162,26 @@ export const Register = () => {
 					</div>
 					{/*---------------------------------------Publicity ----------------------------------------------------*/}
 					{/* creo que podemos borrar esto JP
-                    <div className="form-group form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                    <label className="form-check-label" htmlFor="exampleCheck1">
-                    Send me info please!!
-                    </label>
-                </div>*/}
+                        <div className="form-group form-check">
+                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                        <label className="form-check-label" htmlFor="exampleCheck1">
+                        Send me info please!!
+                        </label>
+                    </div>*/}
 
 					{/*preguntar acá la opción del avatar---> https://getbootstrap.com/docs/4.4/components/forms/#form-controls // https://getbootstrap.com/docs/4.4/components/input-group/#custom-file-input*/}
-
-					<div className="d-flex justify-content-between  mx-auto specialWidth">
-						<Link to="/">
-							<button className="btn btn-primary lobster">Back home</button>
-						</Link>
-						<button type="button" className="btn lobster" id="buttonThemeColor" onClick={() => onSubmit()}>
-							Submit
-						</button>
-					</div>
 				</form>
+				<div className="d-flex flex-column ml-4">
+					<Link to="/">
+						<button className="btn btn-outline-info btn-lg lobster ">Back home</button>
+					</Link>
+					<button
+						type="button"
+						className="btn lobster text-light btn-lg specialColor mt-auto p-2 bd-highlight"
+						onClick={() => onSubmit()}>
+						Submit
+					</button>
+				</div>
 			</div>
 		</main>
 	);

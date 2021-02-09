@@ -1,57 +1,48 @@
+
+//--anchor for the relative positions--//
+.anchor{
+    position: absolute;
+}
+
+//-- blur effect to the card--//
 .toBlur{
     filter: blur(0.5rem);
     -webkit-filter: blur(8px);
     opacity: 90%;
     filter: brightness(10%);
-    border-radius: 10%;
 }
 
-.card-img-overlay{
-    padding: 0px;
-    margin: 0px;
-    height: 1px;
-    top: 15px;
-}
-
+// this is for the card size //
 .topCityCard{
-   width: 18rem;
-   margin-left: 2rem;
-   margin-top: 2rem;
-   padding: 0px;
-   border-radius: 10%;
+   width: 17rem;
    cursor: pointer;
+   margin: 1rem;
 }
 
 .card-img-top{
     height: 15rem;
-    border-radius: 10%;
+    border-radius: 6%;
+}
+//////////////////////////////////////
+
+// h5 centered position //
+.overlay-h5{
+    margin: 0 auto;
 }
 
-#likeButton{
+
+//----Heart css---------//
+
+.likeButton{
+    position: absolute;
+    top:1rem;
+    left: 1rem;
     width: 2rem;
     height: 2rem;
     background: transparent;
     padding: 0px;
     border: none;
+    font-size: 2rem;
 }
 
-.cardHeart{
-    font-size: 2rem;;
-}
 
-.overlay-h5{
-    position: absolute;
-    top:30px;
-    left:120px;
-}
-
-.overlay-hearth{
-    position: absolute;
-    top:190px;
-    left: 120px;
-}
-
-.card{
-    background-color: whitesmoke;
-}
-				
