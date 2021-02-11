@@ -1,5 +1,11 @@
+<<<<<<< HEAD
+const baseUrl = "https://3001-violet-baboon-ipepasvt.ws-eu03.gitpod.io/api";
+
+const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincias/[codprov]/municipios/[COD_GEO]
+=======
 const baseUrl = "https://3001-cyan-rabbit-pii38xym.ws-eu03.gitpod.io/api";
 const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincioas/[codprov]/municipios/[COD_GEO]
+>>>>>>> 2ed7b94fad80f5a04a55baae35e7d19bdaa8c6ea
 
 const token = localStorage.getItem("token");
 const getState = ({ getStore, getActions, setStore }) => {
@@ -10,7 +16,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			posts: [],
 			cities: [],
 			likes: [],
-			loginUser: 1
+			loginUser: 1,
+			cityWeather: {}
 		},
 		actions: {
 			newUser(data, callback) {
@@ -82,9 +89,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cityDetail(cityName) {
 				//añadir a la lista
 				const store = getStore();
+				const actions = getActions();
 				let detail = store.cities.filter(city => {
 					return city.city_name === cityName;
 				})[0];
+
+				actions.getweathercity(detail.ine_url);
 				return detail;
 			},
 			deleteFav(item) {
@@ -166,17 +176,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => console.log(data));
 			},
 
-			getweathercity() {
-				const endpoint = `${tiempoEs}/${[codprov]}/municipios/${COD_GEO}`;
+			getweathercity(url) {
+				let weatherData = {};
+				const endpoint = url;
+				console.log(url);
 				const config = {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json"
-					}
+					method: "GET"
 				};
 				fetch(endpoint, config)
 					.then(response => response.json())
-					.then((data = console.log(data)));
+					.then(data => setStore({ cityWeather: data }));
 			}
 		}
 	};

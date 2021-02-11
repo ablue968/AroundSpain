@@ -74,11 +74,11 @@ class Cities(db.Model):
     deleted_at = db.Column(db.DateTime)
     city_name = db.Column(db.String(50), nullable=False)
     image = db.Column(db.String(500), nullable=False)
-    population = db.Column(db.String(150), nullable=False)
+    ine_url = db.Column(db.String(255), nullable=False)
     cost_of_living = db.Column(db.String(150), nullable=False)
-    average_highest_temp = db.Column(db.String(150), nullable=False)
-    average_lowest_temp = db.Column(db.String(150), nullable=False)
-    population_density = db.Column(db.String(150), nullable=False)
+    # average_highest_temp = db.Column(db.String(150), nullable=False)
+    # average_lowest_temp = db.Column(db.String(150), nullable=False)
+    # ine_url_density = db.Column(db.String(150), nullable=False)
 
     likes = db.relationship("Likes")  
     posts = db.relationship("Posts")  
@@ -91,33 +91,33 @@ class Cities(db.Model):
             'id': self.id,
             'city_name': self.city_name,
             'image': self.image,
-            'population': self.population,
+            'ine_url': self.ine_url,
             'cost_of_living': self.cost_of_living,
-            'average_highest_temp': self.average_highest_temp,
-            'average_lowest_temp': self.average_lowest_temp,
-            'population_density': self.population_density
+            # 'average_highest_temp': self.average_highest_temp,
+            # 'average_lowest_temp': self.average_lowest_temp,
+            # 'ine_url_density': self.ine_url_density
         }
 
     def serialize_required(self):
         return{
             'city_name': str,
             'image': str,
-            'population': str,
+            'ine_url': str,
             'cost_of_living': str,
-            'average_highest_temp': str,
-            'average_lowest_temp': str,
-            'population_density': str
+            # 'average_highest_temp': str,
+            # 'average_lowest_temp': str,
+            # 'ine_url_density': str
         }
 
     def serialize_all_types(self):
         return {
             'city_name': str,
             'image': str,
-            'population': str,
+            'ine_url': str,
             'cost_of_living': str,
-            'average_highest_temp': str,
-            'average_lowest_temp': str,
-            'population_density': str
+            # 'average_highest_temp': str,
+            # 'average_lowest_temp': str,
+            # 'ine_url_density': str
         }
 
 
