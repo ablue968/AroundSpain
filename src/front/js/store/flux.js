@@ -1,6 +1,6 @@
 const baseUrl = "https://3001-coral-bass-s05eociq.ws-eu03.gitpod.io/api";
-const searchWiki = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search="; // lo que se añade debe ser después de search
-const wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&titles="; // lo que se añade debe ser después de search
+const searchWiki = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&search="; // lo que se añade debe ser después de search
+const wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&origin=*&titles="; // lo que se añade debe ser después de search
 const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincias/[codprov]/municipios/[COD_GEO]
 
 const token = localStorage.getItem("token");
@@ -184,20 +184,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ cityWeather: data }));
 			},
 
-			getCityInfo(data) {
-				const actions = getActions();
-				const endpoint = `${searchWiki}/${data}&origin=*`;
-				const config = {
-					method: "GET"
-				};
-				fetch(endpoint, config)
-					.then(response => response.json())
-					.then(data => actions.getContent(`${wikiUrl2}${data[1][0]}&origin=*&format=json`));
-			},
-
-			getContent(url) {
-				const endpoint = url;
-				console.log(url);
+			getCityInfo(city_name) {
+				const endpoint = `${wikiUrl2}${city_name}&format=json`;
 				const config = {
 					method: "GET"
 				};
@@ -205,9 +193,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => {
 						let page = data.query.pages;
-						console.log(page);
 						let pageId = Object.keys(page)[0];
-						console.log(pageId);
 						let content = page[pageId].extract;
 						setStore({ cityInfo: content });
 					});
