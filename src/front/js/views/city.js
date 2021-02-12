@@ -66,7 +66,7 @@ export const CityPage = () => {
 	// };
 
 	//console.log(store.cityWeather);
-	console.log(store.cityInfo);
+	//console.log(store.cityInfo);
 
 	return (
 		<div className="container p-0">
