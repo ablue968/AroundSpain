@@ -22,10 +22,14 @@ export const CityPage = () => {
 	useEffect(
 		() => {
 			const foo = async () => {
+				let title = params.city_name;
+
 				if (store.cities.length != 0) {
-					let currentCity = await actions.cityDetail(params.city_name);
+					let currentCity = await actions.cityDetail(title);
 					setDetail(currentCity);
 					actions.postCity(currentCity.id);
+					title = title.replace(/\s+/g, "_");
+					actions.getCityInfo(title);
 				}
 			};
 			foo();
@@ -60,7 +64,9 @@ export const CityPage = () => {
 	// 		actions.deleteFav(detail.city_name);
 	// 	}
 	// };
-	console.log(store.cityWeather);
+
+	//console.log(store.cityWeather);
+	console.log(store.cityInfo);
 
 	return (
 		<div className="container p-0">
@@ -101,6 +107,12 @@ export const CityPage = () => {
 						<p>{detail.cost_of_living}</p>
 					</div>
 				</div>
+				{/* INFO */}
+				<div className="container d-flex row">
+					<p className="text-light">{store.cityInfo}</p>
+				</div>
+
+				{/* POST */}
 				<div className="container d-flex row">
 					<div className="col-6 bg-postArea">
 						<div className="paraElTituloEnPost">Posts</div>

@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-const baseUrl = "https://3001-violet-baboon-ipepasvt.ws-eu03.gitpod.io/api";
-
+const baseUrl = "https://3001-coral-bass-s05eociq.ws-eu03.gitpod.io/api";
+const searchWiki = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search="; // lo que se añade debe ser después de search
+const wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&titles="; // lo que se añade debe ser después de search
 const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincias/[codprov]/municipios/[COD_GEO]
-=======
-const baseUrl = "https://3001-cyan-rabbit-pii38xym.ws-eu03.gitpod.io/api";
-const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincioas/[codprov]/municipios/[COD_GEO]
->>>>>>> 2ed7b94fad80f5a04a55baae35e7d19bdaa8c6ea
 
 const token = localStorage.getItem("token");
 const getState = ({ getStore, getActions, setStore }) => {
@@ -17,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cities: [],
 			likes: [],
 			loginUser: 1,
-			cityWeather: {}
+			cityWeather: {},
+			cityInfo: []
 		},
 		actions: {
 			newUser(data, callback) {
@@ -177,15 +174,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getweathercity(url) {
-				let weatherData = {};
+				//let weatherData = {};
 				const endpoint = url;
-				console.log(url);
 				const config = {
 					method: "GET"
 				};
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => setStore({ cityWeather: data }));
+			},
+
+			getCityInfo(data) {
+				const actions = getActions();
+				const endpoint = `${searchWiki}/${data}&origin=*`;
+				const config = {
+					method: "GET"
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => actions.getContent(`${wikiUrl2}${data[1][0]}&origin=*`));
+			},
+
+			getContent(url) {
+				const endpoint = url;
+				const config = {
+					method: "GET"
+				};
+				fetch(endpoint, config)
+					.then(response => console.log(response))
+					.then(data => {
+						let page = data.query.pages;
+						console.log(page);
+						let pageId = Object.keys(page)[0];
+						console.log(pageId);
+						let content = page[pageId].extract;
+						console.log(content);
+					});
 			}
 		}
 	};
