@@ -1,5 +1,7 @@
-const baseUrl = "https://3001-b47cbeae-4556-41a9-8deb-f930c0805ded.ws-eu03.gitpod.io/api";
-const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincioas/[codprov]/municipios/[COD_GEO]
+const baseUrl = "https://3001-coral-bass-s05eociq.ws-eu03.gitpod.io/api";
+const searchWiki = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search="; // lo que se añade debe ser después de search
+const wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&titles="; // lo que se añade debe ser después de search
+const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincias/[codprov]/municipios/[COD_GEO]
 
 const token = localStorage.getItem("token");
 const getState = ({ getStore, getActions, setStore }) => {
@@ -10,7 +12,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			posts: [],
 			cities: [],
 			likes: [],
-			loginUser: 1
+			loginUser: 1,
+			cityWeather: {},
+			cityInfo: []
 		},
 		actions: {
 			newUser(data, callback) {
@@ -82,9 +86,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cityDetail(cityName) {
 				//añadir a la lista
 				const store = getStore();
+				const actions = getActions();
 				let detail = store.cities.filter(city => {
 					return city.city_name === cityName;
 				})[0];
+
+				actions.getweathercity(detail.ine_url);
 				return detail;
 			},
 			deleteFav(item) {
@@ -166,17 +173,43 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => console.log(data));
 			},
 
-			getweathercity() {
-				const endpoint = `${tiempoEs}/${[codprov]}/municipios/${COD_GEO}`;
+			getweathercity(url) {
+				//let weatherData = {};
+				const endpoint = url;
 				const config = {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json"
-					}
+					method: "GET"
 				};
 				fetch(endpoint, config)
 					.then(response => response.json())
-					.then((data = console.log(data)));
+					.then(data => setStore({ cityWeather: data }));
+			},
+
+			getCityInfo(data) {
+				const actions = getActions();
+				const endpoint = `${searchWiki}/${data}&origin=*`;
+				const config = {
+					method: "GET"
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => actions.getContent(`${wikiUrl2}${data[1][0]}&origin=*`));
+			},
+
+			getContent(url) {
+				const endpoint = url;
+				const config = {
+					method: "GET"
+				};
+				fetch(endpoint, config)
+					.then(response => console.log(response))
+					.then(data => {
+						let page = data.query.pages;
+						console.log(page);
+						let pageId = Object.keys(page)[0];
+						console.log(pageId);
+						let content = page[pageId].extract;
+						console.log(content);
+					});
 			}
 		}
 	};
