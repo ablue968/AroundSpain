@@ -192,23 +192,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				fetch(endpoint, config)
 					.then(response => response.json())
-					.then(data => actions.getContent(`${wikiUrl2}${data[1][0]}&origin=*`));
+					.then(data => actions.getContent(`${wikiUrl2}${data[1][0]}&origin=*&format=json`));
 			},
 
 			getContent(url) {
 				const endpoint = url;
+				console.log(url);
 				const config = {
 					method: "GET"
 				};
 				fetch(endpoint, config)
-					.then(response => console.log(response))
+					.then(response => response.json())
 					.then(data => {
 						let page = data.query.pages;
 						console.log(page);
 						let pageId = Object.keys(page)[0];
 						console.log(pageId);
 						let content = page[pageId].extract;
-						console.log(content);
+						setStore({ cityInfo: content });
 					});
 			}
 		}
