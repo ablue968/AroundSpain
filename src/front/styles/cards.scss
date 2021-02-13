@@ -14,20 +14,23 @@
 
 // this is for the card size //
 .topCityCard{
-   width: 17rem;
-   cursor: pointer;
-   margin: 1rem;
+    width: 17rem;
+    cursor: pointer;
+    margin: 1rem;
+    box-shadow: 0rem 0.5rem 0.5rem #444857;
 }
 
 .card-img-top{
     height: 15rem;
-    border-radius: 6%;
 }
 //////////////////////////////////////
 
 // h5 centered position //
 .overlay-h5{
-    margin: 0 auto;
+    margin-top: -1.9rem;
+    position: relative;
+    width: 40%;
+    background-color: #2C303A;
 }
 
 
