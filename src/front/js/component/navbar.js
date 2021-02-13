@@ -45,7 +45,9 @@ export const Navbar = () => {
 	});
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar d-flex justify-content-around">
+		<nav className="navbar navbar-expand-lg navbar d-flex  justify-content-around">
+			{" "}
+			{/*bg-light*/}
 			<div className="container-fluid row">
 				<Link to="/">
 					<img src={logo} />
