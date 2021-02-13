@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 
 import { Link, useHistory } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
-import logo from "../../img/logo3.png";
+import logo from "../../img/logo8.png";
 
 import { Context } from "../store/appContext";
 
@@ -50,7 +50,7 @@ export const Navbar = () => {
 			{/*bg-light*/}
 			<div className="container-fluid row">
 				<Link to="/">
-					<img src={logo} />
+					<img className="logo" src={logo} />
 				</Link>
 
 				<form className="d-flex ml-4">
