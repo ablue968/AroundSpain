@@ -7,8 +7,8 @@ export const MyCarousel = () => (
 	<Carousel>
 		<Carousel.Item interval={5000}>
 			<iframe
-				width="853"
-				height="480"
+				width="100%"
+				height="550"
 				src="https://www.youtube.com/embed/H0LgMWVHbx4?autoplay=1&controls=0&mute=1"
 			/>
 
@@ -25,7 +25,7 @@ export const MyCarousel = () => (
 				src="https://www.visitvalencia.com/sites/default/files/styles/listados_full/public/_dsc5403_4.jpg?itok=GUMyvM3v"
 				alt="Second slide"
 				width="100%"
-				height="400px"
+				height="500px"
 			/>
 			<Carousel.Caption>
 				<h3 className="carouselLobster" id="carousel">
@@ -49,12 +49,12 @@ export const MyCarousel = () => (
 				<p className="carouselLobster">Fiesta de la Mercé</p>
 			</Carousel.Caption>
 		</Carousel.Item>
-		<Carousel.Item interval={3000}>
+		<Carousel.Item interval={5000}>
 			<img
 				className="d-block mx-auto"
 				src="https://traductorjurado-madrid.es/wp-content/uploads/2018/02/Plaza-Mayor.jpg"
 				alt="First slide"
-				width="90%"
+				width="100%"
 				height="400px"
 			/>
 			<Carousel.Caption>

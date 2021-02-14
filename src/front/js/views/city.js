@@ -69,16 +69,16 @@ export const CityPage = () => {
 	//console.log(store.cityInfo);
 
 	return (
-		<div className="container p-0">
-			<h1 className="text-light text-center col-8 lobster">{detail.city_name}</h1>
-			<div className="row">
-				<div className="col-8 text-center mb-3 p-0">
+		<div className="container p-0 cityMarginTop">
+			<h1 className="text-light text-center lobster mb-4">{detail.city_name}</h1>
+			<div className="row  mx-auto">
+				<div className="col-8 mb-3 p-0">
 					<img className="img-thumbnail" src={detail.image} />
 					{/* <button id="likeButton" className="card-img-overlay likeButtonCity ml-2" onClick={handleClick}>
 						<i className={like} />
 					</button> */}
 				</div>
-				<div className="col-3 mx-auto">
+				<div className="col-3 mx-auto mb-3">
 					<div className="text-light">
 						<h5 className="lobster">Population</h5>
 						<p>{store.cityWeather.municipio ? store.cityWeather.municipio.POBLACION_MUNI : "loading"}</p>
@@ -108,8 +108,14 @@ export const CityPage = () => {
 					</div>
 				</div>
 				{/* INFO */}
-				<div className="container d-flex row">
-					<p className="text-light">{store.cityInfo}</p>
+				<div className="container text-light card d-flex row cardBg">
+					<div className=" infoIcon text-center mb-4">
+						<i className="fas fa-info " />
+					</div>
+					<h5>{store.cityInfo}</h5>
+					<a href={store.goWiki} target="_blank" rel="noopener noreferrer">
+						Take me to wiki
+					</a>
 				</div>
 
 				{/* POST */}

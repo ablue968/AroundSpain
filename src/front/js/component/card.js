@@ -48,7 +48,7 @@ export const Card = props => {
 	);
 
 	return (
-		<>
+		<div>
 			<div
 				className="d-flex flex-column topCityCard"
 				onMouseOut={() => setCardBackground("card-img-top", false)}
@@ -60,14 +60,10 @@ export const Card = props => {
 					onClick={() => history.push(`/city/${city.city_name}`)}
 					onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
 				/>
-				<h5
-					onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
-					className="text-light lobster overlay-h5 ">
-					{city.city_name}
-				</h5>
 				{showCardText ? info : ""}
 			</div>
-		</>
+			<h5 className="text-light text-center mx-auto lobster overlay-h5">{city.city_name}</h5>
+		</div>
 	);
 };
 Card.propTypes = {
