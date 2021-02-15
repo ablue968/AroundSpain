@@ -3,7 +3,7 @@ const baseUrl = "https://3001-brown-blackbird-zsrqy0vg.ws-eu03.gitpod.io/api";
 const searchWiki = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&search="; // lo que se añade debe ser después de search
 const wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&origin=*&titles="; // lo que se añade debe ser después de search
 const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincias/[codprov]/municipios/[COD_GEO]
-
+const wikiLink = "https://en.wikipedia.org/wiki/";
 const token = localStorage.getItem("token");
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -15,7 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			likes: [],
 			loginUser: 1,
 			cityWeather: {},
-			cityInfo: []
+			cityInfo: [],
+			goWiki: []
 		},
 		actions: {
 			newUser(data, callback) {
@@ -197,6 +198,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let pageId = Object.keys(page)[0];
 						let content = page[pageId].extract;
 						setStore({ cityInfo: content });
+						setStore({ goWiki: `${wikiLink}${city_name}` });
 					});
 			}
 		}
