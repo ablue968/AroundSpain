@@ -3,12 +3,11 @@ import { useParams, Link } from "react-router-dom";
 import { Post } from "../component/post.js";
 
 import { Context } from "../store/appContext";
+import { CollapseInfo } from "../component/collapseInfo";
 
 import "../../styles/home.scss";
 import "../../styles/city.scss";
 import "../../styles/all.scss";
-
-import { propTypes } from "react-bootstrap/esm/Image";
 
 export const CityPage = () => {
 	const { store, actions } = useContext(Context);
@@ -108,6 +107,8 @@ export const CityPage = () => {
 					</div>
 				</div>
 				{/* INFO */}
+				{/* <CollapseInfo /> */}
+
 				<div className="container text-light card d-flex row cardBg">
 					<div className=" infoIcon text-center mb-4">
 						<i className="fas fa-info " />
