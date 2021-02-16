@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Post } from "../component/post.js";
+import { CollapseInfo } from "../component/collapseInfo.js";
 
 import { Context } from "../store/appContext";
 import { CollapseInfo } from "../component/collapseInfo";
@@ -107,19 +108,22 @@ export const CityPage = () => {
 					</div>
 				</div>
 				{/* INFO */}
-				{/* <CollapseInfo /> */}
 
-				<div className="container text-light card d-flex row cardBg">
-					<div className=" infoIcon text-center mb-4">
-						<i className="fas fa-info " />
-					</div>
-					<h5>{store.cityInfo}</h5>
-					<a href={store.goWiki} target="_blank" rel="noopener noreferrer">
-						Take me to wiki
-					</a>
-				</div>
+				<CollapseInfo />
+
+				{/* <div className="container text-light card d-flex row cardBg">
+                    <div className=" infoIcon text-center mb-4">
+                        <i className="fas fa-info " />
+                    </div>
+                    <h5>{store.cityInfo}</h5>
+                    <a href={store.goWiki} target="_blank" rel="noopener noreferrer">
+                        Take me to wiki
+                    </a>
+                </div> */}
+
 
 				{/* POST */}
+
 				<div className="container d-flex row">
 					<div className="col-6 bg-postArea">
 						<div className="paraElTituloEnPost">Posts</div>

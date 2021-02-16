@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import Carousel from "react-bootstrap/Carousel";
 
 import "../../styles/all.scss";
+import "../../styles/images.scss";
+import feria from "../../video/feria.mp4";
 
 export const MyCarousel = () => (
 	<Carousel>
-		<Carousel.Item interval={5000}>
-			<img
-				width="100%"
-				height="550"
-				src="https://www.visitvalencia.com/sites/default/files/styles/listados_full/public/_dsc5403_4.jpg?itok=GUMyvM3v"
-				type="video/mp4"
-			/>
+
+		<Carousel.Item interval={500000}>
+			<video width="100%" height="550" autoPlay muted loop>
+				<source src={feria} type="video/mp4" />
+			</video>
 
 			<Carousel.Caption>
 				<h3 className="carouselLobster" id="carousel">
@@ -62,9 +62,7 @@ export const MyCarousel = () => (
 				<h3 className="carouselLobster" id="carousel">
 					Madrid
 				</h3>
-				<a href="https://es.wikipedia.org/wiki/Plaza_Mayor_de_Madrid" className="carouselLobster">
-					Plaza Mayor
-				</a>
+				<p className="carouselLobster">Plaza Mayor</p>
 			</Carousel.Caption>
 		</Carousel.Item>
 	</Carousel>

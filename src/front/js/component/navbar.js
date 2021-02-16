@@ -120,8 +120,8 @@ export const Navbar = () => {
 						</button>
 					</Link>
 					<Link to="/login">
-						<button type="btn" className="btn ml-2 text-light specialColor lobster">
-							{store.token ? "LOGOUT" : "SIGN IN"}
+						<button type="btn" className="btn ml-2 text-light specialColor">
+							{store.token ? "Logout" : "Sign In"}
 						</button>
 					</Link>
 				</div>
