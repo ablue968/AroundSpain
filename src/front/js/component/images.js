@@ -60,9 +60,7 @@ export const MyCarousel = () => (
 				<h3 className="carouselLobster" id="carousel">
 					Madrid
 				</h3>
-				<a href="https://es.wikipedia.org/wiki/Plaza_Mayor_de_Madrid" className="carouselLobster">
-					Plaza Mayor
-				</a>
+				<p className="carouselLobster">Plaza Mayor</p>
 			</Carousel.Caption>
 		</Carousel.Item>
 	</Carousel>
