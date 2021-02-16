@@ -7,26 +7,12 @@
     text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
 }
 
-.carouselLobster{
-    font-size: 25px;
-    font-family: 'Lobster', cursive;
-    text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
-
-}
-
-.carouselFit{
-    alt:"First slide";
-
-    object-fit: fill;
-}
-
 *{
     border: none;
     border-radius: 5px;
 }
 
 .paraElTituloEnPost{
-    font-size: 50px;
     font-family: 'Lobster', cursive;
     text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
     color: white;
@@ -39,10 +25,4 @@
 }
 
 
-hr {
-  height: 15px;
-  background-color: red;
-}
-.Carousel{
-    z-index: 1;
-}
+

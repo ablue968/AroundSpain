@@ -1,0 +1,26 @@
+video{
+    object-fit: cover;
+}
+
+.carousel-item img , .carousel-item video {
+    opacity: 0.5;
+}
+
+.carousel-item {
+    width: 100vw;
+    height: 80vh;
+}
+
+.carouselLobster{
+    font-family: 'Lobster', cursive;
+    text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+
+}
+
+div.carousel-caption h3{
+    font-size: 2vw;
+}
+
+div.carousel-caption p{
+    font-size: 2vw;
+}

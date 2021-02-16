@@ -77,7 +77,7 @@ export const CityPage = () => {
 						<i className={like} />
 					</button> */}
 				</div>
-				<div className="col-3 mx-auto mb-3">
+				<div className="col-4 mx-auto mb-3">
 					<div className="text-light">
 						<h5 className="lobster">Population</h5>
 						<p>{store.cityWeather.municipio ? store.cityWeather.municipio.POBLACION_MUNI : "loading"}</p>
@@ -105,40 +105,44 @@ export const CityPage = () => {
 						<h5 className="lobster">Cost of living</h5>
 						<p>{detail.cost_of_living}</p>
 					</div>
+					<div className="d-flex flex-column-reverse col-12 mb-4">
+						{store.token ? (
+							<form>
+								<div className="form-group">
+									<textarea
+										className="form-control"
+										id="exampleFormControlTextarea1"
+										rows="3"
+										onChange={event => setPostText(event.target.value)}
+									/>
+								</div>
+								<button type="button" className="btn btn-secondary" onClick={() => onSubmit()}>
+									Submit
+								</button>
+							</form>
+						) : null}
+					</div>
 				</div>
 				{/* INFO */}
-				{/* <CollapseInfo /> */}
+				<CollapseInfo />
 
-				<div className="container text-light card d-flex row cardBg">
-					<div className=" infoIcon text-center mb-4">
-						<i className="fas fa-info " />
-					</div>
-					<h5>{store.cityInfo}</h5>
-					<a href={store.goWiki} target="_blank" rel="noopener noreferrer">
-						Take me to wiki
-					</a>
-				</div>
+				{/* <div className="container text-light card d-flex row cardBg">
+                    <div className=" infoIcon text-center mb-4">
+                        <i className="fas fa-info " />
+                    </div>
+                    <h5>{store.cityInfo}</h5>
+                    <a href={store.goWiki} target="_blank" rel="noopener noreferrer">
+                        Take me to wiki
+                    </a>
+                </div> */}
 
 				{/* POST */}
+
 				<div className="container d-flex row">
-					<div className="col-6 bg-postArea">
-						<div className="paraElTituloEnPost">Posts</div>
+					<p>Posts</p>
+					<div className="col-12 bg-postArea">
+						<div className="paraElTituloEnPost" />
 						{postsList}
-					</div>
-					<div className="d-flex flex-column-reverse col-6 mb-4">
-						<form>
-							<div className="form-group">
-								<textarea
-									className="form-control"
-									id="exampleFormControlTextarea1"
-									rows="3"
-									onChange={event => setPostText(event.target.value)}
-								/>
-							</div>
-							<button type="button" className="btn btn-success" onClick={() => onSubmit()}>
-								Submit
-							</button>
-						</form>
 					</div>
 				</div>
 			</div>
