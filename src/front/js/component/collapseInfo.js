@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import Collapse from "react-bootstrap/Collapse";
 import { Context } from "../store/appContext";
 
+
+
 export const CollapseInfo = () => {
 	const [open, setOpen] = useState(false);
 	const { store, actions } = useContext(Context);
@@ -31,6 +33,7 @@ export const CollapseInfo = () => {
 					</div>
 				</Collapse>
 			</div>
+
 		</>
 	);
 };

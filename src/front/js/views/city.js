@@ -107,6 +107,7 @@ export const CityPage = () => {
 					</div>
 				</div>
 				{/* INFO */}
+
 				<CollapseInfo />
 
 				{/* <div className="container text-light card d-flex row cardBg">
@@ -118,6 +119,7 @@ export const CityPage = () => {
                         Take me to wiki
                     </a>
                 </div> */}
+
 
 				{/* POST */}
 
