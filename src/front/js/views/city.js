@@ -4,12 +4,11 @@ import { Post } from "../component/post.js";
 import { CollapseInfo } from "../component/collapseInfo.js";
 
 import { Context } from "../store/appContext";
+import { CollapseInfo } from "../component/collapseInfo";
 
 import "../../styles/home.scss";
 import "../../styles/city.scss";
 import "../../styles/all.scss";
-
-import { propTypes } from "react-bootstrap/esm/Image";
 
 export const CityPage = () => {
 	const { store, actions } = useContext(Context);
@@ -109,6 +108,7 @@ export const CityPage = () => {
 					</div>
 				</div>
 				{/* INFO */}
+
 				<CollapseInfo />
 
 				{/* <div className="container text-light card d-flex row cardBg">
@@ -120,6 +120,7 @@ export const CityPage = () => {
                         Take me to wiki
                     </a>
                 </div> */}
+
 
 				{/* POST */}
 
