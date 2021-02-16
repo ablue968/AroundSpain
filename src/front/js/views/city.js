@@ -120,7 +120,6 @@ export const CityPage = () => {
                     </a>
                 </div> */}
 
-
 				{/* POST */}
 
 				<div className="container d-flex row">
