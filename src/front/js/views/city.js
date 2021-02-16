@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Post } from "../component/post.js";
-import { CollapseInfo } from "../component/collapseInfo.js";
 
 import { Context } from "../store/appContext";
 import { CollapseInfo } from "../component/collapseInfo";
@@ -34,7 +33,7 @@ export const CityPage = () => {
 			};
 			foo();
 		},
-		[store.cities]
+		[store.cities, params.city_name]
 	);
 
 	const postsList = store.posts.map((element, index) => {
@@ -78,7 +77,7 @@ export const CityPage = () => {
 						<i className={like} />
 					</button> */}
 				</div>
-				<div className="col-3 mx-auto mb-3">
+				<div className="col-4 mx-auto mb-3">
 					<div className="text-light">
 						<h5 className="lobster">Population</h5>
 						<p>{store.cityWeather.municipio ? store.cityWeather.municipio.POBLACION_MUNI : "loading"}</p>
@@ -125,24 +124,28 @@ export const CityPage = () => {
 				{/* POST */}
 
 				<div className="container d-flex row">
-					<div className="col-6 bg-postArea">
-						<div className="paraElTituloEnPost">Posts</div>
-						{postsList}
+					<div className="d-flex flex-column-reverse col-12 mb-4">
+						{store.token ? (
+							<form>
+								<div className="form-group">
+									<textarea
+										className="form-control"
+										id="exampleFormControlTextarea1"
+										rows="3"
+										placeholder="add your comments"
+										onChange={event => setPostText(event.target.value)}
+									/>
+								</div>
+								<button type="button" className="btn btn-secondary" onClick={() => onSubmit()}>
+									Submit
+								</button>
+							</form>
+						) : null}
 					</div>
-					<div className="d-flex flex-column-reverse col-6 mb-4">
-						<form>
-							<div className="form-group">
-								<textarea
-									className="form-control"
-									id="exampleFormControlTextarea1"
-									rows="3"
-									onChange={event => setPostText(event.target.value)}
-								/>
-							</div>
-							<button type="button" className="btn btn-success" onClick={() => onSubmit()}>
-								Submit
-							</button>
-						</form>
+					<p>Last Posts</p>
+					<div className="col-12 bg-postArea">
+						<div className="paraElTituloEnPost" />
+						{postsList}
 					</div>
 				</div>
 			</div>
