@@ -68,8 +68,8 @@ export const Login = () => {
 								value={password}
 								type="password"
 								className="form-control "
-								placeholder="Email"
-								aria-label="Email"
+								placeholder="Password"
+								aria-label="Password"
 								aria-describedby="addon-wrapping"
 								onChange={() => setPassword(event.target.value)}
 							/>

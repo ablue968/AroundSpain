@@ -10,7 +10,7 @@ export const CollapseInfo = () => {
 	return (
 		<>
 			<Button onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
-				click
+				Info
 			</Button>
 			<Collapse in={open}>
 				<div id="example-collapse-text">
