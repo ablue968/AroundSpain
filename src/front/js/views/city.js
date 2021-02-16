@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Post } from "../component/post.js";
+import { CollapseInfo } from "../component/collapseInfo.js";
 
 import { Context } from "../store/appContext";
 
@@ -107,10 +108,10 @@ export const CityPage = () => {
 						<p>{detail.cost_of_living}</p>
 					</div>
 				</div>
-                {/* INFO */}
-                <CollapseInfo />
+				{/* INFO */}
+				<CollapseInfo />
 
-                {/* <div className="container text-light card d-flex row cardBg">
+				{/* <div className="container text-light card d-flex row cardBg">
                     <div className=" infoIcon text-center mb-4">
                         <i className="fas fa-info " />
                     </div>
@@ -120,7 +121,7 @@ export const CityPage = () => {
                     </a>
                 </div> */}
 
-                {/* POST */}
+				{/* POST */}
 
 				<div className="container d-flex row">
 					<div className="col-6 bg-postArea">

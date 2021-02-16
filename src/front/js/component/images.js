@@ -3,14 +3,14 @@ import Carousel from "react-bootstrap/Carousel";
 
 import "../../styles/all.scss";
 import "../../styles/images.scss";
-import feria from "../../img/videos/feria.mp4";
+import feria from "../../video/feria.mp4";
 
 export const MyCarousel = () => (
-    <Carousel>
-        <Carousel.Item interval={5000}>
-            <video width="100%" height="550" autoPlay muted loop>
-                <source src={feria} type="video/mp4" />
-            </video>
+	<Carousel>
+		<Carousel.Item interval={5000}>
+			<video width="100%" height="550" autoPlay muted loop>
+				<source src={feria} type="video/mp4" />
+			</video>
 			<Carousel.Caption>
 				<h3 className="carouselLobster" id="carousel">
 					Sevilla
