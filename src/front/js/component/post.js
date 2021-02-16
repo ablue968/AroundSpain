@@ -11,7 +11,9 @@ export const Post = props => {
 	return (
 		<div className="mb-1 posted">
 			<div className="postConfig">
-				<p>{post.user_name}:</p>
+				<p>
+					{post.user_name} - {post.created_at}
+				</p>
 
 				<p>{post.text}</p>
 			</div>
