@@ -6,10 +6,11 @@ import "../../styles/all.scss";
 export const MyCarousel = () => (
 	<Carousel>
 		<Carousel.Item interval={5000}>
-			<iframe
+			<img
 				width="100%"
 				height="550"
-				src="https://www.youtube.com/embed/H0LgMWVHbx4?autoplay=1&controls=0&mute=1"
+				src="https://www.visitvalencia.com/sites/default/files/styles/listados_full/public/_dsc5403_4.jpg?itok=GUMyvM3v"
+				type="video/mp4"
 			/>
 
 			<Carousel.Caption>
