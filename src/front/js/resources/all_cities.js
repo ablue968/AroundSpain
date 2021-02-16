@@ -14,7 +14,7 @@ export default [
 	},
 	{
 		"image":"https://media.istockphoto.com/photos/spain-square-seville-spain-picture-id576913134?k=6&m=576913134&s=612x612&w=0&h=_zbOgqeauKwbMkrrY17Q_d7NVmu_-JYJINLt1hsi98k=",
-		"city_name": "Sevilla",
+		"city_name": "Seville",
 		"cost_of_living": "1220€ /mo",
 		"ine_url": "https://www.el-tiempo.net/api/json/v2/provincias/41/municipios/41091",
 
@@ -47,7 +47,7 @@ export default [
 	},
 	{
 		"image":"https://media.istockphoto.com/photos/malaga-spain-cityscape-view-of-malaga-plaza-de-toros-de-ronda-in-picture-id1017217230?k=6&m=1017217230&s=612x612&w=0&h=-IaQoKhiQja9EJDySyH113tU63z92Ir2knSbIfyUfgA=",
-		"city_name": "Malaga",
+		"city_name": "Málaga",
 		"cost_of_living": "1250€ /mo",
 		"ine_url": "https://www.el-tiempo.net/api/json/v2/provincias/29/municipios/29067",
 	}
