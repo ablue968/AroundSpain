@@ -107,10 +107,10 @@ export const CityPage = () => {
 					</div>
 				</div>
 				{/* INFO */}
+			</div>
+			<CollapseInfo />
 
-				<CollapseInfo />
-
-				{/* <div className="container text-light card d-flex row cardBg">
+			{/* <div className="container text-light card d-flex row cardBg">
                     <div className=" infoIcon text-center mb-4">
                         <i className="fas fa-info " />
                     </div>
@@ -120,12 +120,14 @@ export const CityPage = () => {
                     </a>
                 </div> */}
 
-				{/* POST */}
+			{/* POST */}
 
-				<div className="container d-flex row">
-					<div className="d-flex flex-column-reverse col-12 mb-4">
-						{store.token ? (
+			<div className="container d-flex row">
+				{store.token ? (
+					<>
+						<div className="d-flex flex-column col-6">
 							<form>
+								<h4 className="text-light text-left lobster">Write your comments</h4>
 								<div className="form-group">
 									<textarea
 										className="form-control"
@@ -139,14 +141,18 @@ export const CityPage = () => {
 									Submit
 								</button>
 							</form>
-						) : null}
-					</div>
-					<p>Last Posts</p>
-					<div className="col-12 bg-postArea">
-						<div className="paraElTituloEnPost" />
+						</div>
+						<div className="col-6 ">
+							<h4 className="text-light text-left lobster">Last Posts</h4>
+							{postsList}
+						</div>
+					</>
+				) : (
+					<div className="col-12 ">
+						<h4 className="text-light text-left lobster">Last Posts</h4>
 						{postsList}
 					</div>
-				</div>
+				)}
 			</div>
 		</div>
 	);

@@ -38,7 +38,7 @@ export const Login = () => {
 			</div>
 			<div className="pt-2 pb-3 text-light signInBackground">
 				<div className="signInMainColor">
-					<h1 className=" pl-3 mb-5 text-light lobster">Sing in</h1>
+					<h1 className=" pl-3 mb-5 text-light lobster">Sign in</h1>
 					<div className="mt-4">
 						<div className="input-group flex-nowrap">
 							<div className="input-group-prepend">
