@@ -15,7 +15,7 @@ export const CityPage = () => {
 	const params = useParams();
 	const [like, setLike] = useState("far fa-heart text-danger");
 	const [detail, setDetail] = useState({});
-	const [postText, setPostText] = useState();
+	const [postText, setPostText] = useState("");
 	const [wheatherInformation, setWheaterInformation] = useState();
 
 	useEffect(
@@ -36,9 +36,11 @@ export const CityPage = () => {
 		[store.cities, params.city_name]
 	);
 
-	const postsList = store.posts.map((element, index) => {
-		return <Post post={element} key={index} />;
-	});
+	const postsList = store.posts
+		.map((element, index) => {
+			return <Post post={element} key={index} />;
+		})
+		.reverse();
 
 	function onSubmit() {
 		const data = {
@@ -133,6 +135,7 @@ export const CityPage = () => {
 										className="form-control"
 										id="exampleFormControlTextarea1"
 										rows="3"
+										value={postText}
 										placeholder="add your comments"
 										onChange={event => setPostText(event.target.value)}
 									/>

@@ -131,7 +131,7 @@ class Posts(db.Model):
     deleted_at = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     city_id = db.Column(db.Integer, db.ForeignKey('cities.id'), nullable=False)
-    text = db.Column(db.String(150), nullable=False)
+    text = db.Column(db.String(500), nullable=False)
 
     user = db.relationship("Users")
     city = db.relationship("Cities")
