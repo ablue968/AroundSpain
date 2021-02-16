@@ -107,18 +107,21 @@ export const CityPage = () => {
 						<p>{detail.cost_of_living}</p>
 					</div>
 				</div>
-				{/* INFO */}
-				<div className="container text-light card d-flex row cardBg">
-					<div className=" infoIcon text-center mb-4">
-						<i className="fas fa-info " />
-					</div>
-					<h5>{store.cityInfo}</h5>
-					<a href={store.goWiki} target="_blank" rel="noopener noreferrer">
-						Take me to wiki
-					</a>
-				</div>
+                {/* INFO */}
+                <CollapseInfo />
 
-				{/* POST */}
+                {/* <div className="container text-light card d-flex row cardBg">
+                    <div className=" infoIcon text-center mb-4">
+                        <i className="fas fa-info " />
+                    </div>
+                    <h5>{store.cityInfo}</h5>
+                    <a href={store.goWiki} target="_blank" rel="noopener noreferrer">
+                        Take me to wiki
+                    </a>
+                </div> */}
+
+                {/* POST */}
+
 				<div className="container d-flex row">
 					<div className="col-6 bg-postArea">
 						<div className="paraElTituloEnPost">Posts</div>

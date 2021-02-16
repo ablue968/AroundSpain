@@ -8,38 +8,38 @@ import "../../styles/login.scss";
 import { Background_images } from "../resources/backgroundImages";
 
 export const Login = () => {
-	const { store, actions } = useContext(Context);
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+    const { store, actions } = useContext(Context);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-	const history = useHistory();
+    const history = useHistory();
 
-	const onLogin = () => {
-		if (email != "") {
-			const data = {
-				email: email,
-				password: password
-			};
-			console.log(data);
-			actions.login(data, () => {
-				history.push("/");
-			});
-		}
-	};
+    const onLogin = () => {
+        if (email != "") {
+            const data = {
+                email: email,
+                password: password
+            };
+            console.log(data);
+            actions.login(data, () => {
+                history.push("/");
+            });
+        }
+    };
 
-	useEffect(() => {
-		actions.logOut();
-	}, []);
+    useEffect(() => {
+        actions.logOut();
+    }, []);
 
-	return (
-		<main className=" container-fluid d-flex justify-content-center row mx-auto">
-			<div className="rowSpecial toBackGround">
-				<Background_images />
-			</div>
-			<div className="pt-2 pb-3 text-light signInBackground">
-				<div className="signInMainColor">
-					<h1 className=" pl-3 mb-5 text-light lobster">SIGN IN</h1>
-					<div className="mt-4">
+    return (
+        <main className=" container-fluid d-flex justify-content-center row mx-auto">
+            <div className="rowSpecial toBackGround">
+                <Background_images />
+            </div>
+            <div className="pt-2 pb-3 text-light signInBackground">
+                <div className="signInMainColor">
+                    <h1 className=" pl-3 mb-5 text-light lobster">Sing in</h1>
+                    <div className="mt-4">
 						<div className="input-group flex-nowrap">
 							<div className="input-group-prepend">
 								<span className="input-group-text specialColor" id="addon-wrapping">
