@@ -40,8 +40,8 @@ export const Card = props => {
 					onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
 					onMouseOut={() => setCardBackground("card-img-top", false)}
 					onClick={() => handleClick(event)}>
-					{/* <i className={store.token ? like : ""} title={city.city_name} /> */}
-					{store.token ? <i className={like} title={city.city_name} /> : null}
+					<i className={store.token ? like : ""} title={city.city_name} />
+					{/* <i className={like} title={city.city_name} /> */}
 				</div>
 			</div>
 		</>
