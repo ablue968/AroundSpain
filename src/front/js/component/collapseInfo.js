@@ -18,8 +18,10 @@ export const CollapseInfo = () => {
 				</button>
 				<Collapse in={open}>
 					<div className="row">
+
 						<div id="example-collapse-text col-5">
 							<h5 className="pl-5 pr-5">{store.cityInfo}</h5>
+
 							<a
 								className="d-flex flex-row-reverse bd-highlight pr-5 lobster"
 								href={store.goWiki}

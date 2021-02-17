@@ -9,14 +9,11 @@ import "../../styles/post.scss";
 export const Post = props => {
 	const { post } = props;
 	return (
-		<div className="mb-1 posted">
-			<div className="postConfig">
-				<p>
-					{post.user_name} - {post.created_at}
-				</p>
-
-				<p>{post.text}</p>
-			</div>
+		<div className="postConfig">
+			<p>
+				<strong>{post.user_name}</strong> - <small>{post.created_at}</small>
+			</p>
+			<p>{post.text}</p>
 		</div>
 	);
 };

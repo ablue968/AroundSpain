@@ -18,7 +18,7 @@
 
 .cardBg{
     background: #2c303a;
-    padding: 1rem;
+    padding: 2rem;
     margin: 2rem 0;
     position: relative;
     z-index: 1;
@@ -36,4 +36,8 @@
 
 button.infoIcon {
     border: 1px solid white;
+}
+
+textarea {
+    resize: none;
 }

@@ -114,14 +114,14 @@ export const Navbar = () => {
 					) : (
 						""
 					)}
-					<Link to="/about">
-						<button type="btn" className="btn btn-outline-light d-flex justify-content-center d-flex ml-2">
+					<Link to="/about" style={{ textDecoration: "none" }}>
+						<button type="btn" className="btn btn-light d-flex justify-content-center d-flex ml-2 aboutUs">
 							ABOUT US
 						</button>
 					</Link>
 					<Link to="/login">
 						<button type="btn" className="btn ml-2 text-light specialColor">
-							{store.token ? "Logout" : "Sign In"}
+							{store.token ? "LOGOUT" : "SIGN IN"}
 						</button>
 					</Link>
 				</div>
