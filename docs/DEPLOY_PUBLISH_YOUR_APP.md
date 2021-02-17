@@ -26,7 +26,7 @@ $ heroku buildpacks:add --index 2 heroku/nodejs
 4. Commit and push to heroku
 Make sure you have commited your changes and push to heroku
 ```sh
-$ git push heroku master
+$ git push heroku master.
 ```
 
 ## Enviroment Variables (takes 2 minutes)
