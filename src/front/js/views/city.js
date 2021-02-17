@@ -141,7 +141,6 @@ export const CityPage = () => {
 							</form>
 						) : null}
 					</div>
-					<p>Last Posts</p>
 					<div className="col-12 bg-postArea">
 						<div className="paraElTituloEnPost" />
 						{postsList}
