@@ -7,7 +7,6 @@ import feria from "../../video/feria.mp4";
 
 export const MyCarousel = () => (
 	<Carousel>
-
 		<Carousel.Item interval={500000}>
 			<video width="100%" height="550" autoPlay muted loop>
 				<source src={feria} type="video/mp4" />

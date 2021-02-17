@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Post } from "../component/post.js";
-import { CollapseInfo } from "../component/collapseInfo.js";
 
 import { Context } from "../store/appContext";
 import { CollapseInfo } from "../component/collapseInfo";
@@ -78,9 +77,9 @@ export const CityPage = () => {
 						<i className={like} />
 					</button> */}
 				</div>
-				<div className="col-3 mx-auto mb-3">
+				<div className="col-3 mx-auto mb-3 bg-data">
 					<div className="text-light">
-						<h5 className="lobster">Population</h5>
+						<h5 className="lobster pt-2">Population</h5>
 						<p>{store.cityWeather.municipio ? store.cityWeather.municipio.POBLACION_MUNI : "loading"}</p>
 					</div>
 					<div className="text-light">
@@ -120,7 +119,6 @@ export const CityPage = () => {
                         Take me to wiki
                     </a>
                 </div> */}
-
 
 				{/* POST */}
 
