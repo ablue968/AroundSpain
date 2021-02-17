@@ -88,7 +88,7 @@ export const Login = () => {
 					</div>
 					<div className=" px-auto text-center text-light lobster">
 						<h5 className="registerStyle">
-							Not a member yet? &nbsp;
+							Not a member yet?. &nbsp;
 							<Link to="/register" style={{ textDecoration: "none" }}>
 								Come and register!!
 							</Link>
