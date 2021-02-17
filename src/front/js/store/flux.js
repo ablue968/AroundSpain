@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-olive-quail-xcv1vphj.ws-eu03.gitpod.io/api";
+const baseUrl = process.env.BACKEND_URL;
 const searchWiki = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&search="; // lo que se añade debe ser después de search
 const wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&origin=*&titles="; // lo que se añade debe ser después de search
 const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincias/[codprov]/municipios/[COD_GEO]
