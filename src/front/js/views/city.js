@@ -122,36 +122,33 @@ export const CityPage = () => {
                     </a>
                 </div> */}
 
-	      {/* POST */}
+			{/* POST */}
 
-				<div className="container d-flex row">
-					<div className="d-flex flex-column-reverse col-12 mb-4">
-						{store.token ? (
-
-							<form>
-								<h4 className="text-light text-left lobster">Write your comments</h4>
-								<div className="form-group">
-									<textarea
-										className="form-control"
-										id="exampleFormControlTextarea1"
-										rows="3"
-										value={postText}
-										placeholder="add your comments"
-										onChange={event => setPostText(event.target.value)}
-									/>
-								</div>
-								<button type="button" className="btn btn-secondary" onClick={() => onSubmit()}>
-									Submit
-								</button>
-							</form>
-
-						) : null}
-					</div>
-					<div className="col-12 bg-postArea">
-						<div className="paraElTituloEnPost" />
-						{postsList}
-					</div>
-				)}
+			<div className="container d-flex row">
+				<div className="d-flex flex-column-reverse col-12 mb-4">
+					{store.token ? (
+						<form>
+							<h4 className="text-light text-left lobster">Write your comments</h4>
+							<div className="form-group">
+								<textarea
+									className="form-control"
+									id="exampleFormControlTextarea1"
+									rows="3"
+									value={postText}
+									placeholder="add your comments"
+									onChange={event => setPostText(event.target.value)}
+								/>
+							</div>
+							<button type="button" className="btn btn-secondary" onClick={() => onSubmit()}>
+								Submit
+							</button>
+						</form>
+					) : null}
+				</div>
+				<div className="col-12 bg-postArea">
+					<div className="paraElTituloEnPost" />
+					{postsList}
+				</div>
 			</div>
 		</div>
 	);
