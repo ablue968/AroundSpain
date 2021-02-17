@@ -121,7 +121,7 @@ export const Navbar = () => {
 					</Link>
 					<Link to="/login">
 						<button type="btn" className="btn ml-2 text-light specialColor">
-							{store.token ? "Logout" : "Sign In"}
+							{store.token ? "LOGOUT" : "SIGN IN"}
 						</button>
 					</Link>
 				</div>
