@@ -10,7 +10,13 @@ export const Post = props => {
 	const { post } = props;
 	return (
 		<div className="mb-1 posted">
-			<div className="postConfig">{post.text}</div>
+			<div className="postConfig">
+				<p>
+					{post.user_name} - {post.created_at}
+				</p>
+
+				<p>{post.text}</p>
+			</div>
 		</div>
 	);
 };

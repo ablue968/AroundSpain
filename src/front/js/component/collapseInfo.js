@@ -2,8 +2,6 @@ import React, { useState, useContext } from "react";
 import Collapse from "react-bootstrap/Collapse";
 import { Context } from "../store/appContext";
 
-
-
 export const CollapseInfo = () => {
 	const [open, setOpen] = useState(false);
 	const { store, actions } = useContext(Context);
@@ -19,19 +17,20 @@ export const CollapseInfo = () => {
 					<i className="fas fa-info " />
 				</button>
 				<Collapse in={open}>
-					<div id="example-collapse-text">
-						<h5>{store.cityInfo}</h5>
-						<a
-							className="d-flex flex-row-reverse bd-highlight"
-							href={store.goWiki}
-							target="_blank"
-							rel="noopener noreferrer">
-							Take me to wiki
-						</a>
+					<div className="row">
+						<div id="example-collapse-text col-5">
+							<h5 className="pl-5 pr-5">{store.cityInfo}</h5>
+							<a
+								className="d-flex flex-row-reverse bd-highlight pr-5 lobster"
+								href={store.goWiki}
+								target="_blank"
+								rel="noopener noreferrer">
+								Take me to wiki
+							</a>
+						</div>
 					</div>
 				</Collapse>
 			</div>
-
 		</>
 	);
 };
