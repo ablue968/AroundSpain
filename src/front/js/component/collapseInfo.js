@@ -17,15 +17,17 @@ export const CollapseInfo = () => {
 					<i className="fas fa-info " />
 				</button>
 				<Collapse in={open}>
-					<div id="example-collapse-text">
-						<h5>{store.cityInfo}</h5>
-						<a
-							className="d-flex flex-row-reverse bd-highlight"
-							href={store.goWiki}
-							target="_blank"
-							rel="noopener noreferrer">
-							Take me to wiki
-						</a>
+					<div className="row">
+						<div id="example-collapse-text col-5">
+							<h5>{store.cityInfo}</h5>
+							<a
+								className="d-flex flex-row-reverse bd-highlight"
+								href={store.goWiki}
+								target="_blank"
+								rel="noopener noreferrer">
+								Take me to wiki
+							</a>
+						</div>
 					</div>
 				</Collapse>
 			</div>
