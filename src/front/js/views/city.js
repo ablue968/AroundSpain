@@ -81,7 +81,7 @@ export const CityPage = () => {
 				</div>
 				<div className="col-4 mx-auto mb-3">
 					<div className="text-light">
-						<h5 className="lobster pt-2">Population</h5>
+						<h5 className="lobster">Population</h5>
 						<p>{store.cityWeather.municipio ? store.cityWeather.municipio.POBLACION_MUNI : "loading"}</p>
 					</div>
 					<div className="text-light">
@@ -125,30 +125,37 @@ export const CityPage = () => {
 			{/* POST */}
 
 			<div className="container d-flex row">
-				<div className="d-flex flex-column-reverse col-12 mb-4">
-					{store.token ? (
-						<form>
-							<h4 className="text-light text-left lobster">Write your comments</h4>
-							<div className="form-group">
-								<textarea
-									className="form-control"
-									id="exampleFormControlTextarea1"
-									rows="3"
-									value={postText}
-									placeholder="add your comments"
-									onChange={event => setPostText(event.target.value)}
-								/>
-							</div>
-							<button type="button" className="btn btn-secondary" onClick={() => onSubmit()}>
-								Submit
-							</button>
-						</form>
-					) : null}
-				</div>
-				<div className="col-12 bg-postArea">
-					<div className="paraElTituloEnPost" />
-					{postsList}
-				</div>
+				{store.token ? (
+					<>
+						<div className="d-flex flex-column col-6">
+							<form>
+								<h4 className="text-light text-left lobster">Write your comments</h4>
+								<div className="form-group">
+									<textarea
+										className="form-control"
+										id="exampleFormControlTextarea1"
+										rows="3"
+										value={postText}
+										placeholder="add your comments"
+										onChange={event => setPostText(event.target.value)}
+									/>
+								</div>
+								<button type="button" className="btn btn-secondary" onClick={() => onSubmit()}>
+									Submit
+								</button>
+							</form>
+						</div>
+						<div className="col-6 ">
+							<h4 className="text-light text-left lobster">Last Posts</h4>
+							{postsList}
+						</div>
+					</>
+				) : (
+					<div className="col-12 ">
+						<h4 className="text-light text-left lobster">Last Posts</h4>
+						{postsList}
+					</div>
+				)}
 			</div>
 		</div>
 	);
