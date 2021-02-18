@@ -22,10 +22,10 @@ export const Register = () => {
 	// const [country, setCountry] = useState("");
 	// const [languages, setLanguages] = useState("");
 
-	const [username, setUsername] = useState("unocongafas");
-	const [firstName, setFirstName] = useState("Alejandro");
-	const [lastName, setLastName] = useState("Castaño González");
-	const [email, setEmail] = useState("unocongafas@gmail.com");
+	const [username, setUsername] = useState("Carlos984");
+	const [firstName, setFirstName] = useState("Carlos");
+	const [lastName, setLastName] = useState("Sánchez ");
+	const [email, setEmail] = useState("carlossanchez@gmail.com");
 	const [password, setPassword] = useState("12345678");
 	const [country, setCountry] = useState("");
 	const [languages, setLanguages] = useState("");

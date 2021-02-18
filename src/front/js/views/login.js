@@ -9,7 +9,7 @@ import { Background_images } from "../resources/backgroundImages";
 
 export const Login = () => {
 	const { store, actions } = useContext(Context);
-	const [email, setEmail] = useState("unocongafas@gmail.com");
+	const [email, setEmail] = useState("carlossanchez@gmail.com");
 	const [password, setPassword] = useState("12345678");
 
 	const history = useHistory();
