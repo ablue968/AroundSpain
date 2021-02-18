@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const regeneratorRuntime = require("regenerator-runtime");
 
 module.exports = {
   entry: [
@@ -54,16 +55,13 @@ module.exports = {
         template: 'template.html'
     }),
     new Dotenv({ safe: true, systemvars: true }),
-    [
-      "@babel/plugin-transform-runtime",
-      {
+    new regeneratorRuntime({
         "absoluteRuntime": false,
         "corejs": false,
         "helpers": true,
         "regenerator": true,
         "useESModules": false,
         "version": "7.0.0-beta.0"
-      }
-    ]
+      })
   ]
 };
