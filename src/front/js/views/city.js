@@ -47,7 +47,8 @@ export const CityPage = () => {
 			cityId: detail.id,
 			text: postText
 		};
-		actions.publishPost(data);
+        actions.publishPost(data);
+        setPostText("");
 	}
 
 	// const cityInfo = store.cities[params.appContext];
