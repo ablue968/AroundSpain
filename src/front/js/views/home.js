@@ -48,7 +48,7 @@ export const Home = () => {
 	});
 
 	return (
-		<div onMOuseEnter={() => handleShow(true)} onMouseLeave={() => handleShow(false)} ref={confettiRef}>
+		<div onMouseEnter={() => handleShow(true)} onMouseLeave={() => handleShow(false)} ref={confettiRef}>
 			{store.token ? <Confetti recycle={false} numberOfPieces={500} width={width} height={height} /> : ""}
 			<div className="overCarouselText">
 				<h1 className="text-light lobster">Let&#39;s go Around Spain,</h1>

@@ -11,20 +11,14 @@ export const Card = props => {
 	const history = useHistory();
 
 	const { city } = props;
+	const favoritesInFlux = store.favorites;
 
 	const [background, setBackgroung] = useState("card-img-top");
 	const [showCardText, setShowCardText] = useState(false);
 
-	const [like, setLike] = useState("far fa-heart text-danger");
-
-	const handleClick = event => {
-		if (like == "far fa-heart text-danger") {
-			setLike("fas fa-heart text-danger");
-			actions.addFav(event.target.title);
-		} else {
-			setLike("far fa-heart text-danger");
-			actions.deleteFav(event.target.title);
-		}
+	const handleClick = () => {
+		console.log(city.city_name);
+		favoritesInFlux.includes(city.city_name) ? actions.deleteFav(city.city_name) : actions.addFav(city.city_name);
 	};
 
 	const setCardBackground = (effect, text) => {
@@ -40,8 +34,14 @@ export const Card = props => {
 					onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
 					onMouseOut={() => setCardBackground("card-img-top", false)}
 					onClick={() => handleClick(event)}>
-					<i className={store.token ? like : ""} title={city.city_name} />
-					{/* <i className={like} title={city.city_name} /> */}
+					<i
+						className={
+							favoritesInFlux.includes(city.city_name)
+								? "fas fa-heart text-danger"
+								: "far fa-heart text-danger"
+						}
+						title={city.city_name}
+					/>
 				</div>
 			</div>
 		</>

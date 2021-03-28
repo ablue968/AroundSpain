@@ -1,4 +1,4 @@
-const baseUrl = process.env.BACKEND_URL;
+const baseUrl = "https://3001-chocolate-urial-jd5bvptg.ws-eu03.gitpod.io/api"; //process.env.BACKEND_URL; para que funcione con heroku
 const searchWiki = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&search="; // lo que se añade debe ser después de search
 const wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&origin=*&titles="; // lo que se añade debe ser después de search
 const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincias/[codprov]/municipios/[COD_GEO]
@@ -7,7 +7,7 @@ const token = localStorage.getItem("token");
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: null,
+			token: true,
 			favorites: [],
 			posts: [],
 			cities: [],
@@ -39,7 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(data => {
-						callback();
+						callback(data);
 					})
 					.catch(error => {
 						console.log(error);
@@ -169,9 +169,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				};
 				///////////////////////// FETCH
-				fetch(endpoint, config)
-					.then(response => response.json())
-					.then(data => console.log(data));
+				fetch(endpoint, config).then(response => response.json());
+				//.then(data => console.log(data));
 			},
 
 			getweathercity(url) {
