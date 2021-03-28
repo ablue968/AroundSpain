@@ -7,7 +7,7 @@ const token = localStorage.getItem("token");
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: true,
+			token: null,
 			favorites: [],
 			posts: [],
 			cities: [],

@@ -17,7 +17,6 @@ export const Card = props => {
 	const [showCardText, setShowCardText] = useState(false);
 
 	const handleClick = () => {
-		console.log(city.city_name);
 		favoritesInFlux.includes(city.city_name) ? actions.deleteFav(city.city_name) : actions.addFav(city.city_name);
 	};
 
@@ -34,14 +33,18 @@ export const Card = props => {
 					onMouseEnter={() => setCardBackground("card-img-top toBlur", true)}
 					onMouseOut={() => setCardBackground("card-img-top", false)}
 					onClick={() => handleClick(event)}>
-					<i
-						className={
-							favoritesInFlux.includes(city.city_name)
-								? "fas fa-heart text-danger"
-								: "far fa-heart text-danger"
-						}
-						title={city.city_name}
-					/>
+					{store.token ? (
+						<i
+							className={
+								favoritesInFlux.includes(city.city_name)
+									? "fas fa-heart text-danger"
+									: "far fa-heart text-danger"
+							}
+							title={city.city_name}
+						/>
+					) : (
+						""
+					)}
 				</div>
 			</div>
 		</>
