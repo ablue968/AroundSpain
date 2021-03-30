@@ -30,13 +30,10 @@ export const Home = () => {
 		setHeight(confettiRef.current.clientHeight);
 		setWidth(confettiRef.current.clientWidth);
 	}, []);
+	console.log(localStorage.token);
 
 	const handleShow = toggle => {
 		setShow(toggle);
-	};
-
-	const info = () => {
-		console.log("Soy el onMouseOver");
 	};
 
 	const allCities = store.cities.slice(0, 4).map((city, index) => {

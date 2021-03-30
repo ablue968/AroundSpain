@@ -155,9 +155,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(endpoint, config)
 					.then(response => response.json())
 					.then(() => {
-						console.log(data.cityId);
 						actions.postCity(data.cityId);
-						console.log(data.cityId);
 					});
 			},
 			getLikesUser(id_user) {

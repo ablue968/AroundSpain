@@ -22,7 +22,7 @@ export const CollapseInfo = () => {
 							<h5 className="pl-5 pr-5">{store.cityInfo}</h5>
 
 							<a
-								className="d-flex flex-row-reverse bd-highlight pr-5 lobster"
+								className="d-inline-flex justify-content-end bd-highlight pr-5 lobster"
 								href={store.goWiki}
 								target="_blank"
 								rel="noopener noreferrer">
