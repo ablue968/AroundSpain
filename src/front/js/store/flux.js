@@ -3,6 +3,7 @@ const searchWiki = "https://en.wikipedia.org/w/api.php?action=opensearch&format=
 const wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&origin=*&titles="; // lo que se añade debe ser después de search
 const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida api el tiempo.es provincias/[codprov]/municipios/[COD_GEO]
 const wikiLink = "https://en.wikipedia.org/wiki/";
+const holidayApiKey = "f9592d0d29934527b7d8bf7e270d5063";
 const token = localStorage.getItem("token");
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -184,6 +185,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getCityInfo(city_name) {
 				const endpoint = `${wikiUrl2}${city_name}&format=json`;
+				const config = {
+					method: "GET"
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						let page = data.query.pages;
+						let pageId = Object.keys(page)[0];
+						let content = page[pageId].extract;
+						setStore({ cityInfo: content });
+						setStore({ goWiki: `${wikiLink}${city_name}` });
+					});
+			},
+
+			getHoliday(city_name) {
+				const endpoint = `https://holidays.abstractapi.com/v1?api_key=${holidayApiKey}&country=ES&year=&month=&day=`;
 				const config = {
 					method: "GET"
 				};

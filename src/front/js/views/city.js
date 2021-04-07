@@ -51,25 +51,6 @@ export const CityPage = () => {
 		setPostText("");
 	}
 
-	// const cityInfo = store.cities[params.appContext];
-
-	// const handleClick = () => {
-	// 	if (detail.city_name in store.favorites) {
-	// 		console.log("ya lo tenemos");
-	// 		setLike("fas fa-heart text-danger");
-	// 	}
-	// 	if (like == "far fa-heart text-danger") {
-	// 		setLike("fas fa-heart text-danger");
-	// 		actions.addFav(detail.city_name);
-	// 	} else {
-	// 		setLike("far fa-heart text-danger");
-	// 		actions.deleteFav(detail.city_name);
-	// 	}
-	// };
-
-	//console.log(store.cityWeather);
-	//console.log(store.cityInfo);
-
 	return (
 		<div className="container p-0 cityMarginTop">
 			<h1 className="text-light text-center lobster mb-4">{detail.city_name}</h1>
