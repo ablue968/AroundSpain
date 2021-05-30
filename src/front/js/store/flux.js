@@ -5,9 +5,9 @@ const tiempoEs = "https://www.el-tiempo.net/api/json/v2/provincias"; //añadida 
 const wikiLink = "https://en.wikipedia.org/wiki/";
 const holidayApiKey = "f9592d0d29934527b7d8bf7e270d5063";
 const token = localStorage.getItem("token");
-//for the getHoliday function 
+//for the getHoliday function
 const d = new Date();
-const day = d.getDate()
+const day = d.getDate();
 const month = d.getMonth() + 1;
 const year = d.getFullYear();
 const getState = ({ getStore, getActions, setStore }) => {
@@ -205,23 +205,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getHoliday(city_name) {
-                const api_key = "f9592d0d29934527b7d8bf7e270d5063"
-                const endpoint = `https://holidays.abstractapi.com/v1?api_key=${api_key}&country=ES&year=${year}&month=${month}&day=${day}`
-                //const endpoint = `https://holidays.abstractapi.com/v1?api_key=${api_key}&country=ES&year=${year}&month=05&day=2`
-                const config = {
-                        method: "GET"
-                    };
-                fetch(endpoint, config)
-                    .then(response => response.json())
-                    .then(data => {
-                        const info = data[0].type
-                        const dateMonth = data[0].date_month
-                        console.log(dateMonth)
-                        if(dateMonth > month){
-                            document.getElementById("holiday").innerHTML = `${info}: ${data[0].name}`;
-                            console.log(info)
-                        }
-                    })
+				const api_key = "f9592d0d29934527b7d8bf7e270d5063";
+				const endpoint = `https://holidays.abstractapi.com/v1?api_key=${api_key}&country=ES&year=${year}&month=${month}&day=${day}`;
+				//const endpoint = `https://holidays.abstractapi.com/v1?api_key=${api_key}&country=ES&year=${year}&month=05&day=2`
+				const config = {
+					method: "GET"
+				};
+				fetch(endpoint, config)
+					.then(response => response.json())
+					.then(data => {
+						const info = data[0].type;
+						const dateMonth = data[0].date_month;
+						console.log(dateMonth);
+						if (dateMonth > month) {
+							document.getElementById("holiday").innerHTML = `${info}: ${data[0].name}`;
+							console.log(info);
+						}
+					});
 			}
 		}
 	};

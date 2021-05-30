@@ -23,7 +23,6 @@ const Layout = () => {
 		<div className="d-flex flex-column h-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
 					<Switch>
 						<Route exact path="/register">
 							<Register />
@@ -32,13 +31,16 @@ const Layout = () => {
 							<Login />
 						</Route>
 						<Route exact path="/">
+							<Navbar />
 							<MyCarousel />
 							<Home />
 						</Route>
 						<Route exact path="/city/:city_name">
+							<Navbar />
 							<CityPage />
 						</Route>
 						<Route exact path="/about">
+							<Navbar />
 							<AboutUs />
 						</Route>
 
